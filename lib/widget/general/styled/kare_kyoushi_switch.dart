@@ -8,8 +8,8 @@ class KKSwitch extends StatelessWidget {
   const KKSwitch({
     required this.value,
     required this.onChanged,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/styles/theme_colors.dart';
 import 'package:kare_kyoushi/styles/theme_fonts.dart';
-import 'package:kare_kyoushi/util/theme/theme_config.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
 
 class KKThemeData {
   KKThemeData._();
@@ -288,6 +286,8 @@ class KKTheme {
   });
 
   static KKTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
+    return _instanceLight;
+    /*
     if (forceDark) return _instanceDark;
     if (forceLight) return _instanceLight;
     final themeConfigUtil = getIt<ThemeConfigUtil>();
@@ -303,5 +303,6 @@ class KKTheme {
     if (brightness == Brightness.dark) return _instanceDark;
 
     return _instanceLight;
+  */
   }
 }

@@ -10,13 +10,9 @@ class KKProgressIndicator extends StatelessWidget {
     super.key,
   });
 
-  const KKProgressIndicator.dark({Key? key})
-      : dark = true,
-        super(key: key);
+  const KKProgressIndicator.dark({super.key}) : dark = true;
 
-  const KKProgressIndicator.light({Key? key})
-      : dark = false,
-        super(key: key);
+  const KKProgressIndicator.light({super.key}) : dark = false;
 
   @override
   Widget build(BuildContext context) {

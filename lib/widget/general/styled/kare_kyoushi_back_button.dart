@@ -13,16 +13,14 @@ class KKBackButton extends StatelessWidget {
   const KKBackButton.light({
     required this.onClick,
     this.fullScreen = false,
-    Key? key,
-  })  : isLight = true,
-        super(key: key);
+    super.key,
+  }) : isLight = true;
 
   const KKBackButton.dark({
     required this.onClick,
     this.fullScreen = false,
-    Key? key,
-  })  : isLight = false,
-        super(key: key);
+    super.key,
+  }) : isLight = false;
 
   @override
   Widget build(BuildContext context) {
