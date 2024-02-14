@@ -1,13 +1,11 @@
-import 'package:kare_kyoushi/navigator/main_navigator.dart';
-import 'package:kare_kyoushi/navigator/onboarding_navigator.dart';
-import 'package:kare_kyoushi/repository/login/login_repository.dart';
-import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kare_kyoushi/navigator/onboarding_navigator.dart';
+import 'package:kare_kyoushi/repository/login/login_repository.dart';
+import 'package:kare_kyoushi/util/extension/future_extension.dart';
 
 @injectable
 class LoginViewModel with ChangeNotifierEx {
-  final MainNavigator _navigator;
   final LoginRepository _loginRepo;
   final OnboardingNavigator _onboardingNavigator;
 
@@ -17,7 +15,6 @@ class LoginViewModel with ChangeNotifierEx {
 
   LoginViewModel(
     this._loginRepo,
-    this._navigator,
     this._onboardingNavigator,
   );
 
@@ -38,20 +35,18 @@ class LoginViewModel with ChangeNotifierEx {
   }
 
   Future<void> onLoginClicked() async {
-    try {
-      _isLoading = true;
-      await _loginRepo.login(email: _email, password: _password);
-      return _onboardingNavigator.goToNextScreen();
-    } catch (e, stack) {
-      logger.error('Failed to login', error: e, stackTrace: stack);
-      if (e is LocalizedError) {
-        _navigator.showErrorWithLocaleKey(messageKey: e.getLocalizedKey());
-      } else {
-        _navigator.showErrorWithLocaleKey(messageKey: LocalizationKeys.errorGeneral);
-      }
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
+    _isLoading = true;
+    await _loginRepo
+        .login(
+          email: _email,
+          password: _password,
+        )
+        .withErrorHandling(
+          errorMessage: 'Failed to login',
+          onSuccess: (_) => _onboardingNavigator.goToNextScreen(),
+        );
+    _isLoading = false;
+    if (disposed) return;
+    notifyListeners();
   }
 }

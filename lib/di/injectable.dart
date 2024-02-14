@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
 import 'package:kare_kyoushi/di/db/setup_drift_none.dart'
     if (dart.library.io) 'package:kare_kyoushi/di/db/setup_drift_io.dart'
@@ -16,9 +20,6 @@ import 'package:kare_kyoushi/util/interceptor/network_auth_interceptor.dart';
 import 'package:kare_kyoushi/util/interceptor/network_error_interceptor.dart';
 import 'package:kare_kyoushi/util/interceptor/network_log_interceptor.dart';
 import 'package:kare_kyoushi/util/interceptor/network_refresh_interceptor.dart';
-import 'package:get_it/get_it.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.asNewInstance();
@@ -45,6 +46,9 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  FirebaseAuth firebaseAuth() => FirebaseAuth.instance;
 
   @lazySingleton
   SharedPreferenceStorage sharedPreferences(SharedPreferences preferences) => SharedPreferenceStorage(preferences);

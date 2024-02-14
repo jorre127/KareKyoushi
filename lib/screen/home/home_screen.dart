@@ -1,40 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:kare_kyoushi/model/bottom_navigation/bottom_navigation_tab.dart';
-import 'package:kare_kyoushi/widget/general/bottom_navigation/bottom_navigation.dart';
-import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart';
+import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
-@FlutterRoute(
-  navigationType: NavigationType.pushAndReplaceAll,
-)
+@flutterRoute
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  var _currentTab = BottomNavigationTab.defaultTab;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: _currentTab.index,
-        children: BottomNavigationTab.values.map((tab) => tab.childBuilder(context)).toList(),
-      ),
-      bottomNavigationBar: DataProviderWidget(
-        childBuilder: (context, theme, localization) => BottomNavigation(
-          selectedTab: _currentTab,
-          onItemTapped: _onItemTapped,
-        ),
+    return ProviderWidget<HomeViewModel>(
+      create: () => getIt()..init(),
+      childBuilderWithViewModel: (context, viewModel, theme, localization) => const BaseScreen(
+        children: [],
       ),
     );
-  }
-
-  void _onItemTapped(BottomNavigationTab tab) {
-    if (tab == _currentTab) return;
-    setState(() => _currentTab = tab);
   }
 }

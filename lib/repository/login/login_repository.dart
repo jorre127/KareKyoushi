@@ -1,32 +1,36 @@
-import 'package:kare_kyoushi/repository/secure_storage/auth/auth_storage.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 abstract class LoginRepository {
   @factoryMethod
-  factory LoginRepository(AuthStorage storage) = _LoginRepository;
+  factory LoginRepository(
+    FirebaseAuth firebaseAuth,
+  ) = _LoginRepository;
 
-  Future<bool> get isLoggedIn;
+  bool get isLoggedIn;
 
-  Future<bool> get isNotLoggedIn;
+  bool get isNotLoggedIn;
 
   Future<void> login({required String email, required String password});
 }
 
 class _LoginRepository implements LoginRepository {
-  final AuthStorage _storage;
-  _LoginRepository(this._storage);
+  final FirebaseAuth _firebaseAuth;
+
+  _LoginRepository(
+    this._firebaseAuth,
+  );
 
   @override
-  Future<bool> get isLoggedIn => _storage.hasLoggedInUser();
+  bool get isLoggedIn => _firebaseAuth.currentUser != null;
 
   @override
-  Future<bool> get isNotLoggedIn async=> !(await _storage.hasLoggedInUser());
+  bool get isNotLoggedIn => _firebaseAuth.currentUser == null;
 
   @override
-  Future<void> login({required String email, required String password}) async {
-    await _storage.saveUserCredentials(accessToken: 'test_access_token', refreshToken: 'test_refresh_token');
-    logger.debug('Login should be implemented');
-  }
+  Future<void> login({required String email, required String password}) => _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 }

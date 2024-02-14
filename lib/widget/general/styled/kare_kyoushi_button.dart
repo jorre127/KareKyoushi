@@ -3,6 +3,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/styles/theme_durations.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 enum ButtonType {
@@ -14,12 +15,14 @@ class KKButton extends StatelessWidget {
   final String text;
   final bool isEnabled;
   final bool isExpanded;
+  final bool isLoading;
   final VoidCallback? onClick;
   final ButtonType buttonType;
 
   const KKButton({
     required this.text,
     required this.onClick,
+    this.isLoading = false,
     this.isExpanded = true,
     this.isEnabled = true,
     this.buttonType = ButtonType.regular,
@@ -29,6 +32,7 @@ class KKButton extends StatelessWidget {
   const KKButton.text({
     required this.text,
     required this.onClick,
+    this.isLoading = false,
     this.isExpanded = false,
     this.isEnabled = true,
     this.buttonType = ButtonType.text,
@@ -79,17 +83,21 @@ class KKButton extends StatelessWidget {
           mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 24,
+            if (isLoading) ...[
+              const KKProgressIndicator.dark(),
+            ] else ...[
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 24,
+                ),
+                child: AnimatedDefaultTextStyle(
+                  style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
+                  duration: ThemeDurations.shortAnimationDuration,
+                  child: Text(text),
+                ),
               ),
-              child: AnimatedDefaultTextStyle(
-                style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
-                duration: ThemeDurations.shortAnimationDuration,
-                child: Text(text),
-              ),
-            ),
+            ]
           ],
         );
         if (context.isIOSTheme) {

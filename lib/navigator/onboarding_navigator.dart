@@ -1,7 +1,7 @@
+import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/repository/login/login_repository.dart';
 import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart';
-import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class OnboardingNavigator {
@@ -17,7 +17,7 @@ class OnboardingNavigator {
 
   Future<void> goToNextScreen() async {
     if (_localStorage.hasAnalyticsPermission == null) return _navigator.goToAnalyticsPermissionScreen();
-    if (true) return _navigator.goToLoginScreen();
-    return _navigator.goToHomeScreen();
+    if (_loginRepository.isNotLoggedIn) return _navigator.goToLoginScreen();
+    return _navigator.goToMainScreen();
   }
 }

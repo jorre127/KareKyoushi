@@ -13,6 +13,7 @@ import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
 import '../screen/license/license_screen.dart';
 import '../screen/login/login_screen.dart';
+import '../screen/main/main_screen.dart';
 import '../screen/permission/analytics_permission_screen.dart';
 import '../screen/splash/splash_screen.dart';
 import '../screen/theme_mode/theme_mode_selector.dart';
@@ -22,14 +23,6 @@ mixin BaseNavigator {
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RouteNames.homeScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => HomeScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
       case RouteNames.splashScreen:
         return MaterialPageRoute<void>(
           builder: (_) => SplashScreen(
@@ -86,16 +79,26 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.mainScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => MainScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.homeScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => HomeScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
     }
     return null;
   }
 
-  void goToHomeScreen({_i1.Key? key}) =>
-      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
-        RouteNames.homeScreen,
-        (_) => false,
-        arguments: {'key': key},
-      );
   void goToSplashScreen({_i1.Key? key}) =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.splashScreen,
@@ -133,6 +136,17 @@ mixin BaseNavigator {
         RouteNames.debugScreen,
         arguments: {'key': key},
       );
+  void goToMainScreen({_i1.Key? key}) =>
+      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
+        RouteNames.mainScreen,
+        (_) => false,
+        arguments: {'key': key},
+      );
+  Future<void> goToHomeScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.homeScreen,
+        arguments: {'key': key},
+      );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
       navigatorKey.currentState?.pop(result);
@@ -152,8 +166,6 @@ mixin BaseNavigator {
 }
 
 class RouteNames {
-  static const homeScreen = '/home';
-
   static const splashScreen = '/splash';
 
   static const licenseScreen = '/license';
@@ -167,4 +179,8 @@ class RouteNames {
   static const debugPlatformSelectorScreen = '/debug-platform-selector';
 
   static const debugScreen = '/debug';
+
+  static const mainScreen = '/main';
+
+  static const homeScreen = '/home';
 }

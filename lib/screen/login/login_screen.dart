@@ -109,6 +109,7 @@ class LoginScreenState extends State<LoginScreen> {
                 isEnabled: viewModel.isLoginEnabled,
                 text: localization.loginButton,
                 onClick: viewModel.onLoginClicked,
+                isLoading: viewModel.isLoading,
               ),
             ),
           ],
