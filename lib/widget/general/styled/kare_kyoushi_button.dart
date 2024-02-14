@@ -65,7 +65,7 @@ class KKButton extends StatelessWidget {
   Color? _disabledButtonColor(KKTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.button;
+        return theme.colorsTheme.bgCard;
       case ButtonType.text:
         return null;
     }

@@ -36,7 +36,7 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> scrollToEnd() async {
-    await Future.delayed(const Duration(milliseconds: 400));
+    await Future.delayed(const Duration(milliseconds: 500));
     await _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
       duration: ThemeDurations.shortAnimationDuration,
@@ -103,6 +103,7 @@ class LoginScreenState extends State<LoginScreen> {
               ],
             ),
             Align(
+              key: Keys.loginButton,
               alignment: Alignment.bottomCenter,
               child: KKButton(
                 isEnabled: viewModel.isLoginEnabled,
