@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_switch.dart';
-import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_switch.dart';
+import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class DebugRowSwitchItem extends StatelessWidget {
@@ -43,7 +43,7 @@ class DebugRowSwitchItem extends StatelessWidget {
                   ],
                 ),
               ),
-              FlutterTemplateSwitch(
+              KKSwitch(
                 value: value,
                 onChanged: onChanged,
               )

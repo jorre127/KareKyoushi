@@ -1,6 +1,6 @@
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_data.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/styles/theme_data.dart';
 
 extension ThemeExtension on Object {
-  FlutterTemplateTheme get theme => getIt();
+  KKTheme get theme => getIt();
 }

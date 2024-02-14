@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/widget/debug/selector_item.dart';
-import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
+import 'package:kare_kyoushi/widget/debug/selector_item.dart';
+import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 import 'package:provider/provider.dart';
 
 class SelectLanguageDialog extends StatelessWidget {

@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter_template/navigator/onboarding_navigator.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:kare_kyoushi/navigator/onboarding_navigator.dart';
+import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:url_launcher/url_launcher_string.dart';

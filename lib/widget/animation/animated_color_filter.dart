@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_durations.dart';
+import 'package:kare_kyoushi/styles/theme_durations.dart';
 
 class AnimatedColorFilter extends StatelessWidget {
   final Color color;

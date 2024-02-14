@@ -1,5 +1,5 @@
-import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:kare_kyoushi/util/env/flavor_config.dart';
+import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class CodeError with LocalizedError {

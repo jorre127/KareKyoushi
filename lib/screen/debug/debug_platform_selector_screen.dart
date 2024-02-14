@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/viewmodel/debug/debug_platform_selector_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/widget/debug/selector_item.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/viewmodel/debug/debug_platform_selector_viewmodel.dart';
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
+import 'package:kare_kyoushi/widget/debug/selector_item.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_back_button.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
 @flutterRoute
@@ -27,7 +27,7 @@ class DebugPlatformSelectorScreenState extends State<DebugPlatformSelectorScreen
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: value.onBackClicked),
+          leading: KKBackButton.light(onClick: value.onBackClicked),
           title: const Text('Select a platform'),
           backgroundColor: theme.colorsTheme.primary,
         ),

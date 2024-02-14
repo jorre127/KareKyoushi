@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
+import 'package:kare_kyoushi/navigator/main_navigator.dart';
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

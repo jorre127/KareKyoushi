@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/viewmodel/license/license_viewmodel.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_back_button.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/viewmodel/license/license_viewmodel.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_back_button.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @flutterRoute
 class LicenseScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class LicenseScreenState extends State<LicenseScreen> {
         backgroundColor: theme.colorsTheme.background,
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          leading: FlutterTemplateBackButton.light(onClick: viewModel.onBackClicked),
+          leading: KKBackButton.light(onClick: viewModel.onBackClicked),
           title: Text(localization.debugLicensesTitle),
           backgroundColor: theme.colorsTheme.primary,
         ),

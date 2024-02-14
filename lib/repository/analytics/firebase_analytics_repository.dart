@@ -1,7 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_template/repository/analytics/analytics.dart';
+import 'package:kare_kyoushi/repository/analytics/analytics.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton

@@ -1,5 +1,5 @@
-name: flutter_template
-description: A Flutter Template to get started quickly
+name: kare_kyoushi
+description: A Kanji/Japanese learning app
 version: 1.0.0+1
 
 environment:

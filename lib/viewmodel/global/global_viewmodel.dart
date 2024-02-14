@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/debug/debug_repository.dart';
-import 'package:flutter_template/repository/locale/locale_repository.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
-import 'package:flutter_template/util/locale/localization.dart';
-import 'package:flutter_template/util/locale/localization_delegate.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
-import 'package:flutter_template/util/theme/theme_config.dart';
+import 'package:kare_kyoushi/repository/debug/debug_repository.dart';
+import 'package:kare_kyoushi/repository/locale/locale_repository.dart';
+import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart';
+import 'package:kare_kyoushi/util/locale/localization.dart';
+import 'package:kare_kyoushi/util/locale/localization_delegate.dart';
+import 'package:kare_kyoushi/util/locale/localization_keys.dart';
+import 'package:kare_kyoushi/util/theme/theme_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

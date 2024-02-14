@@ -1,7 +1,7 @@
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/navigator/onboarding_navigator.dart';
-import 'package:flutter_template/repository/login/login_repository.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:kare_kyoushi/navigator/main_navigator.dart';
+import 'package:kare_kyoushi/navigator/onboarding_navigator.dart';
+import 'package:kare_kyoushi/repository/login/login_repository.dart';
+import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,6 +1,6 @@
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/repository/login/login_repository.dart';
-import 'package:flutter_template/repository/shared_prefs/local/local_storage.dart';
+import 'package:kare_kyoushi/navigator/main_navigator.dart';
+import 'package:kare_kyoushi/repository/login/login_repository.dart';
+import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton

@@ -6,10 +6,10 @@ import 'dart:io';
 import 'firebase_uploader.dart';
 
 const _packageNamesForFlavors = {
-  'dev': 'com.icapps.fluttertemplate.debug',
-  'alpha': 'com.icapps.fluttertemplate.alpha',
-  'beta': 'com.icapps.fluttertemplate.beta',
-  'prod': 'com.icapps.fluttertemplate',
+  'dev': 'com.kare.kyoushi.app.debug',
+  'alpha': 'com.kare.kyoushi.app.alpha',
+  'beta': 'com.kare.kyoushi.app.beta',
+  'prod': 'com.kare.kyoushi.app',
 };
 
 Future<void> checkIfFirebaseCliIsInstalled() async {

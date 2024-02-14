@@ -16,7 +16,6 @@ import '../screen/login/login_screen.dart';
 import '../screen/permission/analytics_permission_screen.dart';
 import '../screen/splash/splash_screen.dart';
 import '../screen/theme_mode/theme_mode_selector.dart';
-import '../screen/todo/todo_add/todo_add_screen.dart';
 
 mixin BaseNavigator {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -42,14 +41,6 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.todoAddScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => TodoAddScreen(
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -116,11 +107,6 @@ mixin BaseNavigator {
         RouteNames.licenseScreen,
         arguments: {'key': key},
       );
-  Future<void> goToTodoAddScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.todoAddScreen,
-        arguments: {'key': key},
-      );
   Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.analyticsPermissionScreen,
@@ -171,8 +157,6 @@ class RouteNames {
   static const splashScreen = '/splash';
 
   static const licenseScreen = '/license';
-
-  static const todoAddScreen = '/todo-add';
 
   static const analyticsPermissionScreen = '/analytics-permission';
 

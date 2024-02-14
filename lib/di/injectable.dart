@@ -5,17 +5,17 @@ import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_template/database/flutter_template_database.dart';
-import 'package:flutter_template/di/db/setup_drift_none.dart'
-    if (dart.library.io) 'package:flutter_template/di/db/setup_drift_io.dart'
-    if (dart.library.js) 'package:flutter_template/di/db/setup_drift_web.dart';
-import 'package:flutter_template/di/injectable.config.dart';
-import 'package:flutter_template/repository/secure_storage/secure_storage.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/interceptor/network_auth_interceptor.dart';
-import 'package:flutter_template/util/interceptor/network_error_interceptor.dart';
-import 'package:flutter_template/util/interceptor/network_log_interceptor.dart';
-import 'package:flutter_template/util/interceptor/network_refresh_interceptor.dart';
+import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
+import 'package:kare_kyoushi/di/db/setup_drift_none.dart'
+    if (dart.library.io) 'package:kare_kyoushi/di/db/setup_drift_io.dart'
+    if (dart.library.js) 'package:kare_kyoushi/di/db/setup_drift_web.dart';
+import 'package:kare_kyoushi/di/injectable.config.dart';
+import 'package:kare_kyoushi/repository/secure_storage/secure_storage.dart';
+import 'package:kare_kyoushi/util/env/flavor_config.dart';
+import 'package:kare_kyoushi/util/interceptor/network_auth_interceptor.dart';
+import 'package:kare_kyoushi/util/interceptor/network_error_interceptor.dart';
+import 'package:kare_kyoushi/util/interceptor/network_log_interceptor.dart';
+import 'package:kare_kyoushi/util/interceptor/network_refresh_interceptor.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
@@ -94,7 +94,7 @@ abstract class RegisterModule {
   }
 
   @lazySingleton
-  FlutterTemplateDatabase provideFlutterTemplateDatabase(DatabaseConnection databaseConnection) => FlutterTemplateDatabase(databaseConnection);
+  KKDatabase provideKKDatabase(DatabaseConnection databaseConnection) => KKDatabase(databaseConnection);
 }
 
 dynamic _parseAndDecode(String response) => jsonDecode(response);

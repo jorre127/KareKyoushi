@@ -4,8 +4,8 @@ import 'package:niddler_dart/niddler_dart.dart';
 Future<Niddler> initNiddler() async {
   final niddlerBuilder = NiddlerBuilder()
     ..port = 0
-    ..serverInfo = NiddlerServerInfo('Flutter Template', 'Flutter Template')
-    ..bundleId = 'com.icapps.flutter_template'
+    ..serverInfo = NiddlerServerInfo('KareKyoushi', 'KareKyoushi')
+    ..bundleId = 'com.icapps.kare_kyoushi'
     ..includeStackTrace = true
     ..maxCacheSize = 10 * 1024 * 1024;
   final niddler = niddlerBuilder.build();

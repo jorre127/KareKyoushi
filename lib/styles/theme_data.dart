@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
-import 'package:flutter_template/styles/theme_fonts.dart';
-import 'package:flutter_template/util/theme/theme_config.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/styles/theme_colors.dart';
+import 'package:kare_kyoushi/styles/theme_fonts.dart';
+import 'package:kare_kyoushi/util/theme/theme_config.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
-class FlutterTemplateThemeData {
-  FlutterTemplateThemeData._();
+class KKThemeData {
+  KKThemeData._();
 
   static final _darkThemeData = ThemeData(
     fontFamily: ThemeFonts.body,
@@ -50,7 +50,7 @@ class FlutterTemplateThemeData {
   }
 }
 
-class FlutterTemplateTextTheme {
+class KKTextTheme {
   final TextStyle titleHuge;
   final TextStyle titleBig;
   final TextStyle titleNormal;
@@ -67,7 +67,7 @@ class FlutterTemplateTextTheme {
   final TextStyle infoBodySubHeader;
   final TextStyle bodyBig;
 
-  const FlutterTemplateTextTheme({
+  const KKTextTheme({
     required this.titleHuge,
     required this.titleBig,
     required this.titleNormal,
@@ -83,11 +83,11 @@ class FlutterTemplateTextTheme {
   });
 }
 
-class FlutterTemplateTextThemeExceptions {
-  const FlutterTemplateTextThemeExceptions();
+class KKTextThemeExceptions {
+  const KKTextThemeExceptions();
 }
 
-class FlutterTemplateColorsTheme {
+class KKColorsTheme {
   final Color text;
   final Color inverseText;
   final Color errorText;
@@ -123,7 +123,7 @@ class FlutterTemplateColorsTheme {
 
   final Color debugTitleBackground;
 
-  const FlutterTemplateColorsTheme({
+  const KKColorsTheme({
     required this.primary,
     required this.secondary,
     required this.accent,
@@ -158,25 +158,25 @@ class FlutterTemplateColorsTheme {
   });
 }
 
-enum FlutterTemplateThemeStyle {
+enum KKThemeStyle {
   dark,
   light,
 }
 
-class FlutterTemplateTheme {
-  final FlutterTemplateTextTheme coreTextTheme;
-  final FlutterTemplateTextTheme inverseCoreTextTheme;
-  final FlutterTemplateTextTheme accentTextTheme;
-  final FlutterTemplateTextTheme disabledTextTheme;
-  final FlutterTemplateTextThemeExceptions exceptionsTextTheme;
-  final FlutterTemplateColorsTheme colorsTheme;
+class KKTheme {
+  final KKTextTheme coreTextTheme;
+  final KKTextTheme inverseCoreTextTheme;
+  final KKTextTheme accentTextTheme;
+  final KKTextTheme disabledTextTheme;
+  final KKTextThemeExceptions exceptionsTextTheme;
+  final KKColorsTheme colorsTheme;
   final bool isDarkTheme;
 
   bool get isLightTheme => !isDarkTheme;
 
   static final _instanceDark = _fromColorTheme(
     isDarkTheme: true,
-    colorTheme: const FlutterTemplateColorsTheme(
+    colorTheme: const KKColorsTheme(
       text: ThemeColors.white,
       inverseText: ThemeColors.black,
       errorText: ThemeColors.error,
@@ -213,7 +213,7 @@ class FlutterTemplateTheme {
 
   static final _instanceLight = _fromColorTheme(
     isDarkTheme: false,
-    colorTheme: const FlutterTemplateColorsTheme(
+    colorTheme: const KKColorsTheme(
       text: ThemeColors.black,
       inverseText: ThemeColors.white,
       errorText: ThemeColors.error,
@@ -248,21 +248,21 @@ class FlutterTemplateTheme {
     ),
   );
 
-  static FlutterTemplateTheme _fromColorTheme({
-    required FlutterTemplateColorsTheme colorTheme,
+  static KKTheme _fromColorTheme({
+    required KKColorsTheme colorTheme,
     required bool isDarkTheme,
   }) =>
-      FlutterTemplateTheme._(
+      KKTheme._(
         isDarkTheme: isDarkTheme,
         colorsTheme: colorTheme,
         disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
         coreTextTheme: _getTextThemeFromColor(colorTheme.text),
         inverseCoreTextTheme: _getTextThemeFromColor(colorTheme.inverseText),
         accentTextTheme: _getTextThemeFromColor(colorTheme.accent),
-        exceptionsTextTheme: const FlutterTemplateTextThemeExceptions(),
+        exceptionsTextTheme: const KKTextThemeExceptions(),
       );
 
-  static FlutterTemplateTextTheme _getTextThemeFromColor(Color color) => FlutterTemplateTextTheme(
+  static KKTextTheme _getTextThemeFromColor(Color color) => KKTextTheme(
         titleHuge: TextStyle(fontSize: 40, color: color, fontFamily: ThemeFonts.title, height: 1.2),
         titleBig: TextStyle(fontSize: 30, color: color, fontFamily: ThemeFonts.title, height: 1.2),
         titleNormal: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.title),
@@ -277,7 +277,7 @@ class FlutterTemplateTheme {
         infoBodySubHeader: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
       );
 
-  const FlutterTemplateTheme._({
+  const KKTheme._({
     required this.coreTextTheme,
     required this.inverseCoreTextTheme,
     required this.accentTextTheme,
@@ -287,7 +287,7 @@ class FlutterTemplateTheme {
     required this.isDarkTheme,
   });
 
-  static FlutterTemplateTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
+  static KKTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {
     if (forceDark) return _instanceDark;
     if (forceLight) return _instanceLight;
     final themeConfigUtil = getIt<ThemeConfigUtil>();

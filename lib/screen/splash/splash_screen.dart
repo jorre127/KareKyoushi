@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/viewmodel/splash/splash_viewmodel.dart';
-import 'package:flutter_template/widget/general/status_bar.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/viewmodel/splash/splash_viewmodel.dart';
+import 'package:kare_kyoushi/widget/general/status_bar.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @FlutterRoute(
   navigationType: NavigationType.pushAndReplaceAll,
@@ -27,7 +27,7 @@ class SplashScreenState extends State<SplashScreen> {
         child: Scaffold(
           backgroundColor: theme.colorsTheme.primary,
           body: const Center(
-            child: FlutterTemplateProgressIndicator.light(),
+            child: KKProgressIndicator.light(),
           ),
         ),
       ),

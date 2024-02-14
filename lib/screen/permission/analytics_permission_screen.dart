@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_assets.dart';
-import 'package:flutter_template/viewmodel/permission/analytics_permission_viewmodel.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/styles/theme_assets.dart';
+import 'package:kare_kyoushi/viewmodel/permission/analytics_permission_viewmodel.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_button.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @flutterRoute
 class AnalyticsPermissionScreen extends StatelessWidget {
@@ -59,12 +59,12 @@ class AnalyticsPermissionScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                FlutterTemplateButton(
+                KKButton(
                   text: localization.permissionButtonAccept,
                   onClick: viewModel.onAcceptClicked,
                 ),
                 const SizedBox(height: 8),
-                FlutterTemplateButton.text(
+                KKButton.text(
                   text: localization.permissionButtonMoreInfo,
                   onClick: viewModel.onMoreInfoClicked,
                 ),

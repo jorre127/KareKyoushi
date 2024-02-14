@@ -38,7 +38,7 @@ android {
   }
 
   defaultConfig {
-    applicationId "com.icapps.fluttertemplate"
+    applicationId "com.kare.kyoushi.app"
     minSdkVersion 19
     targetSdkVersion 33
     multiDexEnabled true
@@ -50,15 +50,15 @@ android {
   signingConfigs {
     debug {
       storeFile file("../keystore/debug.keystore")
-      storePassword "your-store-alias"
-      keyAlias "your-key-alias"
-      keyPassword "your-key-password"
+      storePassword "CE7B66BB-D279-47BE-B1FD-3DAE49A9E18B"
+      keyAlias "android"
+      keyPassword "CE7B66BB-D279-47BE-B1FD-3DAE49A9E18B"
     }
     release {
       storeFile file("../keystore/release.keystore")
-      storePassword "your-store-alias"
-      keyAlias "your-key-alias"
-      keyPassword "your-key-password"
+      storePassword "EF6124C4-8EC8-495F-AD77-F9353A61760D"
+      keyAlias "android"
+      keyPassword "EF6124C4-8EC8-495F-AD77-F9353A61760D"
     }
   }
 

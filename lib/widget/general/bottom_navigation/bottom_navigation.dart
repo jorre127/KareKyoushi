@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/model/bottom_navigation/bottom_navigation_tab.dart';
-import 'package:flutter_template/widget/general/bottom_navigation/bottom_navigation_item.dart';
-import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:kare_kyoushi/model/bottom_navigation/bottom_navigation_tab.dart';
+import 'package:kare_kyoushi/widget/general/bottom_navigation/bottom_navigation_item.dart';
+import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class BottomNavigation extends StatelessWidget {
   final BottomNavigationTab selectedTab;

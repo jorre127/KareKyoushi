@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/viewmodel/debug/debug_viewmodel.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/widget/debug/debug_row_item.dart';
-import 'package:flutter_template/widget/debug/debug_row_title.dart';
-import 'package:flutter_template/widget/debug/debug_switch_row_item.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/util/keys.dart';
+import 'package:kare_kyoushi/viewmodel/debug/debug_viewmodel.dart';
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
+import 'package:kare_kyoushi/widget/debug/debug_row_item.dart';
+import 'package:kare_kyoushi/widget/debug/debug_row_title.dart';
+import 'package:kare_kyoushi/widget/debug/debug_switch_row_item.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 import 'package:provider/provider.dart';
 
 @flutterRoute

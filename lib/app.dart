@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/navigator/main_navigator.dart';
-import 'package:flutter_template/styles/theme_data.dart';
-import 'package:flutter_template/util/locale/localization_fallback_cupertino_delegate.dart';
-import 'package:flutter_template/viewmodel/global/global_viewmodel.dart';
-import 'package:flutter_template/widget/general/flavor_banner.dart';
-import 'package:flutter_template/widget/general/text_scale_factor.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/navigator/main_navigator.dart';
+import 'package:kare_kyoushi/styles/theme_data.dart';
+import 'package:kare_kyoushi/util/locale/localization_fallback_cupertino_delegate.dart';
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
+import 'package:kare_kyoushi/widget/general/flavor_banner.dart';
+import 'package:kare_kyoushi/widget/general/text_scale_factor.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -60,8 +60,8 @@ class InternalApp extends StatelessWidget {
         locale: viewModel.locale,
         supportedLocales: viewModel.supportedLocales,
         themeMode: viewModel.themeMode,
-        theme: FlutterTemplateThemeData.lightTheme(viewModel.targetPlatform),
-        darkTheme: FlutterTemplateThemeData.darkTheme(viewModel.targetPlatform),
+        theme: KKThemeData.lightTheme(viewModel.targetPlatform),
+        darkTheme: KKThemeData.darkTheme(viewModel.targetPlatform),
         initialRoute: home == null ? MainNavigator.initialRoute : null,
         onGenerateRoute: mainNavigator.onGenerateRoute,
         home: home,

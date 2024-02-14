@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/di/injectable.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/util/keys.dart';
-import 'package:flutter_template/viewmodel/login/login_viewmodel.dart';
-import 'package:flutter_template/widget/general/status_bar.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_button.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_input_field.dart';
-import 'package:flutter_template/widget/general/styled/flutter_template_progress_indicator.dart';
-import 'package:flutter_template/widget/provider/provider_widget.dart';
+import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/util/keys.dart';
+import 'package:kare_kyoushi/viewmodel/login/login_viewmodel.dart';
+import 'package:kare_kyoushi/widget/general/status_bar.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_button.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_input_field.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
+import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @FlutterRoute(
   navigationType: NavigationType.pushAndReplaceAll,
@@ -48,14 +48,14 @@ class LoginScreenState extends State<LoginScreen> {
                     style: theme.coreTextTheme.labelButtonSmall,
                   ),
                   Container(height: ThemeDimens.padding32),
-                  FlutterTemplateInputField(
+                  KKInputField(
                     key: Keys.emailInput,
                     enabled: !viewModel.isLoading,
                     onChanged: viewModel.onEmailUpdated,
                     hint: 'Email',
                   ),
                   Container(height: ThemeDimens.padding16),
-                  FlutterTemplateInputField(
+                  KKInputField(
                     key: Keys.passwordInput,
                     enabled: !viewModel.isLoading,
                     onChanged: viewModel.onPasswordUpdated,
@@ -63,9 +63,9 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   Container(height: ThemeDimens.padding16),
                   if (viewModel.isLoading) ...[
-                    const FlutterTemplateProgressIndicator.light(),
+                    const KKProgressIndicator.light(),
                   ] else ...[
-                    FlutterTemplateButton(
+                    KKButton(
                       key: Keys.loginButton,
                       isEnabled: viewModel.isLoginEnabled,
                       text: 'Login',

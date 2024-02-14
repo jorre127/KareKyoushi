@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class UnAuthorizedError extends NetworkError {

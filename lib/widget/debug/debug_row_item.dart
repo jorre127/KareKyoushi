@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/styles/theme_dimens.dart';
-import 'package:flutter_template/widget/provider/data_provider_widget.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 class DebugRowItem extends StatelessWidget {

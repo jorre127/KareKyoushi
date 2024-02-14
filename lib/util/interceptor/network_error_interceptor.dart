@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/model/exceptions/bad_request_error.dart';
-import 'package:flutter_template/model/exceptions/code_error.dart';
-import 'package:flutter_template/model/exceptions/forbidden_error.dart';
-import 'package:flutter_template/model/exceptions/general_network_error.dart';
-import 'package:flutter_template/model/exceptions/internal_server_error.dart';
-import 'package:flutter_template/model/exceptions/no_internet_error.dart';
-import 'package:flutter_template/model/exceptions/un_authorized_error.dart';
+import 'package:kare_kyoushi/model/exceptions/bad_request_error.dart';
+import 'package:kare_kyoushi/model/exceptions/code_error.dart';
+import 'package:kare_kyoushi/model/exceptions/forbidden_error.dart';
+import 'package:kare_kyoushi/model/exceptions/general_network_error.dart';
+import 'package:kare_kyoushi/model/exceptions/internal_server_error.dart';
+import 'package:kare_kyoushi/model/exceptions/no_internet_error.dart';
+import 'package:kare_kyoushi/model/exceptions/un_authorized_error.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 

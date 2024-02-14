@@ -1,4 +1,4 @@
-import 'package:flutter_template/util/env/flavor_config.dart';
+import 'package:kare_kyoushi/util/env/flavor_config.dart';
 
 class ThemeDurations {
   ThemeDurations._();

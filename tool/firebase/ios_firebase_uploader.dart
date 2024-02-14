@@ -4,10 +4,10 @@ import 'dart:io';
 import 'firebase_uploader.dart';
 
 const _bundleIdsForFlavors = {
-  'dev': 'com.icapps.fluttertemplate.dev',
-  'alpha': 'com.icapps.fluttertemplate.alpha',
-  'beta': 'com.icapps.fluttertemplate.beta',
-  'prod': 'com.icapps.fluttertemplate',
+  'dev': 'com.kare.kyoushi.app.dev',
+  'alpha': 'com.kare.kyoushi.app.alpha',
+  'beta': 'com.kare.kyoushi.app.beta',
+  'prod': 'com.kare.kyoushi.app',
 };
 
 Future<void> uploadIosSymbols(String bundleIdOrFlavor, String? package) async {

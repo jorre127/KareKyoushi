@@ -1,8 +1,8 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/model/snackbar/snackbar_data.dart';
-import 'package:flutter_template/styles/theme_colors.dart';
-import 'package:flutter_template/styles/theme_durations.dart';
+import 'package:kare_kyoushi/model/snackbar/snackbar_data.dart';
+import 'package:kare_kyoushi/styles/theme_colors.dart';
+import 'package:kare_kyoushi/styles/theme_durations.dart';
 
 class SnackBarUtil {
   SnackBarUtil._();

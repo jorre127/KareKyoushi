@@ -2,11 +2,11 @@ import 'package:drift/drift.dart';
 import 'package:drift_db_viewer/drift_db_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
-import 'package:flutter_template/model/snackbar/snackbar_data.dart';
-import 'package:flutter_template/navigator/main_navigator.navigator.dart';
-import 'package:flutter_template/util/env/flavor_config.dart';
-import 'package:flutter_template/util/snackbar/error_util.dart';
-import 'package:flutter_template/util/snackbar/snackbar_util.dart';
+import 'package:kare_kyoushi/model/snackbar/snackbar_data.dart';
+import 'package:kare_kyoushi/navigator/main_navigator.navigator.dart';
+import 'package:kare_kyoushi/util/env/flavor_config.dart';
+import 'package:kare_kyoushi/util/snackbar/error_util.dart';
+import 'package:kare_kyoushi/util/snackbar/snackbar_util.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton

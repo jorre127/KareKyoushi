@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/screen/debug/debug_screen.dart';
-import 'package:flutter_template/screen/todo/todo_list/todo_list_screen.dart';
-import 'package:flutter_template/util/locale/localization_keys.dart';
+import 'package:kare_kyoushi/screen/debug/debug_screen.dart';
+import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 
 enum BottomNavigationTab {
   todo(icon: Icons.list, labelKey: LocalizationKeys.todoTitle),
@@ -20,7 +19,7 @@ enum BottomNavigationTab {
 
 extension BottomNavigationExtension on BottomNavigationTab {
   Widget childBuilder(BuildContext context) => switch (this) {
-        BottomNavigationTab.todo => const TodoListScreen(),
+        BottomNavigationTab.todo => const SizedBox.shrink(),
         BottomNavigationTab.settings => const DebugScreen(),
       };
 }

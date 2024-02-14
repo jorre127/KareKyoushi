@@ -4,8 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/architecture.dart';
-import 'package:flutter_template/util/web/app_configurator.dart' if (dart.library.html) 'package:flutter_template/util/web/app_configurator_web.dart';
+import 'package:kare_kyoushi/architecture.dart';
+import 'package:kare_kyoushi/util/web/app_configurator.dart' if (dart.library.html) 'package:kare_kyoushi/util/web/app_configurator_web.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 
 Future<void> _setupCrashLogging() async {
