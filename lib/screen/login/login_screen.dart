@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
-import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/styles/theme_assets.dart';
+import 'package:kare_kyoushi/styles/theme_durations.dart';
+import 'package:kare_kyoushi/util/extension/context_extension.dart';
 import 'package:kare_kyoushi/util/keys.dart';
 import 'package:kare_kyoushi/viewmodel/login/login_viewmodel.dart';
-import 'package:kare_kyoushi/widget/general/status_bar.dart';
+import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
 import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_button.dart';
 import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_input_field.dart';
-import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @FlutterRoute(
@@ -22,60 +23,94 @@ class LoginScreen extends StatefulWidget {
 
 @visibleForTesting
 class LoginScreenState extends State<LoginScreen> {
+  final _scrollController = ScrollController();
+  var _isKeyboardExpanded = false;
+
+  void _checkIfKeyboardExpandedChanged() {
+    if (!_isKeyboardExpanded && context.isShowingKeyboard) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => scrollToEnd(),
+      );
+    }
+    _isKeyboardExpanded = context.isShowingKeyboard;
+  }
+
+  Future<void> scrollToEnd() async {
+    await Future.delayed(const Duration(milliseconds: 400));
+    await _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: ThemeDurations.shortAnimationDuration,
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    _checkIfKeyboardExpandedChanged();
     return ProviderWidget<LoginViewModel>(
       create: () => getIt()..init(),
-      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => StatusBar.animated(
-        isDarkStyle: theme.isDarkTheme,
-        child: Scaffold(
-          backgroundColor: theme.colorsTheme.background,
-          body: SafeArea(
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(ThemeDimens.padding16),
-              child: Column(
-                children: [
-                  Container(height: ThemeDimens.padding16),
-                  Text(
-                    'Login',
-                    style: theme.coreTextTheme.titleNormal,
-                    textAlign: TextAlign.center,
+      consumerWithThemeAndLocalization: (context, viewModel, child, theme, localization) => BaseScreen.child(
+        child: Stack(
+          children: [
+            ListView(
+              controller: _scrollController,
+              children: [
+                Image.asset(
+                  ThemeAssets.splashImage,
+                  width: 220,
+                  height: 270,
+                ),
+                const SizedBox(height: 48),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    localization.loginScreenUsernameLabel,
+                    style: theme.textThemes.subtleTextTheme.copySubtle,
                   ),
-                  Container(height: ThemeDimens.padding32),
-                  Text(
-                    'Just fill in some text. There is no validator for the login',
-                    style: theme.coreTextTheme.labelButtonSmall,
+                ),
+                const SizedBox(height: 4),
+                KKInputField(
+                  key: Keys.emailInput,
+                  enabled: !viewModel.isLoading,
+                  onChanged: viewModel.onEmailUpdated,
+                ),
+                Container(height: 16),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    localization.loginScreenPasswordLabel,
+                    style: theme.textThemes.subtleTextTheme.copySubtle,
                   ),
-                  Container(height: ThemeDimens.padding32),
-                  KKInputField(
-                    key: Keys.emailInput,
-                    enabled: !viewModel.isLoading,
-                    onChanged: viewModel.onEmailUpdated,
-                    hint: 'Email',
-                  ),
-                  Container(height: ThemeDimens.padding16),
-                  KKInputField(
-                    key: Keys.passwordInput,
-                    enabled: !viewModel.isLoading,
-                    onChanged: viewModel.onPasswordUpdated,
-                    hint: 'Password',
-                  ),
-                  Container(height: ThemeDimens.padding16),
-                  if (viewModel.isLoading) ...[
-                    const KKProgressIndicator.light(),
-                  ] else ...[
-                    KKButton(
-                      key: Keys.loginButton,
-                      isEnabled: viewModel.isLoginEnabled,
-                      text: 'Login',
-                      onClick: viewModel.onLoginClicked,
+                ),
+                const SizedBox(height: 4),
+                KKInputField(
+                  key: Keys.passwordInput,
+                  enabled: !viewModel.isLoading,
+                  onChanged: viewModel.onPasswordUpdated,
+                ),
+                if (context.isShowingKeyboard) ...[
+                  IgnorePointer(
+                    child: Opacity(
+                      opacity: 0,
+                      child: KKButton(
+                        text: '',
+                        onClick: viewModel.onLoginClicked,
+                      ),
                     ),
-                  ],
-                ],
+                  ),
+                  const SizedBox(height: 16),
+                ]
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: KKButton(
+                isEnabled: viewModel.isLoginEnabled,
+                text: localization.loginButton,
+                onClick: viewModel.onLoginClicked,
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class ThemeDimens {
   ThemeDimens._();
 
@@ -22,4 +24,7 @@ class ThemeDimens {
 
   static const double iconSize = 24;
   static const double largeIcon = 32;
+
+  static BorderRadius inputBorderRadius = BorderRadius.circular(8);
+  static BorderRadius buttonBorderRadius = BorderRadius.circular(16);
 }

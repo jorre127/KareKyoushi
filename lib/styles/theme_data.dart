@@ -65,6 +65,16 @@ class KKTextTheme {
   final TextStyle infoBodySubHeader;
   final TextStyle bodyBig;
 
+  final TextStyle titleHeader;
+  final TextStyle titleSubHeader;
+
+  final TextStyle copyBig;
+  final TextStyle copyHuge;
+
+  final TextStyle copyDefault;
+  final TextStyle copySubtle;
+  final TextStyle copyXtraSubtle;
+
   const KKTextTheme({
     required this.titleHuge,
     required this.titleBig,
@@ -78,6 +88,13 @@ class KKTextTheme {
     required this.bodyUltraSmall,
     required this.infoBodySubHeader,
     required this.bodyBig,
+    required this.titleHeader,
+    required this.titleSubHeader,
+    required this.copyBig,
+    required this.copyHuge,
+    required this.copyDefault,
+    required this.copySubtle,
+    required this.copyXtraSubtle,
   });
 }
 
@@ -121,6 +138,13 @@ class KKColorsTheme {
 
   final Color debugTitleBackground;
 
+  final Color bgDefault;
+  final Color bgCard;
+  final Color copySubtle;
+  final Color copyXtraSubtle;
+  final Color copyDefault;
+  final Color button;
+
   const KKColorsTheme({
     required this.primary,
     required this.secondary,
@@ -153,6 +177,30 @@ class KKColorsTheme {
     required this.inputFieldBorderIdle,
     required this.inputFieldCursor,
     required this.debugTitleBackground,
+    required this.bgDefault,
+    required this.bgCard,
+    required this.copySubtle,
+    required this.copyXtraSubtle,
+    required this.copyDefault,
+    required this.button,
+  });
+}
+
+class KKTextThemes {
+  final KKTextTheme coreTextTheme;
+  final KKTextTheme subtleTextTheme;
+  final KKTextTheme xtraSubtleTextTheme;
+  final KKTextTheme inverseCoreTextTheme;
+  final KKTextTheme accentTextTheme;
+  final KKTextTheme disabledTextTheme;
+
+  KKTextThemes({
+    required this.coreTextTheme,
+    required this.subtleTextTheme,
+    required this.xtraSubtleTextTheme,
+    required this.inverseCoreTextTheme,
+    required this.accentTextTheme,
+    required this.disabledTextTheme,
   });
 }
 
@@ -162,11 +210,7 @@ enum KKThemeStyle {
 }
 
 class KKTheme {
-  final KKTextTheme coreTextTheme;
-  final KKTextTheme inverseCoreTextTheme;
-  final KKTextTheme accentTextTheme;
-  final KKTextTheme disabledTextTheme;
-  final KKTextThemeExceptions exceptionsTextTheme;
+  final KKTextThemes textThemes;
   final KKColorsTheme colorsTheme;
   final bool isDarkTheme;
 
@@ -207,6 +251,12 @@ class KKTheme {
       inputFieldBorderIdle: ThemeColors.white50,
       inputFieldCursor: ThemeColors.accent,
       debugTitleBackground: ThemeColors.white20,
+      bgDefault: ThemeColors.bgDefault,
+      bgCard: ThemeColors.bgCard,
+      copySubtle: ThemeColors.copySubtle,
+      copyXtraSubtle: ThemeColors.copyXtraSubtle,
+      copyDefault: ThemeColors.copyDefault,
+      button: ThemeColors.button,
     ),
   );
 
@@ -244,6 +294,12 @@ class KKTheme {
       inputFieldBorderIdle: ThemeColors.mediumGrey,
       inputFieldCursor: ThemeColors.accent,
       debugTitleBackground: ThemeColors.lightGrey,
+      bgDefault: ThemeColors.bgDefault,
+      bgCard: ThemeColors.bgCard,
+      copySubtle: ThemeColors.copySubtle,
+      copyXtraSubtle: ThemeColors.copyXtraSubtle,
+      copyDefault: ThemeColors.copyDefault,
+      button: ThemeColors.button,
     ),
   );
 
@@ -254,11 +310,14 @@ class KKTheme {
       KKTheme._(
         isDarkTheme: isDarkTheme,
         colorsTheme: colorTheme,
-        disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
-        coreTextTheme: _getTextThemeFromColor(colorTheme.text),
-        inverseCoreTextTheme: _getTextThemeFromColor(colorTheme.inverseText),
-        accentTextTheme: _getTextThemeFromColor(colorTheme.accent),
-        exceptionsTextTheme: const KKTextThemeExceptions(),
+        textThemes: KKTextThemes(
+          disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
+          coreTextTheme: _getTextThemeFromColor(colorTheme.copyDefault),
+          inverseCoreTextTheme: _getTextThemeFromColor(colorTheme.inverseText),
+          accentTextTheme: _getTextThemeFromColor(colorTheme.accent),
+          subtleTextTheme: _getTextThemeFromColor(colorTheme.copySubtle),
+          xtraSubtleTextTheme: _getTextThemeFromColor(colorTheme.copyXtraSubtle),
+        ),
       );
 
   static KKTextTheme _getTextThemeFromColor(Color color) => KKTextTheme(
@@ -274,14 +333,17 @@ class KKTheme {
         bodySmall: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body),
         bodyUltraSmall: TextStyle(fontSize: 12, color: color, fontFamily: ThemeFonts.body),
         infoBodySubHeader: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
+        titleHeader: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.body, height: 32 / 24),
+        titleSubHeader: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),
+        copyBig: TextStyle(fontSize: 32, color: color, fontFamily: ThemeFonts.body, height: 28 / 32),
+        copyHuge: TextStyle(fontSize: 64, color: color, fontFamily: ThemeFonts.body, height: 28 / 64),
+        copyDefault: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.body, height: 28 / 18),
+        copySubtle: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),
+        copyXtraSubtle: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, height: 28 / 14),
       );
 
   const KKTheme._({
-    required this.coreTextTheme,
-    required this.inverseCoreTextTheme,
-    required this.accentTextTheme,
-    required this.disabledTextTheme,
-    required this.exceptionsTextTheme,
+    required this.textThemes,
     required this.colorsTheme,
     required this.isDarkTheme,
   });

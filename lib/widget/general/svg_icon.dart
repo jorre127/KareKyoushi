@@ -7,9 +7,11 @@ class SvgIcon extends StatelessWidget {
   final String svgAsset;
   final Color color;
   final double? size;
+  final bool userOrignalColor;
 
   const SvgIcon({
     required this.svgAsset,
+    this.userOrignalColor = false,
     this.color = Colors.black,
     this.size,
     super.key,
@@ -27,7 +29,7 @@ class SvgIcon extends StatelessWidget {
               data,
               height: size,
               width: size,
-              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+              colorFilter: userOrignalColor ? null : ColorFilter.mode(color, BlendMode.srcIn),
             );
           }
           return SizedBox(
@@ -41,7 +43,7 @@ class SvgIcon extends StatelessWidget {
       svgAsset,
       height: size,
       width: size,
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+      colorFilter: userOrignalColor ? null : ColorFilter.mode(color, BlendMode.srcIn),
     );
   }
 

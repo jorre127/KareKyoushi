@@ -702,7 +702,7 @@ packages:
     source: hosted
     version: "3.0.0"
   locale_gen:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: locale_gen
       sha256: "8ade38c4260607f1d352d535e850d57a3d611de34a28b7b5d6f7fd698fe8e0c1"

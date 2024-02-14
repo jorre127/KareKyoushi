@@ -19,4 +19,11 @@ class ThemeColors {
   static const shadow = Color(0x1e000000); //black 12%
   static const error = Color(0xFFE30000);
   static const success = Color(0xFF3E9103);
+
+  static const bgDefault = Color.fromRGBO(20, 22, 27, 1);
+  static const bgCard = Color.fromRGBO(28, 31, 38, 1);
+  static const copySubtle = Color.fromRGBO(212, 216, 231, 1);
+  static const copyXtraSubtle = Color.fromRGBO(98, 106, 131, 1);
+  static const copyDefault = Color.fromRGBO(255, 255, 255, 1);
+  static const button = Color.fromRGBO(61, 67, 87, 1);
 }

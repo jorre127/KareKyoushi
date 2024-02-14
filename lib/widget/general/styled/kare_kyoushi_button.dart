@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/styles/theme_durations.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
-import 'package:icapps_architecture/icapps_architecture.dart';
 
 enum ButtonType {
   regular,
@@ -37,25 +38,25 @@ class KKButton extends StatelessWidget {
   TextStyle _enabledTextStyle(KKTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseCoreTextTheme.labelButtonSmall;
+        return theme.textThemes.inverseCoreTextTheme.titleHeader;
       case ButtonType.text:
-        return theme.accentTextTheme.labelButtonSmall;
+        return theme.textThemes.accentTextTheme.titleHeader;
     }
   }
 
   TextStyle _disabledTextStyle(KKTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.inverseCoreTextTheme.labelButtonSmall;
+        return theme.textThemes.inverseCoreTextTheme.titleHeader;
       case ButtonType.text:
-        return theme.disabledTextTheme.labelButtonSmall;
+        return theme.textThemes.disabledTextTheme.titleHeader;
     }
   }
 
   Color? _enabledButtonColor(KKTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.buttonColor;
+        return theme.colorsTheme.button;
       case ButtonType.text:
         return null;
     }
@@ -64,7 +65,7 @@ class KKButton extends StatelessWidget {
   Color? _disabledButtonColor(KKTheme theme) {
     switch (buttonType) {
       case ButtonType.regular:
-        return theme.colorsTheme.disabled;
+        return theme.colorsTheme.button;
       case ButtonType.text:
         return null;
     }
@@ -95,14 +96,20 @@ class KKButton extends StatelessWidget {
           return TouchFeedBack(
             onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
-              color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+              decoration: BoxDecoration(
+                color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+                borderRadius: ThemeDimens.buttonBorderRadius,
+              ),
               duration: ThemeDurations.shortAnimationDuration,
               child: content,
             ),
           );
         }
         return AnimatedContainer(
-          color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+          decoration: BoxDecoration(
+            color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+            borderRadius: ThemeDimens.buttonBorderRadius,
+          ),
           duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
             onClick: isEnabled ? onClick : null,

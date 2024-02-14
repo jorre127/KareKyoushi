@@ -42,8 +42,8 @@ class BottomNavigationItem extends StatelessWidget {
               AnimatedDefaultTextStyle(
                 duration: ThemeDurations.shortAnimationDuration,
                 style: isSelected
-                    ? theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
-                    : theme.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),
+                    ? theme.textThemes.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemActive)
+                    : theme.textThemes.coreTextTheme.bodySmall.copyWith(color: theme.colorsTheme.bottomNavbarItemInactive),
                 child: Text(
                   localization.getTranslation(labelKey),
                   maxLines: 1,

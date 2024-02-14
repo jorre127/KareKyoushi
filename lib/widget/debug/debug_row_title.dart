@@ -21,7 +21,7 @@ class DebugRowTitle extends StatelessWidget {
         color: theme.colorsTheme.debugTitleBackground,
         child: Text(
           title,
-          style: theme.coreTextTheme.titleNormal,
+          style: theme.textThemes.coreTextTheme.titleNormal,
         ),
       ),
     );
