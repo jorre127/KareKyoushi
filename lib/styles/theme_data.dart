@@ -172,6 +172,7 @@ class KKTheme {
 
   bool get isLightTheme => !isDarkTheme;
 
+  // ignore: unused_field
   static final _instanceDark = _fromColorTheme(
     isDarkTheme: true,
     colorTheme: const KKColorsTheme(
