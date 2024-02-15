@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/styles/theme_assets.dart';
 import 'package:kare_kyoushi/styles/theme_colors.dart';
+import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/util/keys.dart';
 import 'package:kare_kyoushi/widget/general/action/action_item.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
@@ -30,14 +31,15 @@ class KKBackButton extends StatelessWidget {
         svgAsset: getCorrectIcon(context),
         color: isLight ? ThemeColors.white : theme.colorsTheme.primary,
         onClick: onClick,
+        size: ThemeDimens.iconSize,
       ),
     );
   }
 
   String getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return ThemeAssets.closeIcon(context);
+      return ThemeAssets.leftArrowIcon;
     }
-    return ThemeAssets.backIcon(context);
+    return ThemeAssets.leftArrowIcon;
   }
 }

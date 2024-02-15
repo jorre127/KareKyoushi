@@ -9,8 +9,8 @@ class KKCard extends StatelessWidget {
   final Widget? child;
 
   const KKCard({
-    required this.onTapped,
     required this.child,
+    this.onTapped,
     this.padding = const EdgeInsets.all(24),
     super.key,
   });

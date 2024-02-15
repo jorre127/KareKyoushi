@@ -30,6 +30,7 @@ class KanjiGradeListScreenState extends State<KanjiGradeListScreen> {
                 child: KanjiGradeListItem(
                   jlptLevel: jlptLevel,
                   total: viewModel.kanjiCountMap[jlptLevel] ?? 0,
+                  onTapped: () => viewModel.onGradeTapped(jlptLevel),
                 ),
               ),
             )

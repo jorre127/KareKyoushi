@@ -8,7 +8,7 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:dio/dio.dart' as _i43;
+import 'package:dio/dio.dart' as _i44;
 import 'package:drift/drift.dart' as _i6;
 import 'package:firebase_analytics/firebase_analytics.dart' as _i8;
 import 'package:firebase_auth/firebase_auth.dart' as _i9;
@@ -18,34 +18,34 @@ import 'package:icapps_architecture/icapps_architecture.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:kare_kyoushi/database/kanji/kanji_dao_storage.dart' as _i12;
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart' as _i11;
-import 'package:kare_kyoushi/di/injectable.dart' as _i44;
+import 'package:kare_kyoushi/di/injectable.dart' as _i45;
 import 'package:kare_kyoushi/navigator/main_navigator.dart' as _i15;
-import 'package:kare_kyoushi/navigator/onboarding_navigator.dart' as _i34;
+import 'package:kare_kyoushi/navigator/onboarding_navigator.dart' as _i35;
 import 'package:kare_kyoushi/repository/analytics/firebase_analytics_repository.dart'
     as _i23;
 import 'package:kare_kyoushi/repository/debug/debug_repository.dart' as _i29;
 import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart' as _i25;
-import 'package:kare_kyoushi/repository/locale/locale_repository.dart' as _i32;
+import 'package:kare_kyoushi/repository/locale/locale_repository.dart' as _i33;
 import 'package:kare_kyoushi/repository/login/login_repository.dart' as _i14;
 import 'package:kare_kyoushi/repository/refresh/refresh_repository.dart'
-    as _i35;
+    as _i36;
 import 'package:kare_kyoushi/repository/secure_storage/auth/auth_storage.dart'
     as _i28;
 import 'package:kare_kyoushi/repository/secure_storage/secure_storage.dart'
     as _i18;
 import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart'
-    as _i31;
+    as _i32;
 import 'package:kare_kyoushi/repository/startup/startup_helper.dart' as _i27;
 import 'package:kare_kyoushi/util/cache/cache_controller.dart' as _i4;
 import 'package:kare_kyoushi/util/cache/cache_controlling.dart' as _i3;
 import 'package:kare_kyoushi/util/interceptor/network_auth_interceptor.dart'
-    as _i33;
+    as _i34;
 import 'package:kare_kyoushi/util/interceptor/network_error_interceptor.dart'
     as _i16;
 import 'package:kare_kyoushi/util/interceptor/network_log_interceptor.dart'
     as _i17;
 import 'package:kare_kyoushi/util/interceptor/network_refresh_interceptor.dart'
-    as _i41;
+    as _i42;
 import 'package:kare_kyoushi/util/snackbar/error_util.dart' as _i7;
 import 'package:kare_kyoushi/util/theme/theme_config.dart' as _i20;
 import 'package:kare_kyoushi/viewmodel/base_screen/base_screen_viewmodel.dart'
@@ -53,17 +53,19 @@ import 'package:kare_kyoushi/viewmodel/base_screen/base_screen_viewmodel.dart'
 import 'package:kare_kyoushi/viewmodel/debug/debug_platform_selector_viewmodel.dart'
     as _i22;
 import 'package:kare_kyoushi/viewmodel/debug/debug_theme_selector_viewmodel.dart'
-    as _i42;
-import 'package:kare_kyoushi/viewmodel/debug/debug_viewmodel.dart' as _i38;
-import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart' as _i39;
+    as _i43;
+import 'package:kare_kyoushi/viewmodel/debug/debug_viewmodel.dart' as _i39;
+import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart' as _i40;
 import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart' as _i24;
 import 'package:kare_kyoushi/viewmodel/kanji_grade_list/kanji_grade_list_viewmodel.dart'
     as _i30;
+import 'package:kare_kyoushi/viewmodel/kanji_list/kanji_list_viewmodel.dart'
+    as _i31;
 import 'package:kare_kyoushi/viewmodel/license/license_viewmodel.dart' as _i26;
-import 'package:kare_kyoushi/viewmodel/login/login_viewmodel.dart' as _i40;
+import 'package:kare_kyoushi/viewmodel/login/login_viewmodel.dart' as _i41;
 import 'package:kare_kyoushi/viewmodel/permission/analytics_permission_viewmodel.dart'
-    as _i37;
-import 'package:kare_kyoushi/viewmodel/splash/splash_viewmodel.dart' as _i36;
+    as _i38;
+import 'package:kare_kyoushi/viewmodel/splash/splash_viewmodel.dart' as _i37;
 import 'package:kare_kyoushi/webservice/kanji/kanji_service.dart' as _i13;
 import 'package:shared_preferences/shared_preferences.dart' as _i19;
 
@@ -140,68 +142,72 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i15.MainNavigator>(),
           gh<_i25.KanjiRepository>(),
         ));
-    gh.lazySingleton<_i31.LocalStorage>(() => _i31.LocalStorage(
+    gh.factory<_i31.KanjiListViewModel>(() => _i31.KanjiListViewModel(
+          gh<_i15.MainNavigator>(),
+          gh<_i25.KanjiRepository>(),
+        ));
+    gh.lazySingleton<_i32.LocalStorage>(() => _i32.LocalStorage(
           gh<_i28.AuthStorage>(),
           gh<_i5.SharedPreferenceStorage>(),
         ));
-    gh.lazySingleton<_i32.LocaleRepository>(
-        () => _i32.LocaleRepository(gh<_i5.SharedPreferenceStorage>()));
-    gh.singleton<_i33.NetworkAuthInterceptor>(
-        _i33.NetworkAuthInterceptor(gh<_i28.AuthStorage>()));
-    gh.lazySingleton<_i34.OnboardingNavigator>(() => _i34.OnboardingNavigator(
+    gh.lazySingleton<_i33.LocaleRepository>(
+        () => _i33.LocaleRepository(gh<_i5.SharedPreferenceStorage>()));
+    gh.singleton<_i34.NetworkAuthInterceptor>(
+        _i34.NetworkAuthInterceptor(gh<_i28.AuthStorage>()));
+    gh.lazySingleton<_i35.OnboardingNavigator>(() => _i35.OnboardingNavigator(
           gh<_i15.MainNavigator>(),
-          gh<_i31.LocalStorage>(),
+          gh<_i32.LocalStorage>(),
           gh<_i14.LoginRepository>(),
         ));
-    gh.lazySingleton<_i35.RefreshRepository>(
-        () => _i35.RefreshRepository(gh<_i28.AuthStorage>()));
-    gh.factory<_i36.SplashViewModel>(() => _i36.SplashViewModel(
-          gh<_i31.LocalStorage>(),
-          gh<_i34.OnboardingNavigator>(),
+    gh.lazySingleton<_i36.RefreshRepository>(
+        () => _i36.RefreshRepository(gh<_i28.AuthStorage>()));
+    gh.factory<_i37.SplashViewModel>(() => _i37.SplashViewModel(
+          gh<_i32.LocalStorage>(),
+          gh<_i35.OnboardingNavigator>(),
           gh<_i27.StartupHelper>(),
         ));
-    gh.factory<_i37.AnalyticsPermissionViewModel>(
-        () => _i37.AnalyticsPermissionViewModel(
-              gh<_i34.OnboardingNavigator>(),
-              gh<_i31.LocalStorage>(),
+    gh.factory<_i38.AnalyticsPermissionViewModel>(
+        () => _i38.AnalyticsPermissionViewModel(
+              gh<_i35.OnboardingNavigator>(),
+              gh<_i32.LocalStorage>(),
             ));
-    gh.factory<_i38.DebugViewModel>(() => _i38.DebugViewModel(
+    gh.factory<_i39.DebugViewModel>(() => _i39.DebugViewModel(
           gh<_i29.DebugRepository>(),
           gh<_i15.MainNavigator>(),
           gh<_i11.KKDatabase>(),
-          gh<_i31.LocalStorage>(),
+          gh<_i32.LocalStorage>(),
         ));
-    gh.lazySingleton<_i39.GlobalViewModel>(() => _i39.GlobalViewModel(
-          gh<_i32.LocaleRepository>(),
+    gh.lazySingleton<_i40.GlobalViewModel>(() => _i40.GlobalViewModel(
+          gh<_i33.LocaleRepository>(),
           gh<_i29.DebugRepository>(),
-          gh<_i31.LocalStorage>(),
+          gh<_i32.LocalStorage>(),
           gh<_i20.ThemeConfigUtil>(),
         ));
-    gh.factory<_i40.LoginViewModel>(() => _i40.LoginViewModel(
+    gh.factory<_i41.LoginViewModel>(() => _i41.LoginViewModel(
           gh<_i14.LoginRepository>(),
-          gh<_i34.OnboardingNavigator>(),
+          gh<_i35.OnboardingNavigator>(),
           gh<_i27.StartupHelper>(),
         ));
-    gh.singleton<_i41.NetworkRefreshInterceptor>(_i41.NetworkRefreshInterceptor(
+    gh.singleton<_i42.NetworkRefreshInterceptor>(_i42.NetworkRefreshInterceptor(
       gh<_i28.AuthStorage>(),
-      gh<_i35.RefreshRepository>(),
+      gh<_i36.RefreshRepository>(),
     ));
     gh.lazySingleton<_i5.CombiningSmartInterceptor>(
         () => registerModule.provideCombiningSmartInterceptor(
               gh<_i17.NetworkLogInterceptor>(),
-              gh<_i33.NetworkAuthInterceptor>(),
+              gh<_i34.NetworkAuthInterceptor>(),
               gh<_i16.NetworkErrorInterceptor>(),
-              gh<_i41.NetworkRefreshInterceptor>(),
+              gh<_i42.NetworkRefreshInterceptor>(),
             ));
-    gh.factory<_i42.DebugThemeSelectorViewModel>(
-        () => _i42.DebugThemeSelectorViewModel(
+    gh.factory<_i43.DebugThemeSelectorViewModel>(
+        () => _i43.DebugThemeSelectorViewModel(
               gh<_i15.MainNavigator>(),
-              gh<_i39.GlobalViewModel>(),
+              gh<_i40.GlobalViewModel>(),
             ));
-    gh.lazySingleton<_i43.Dio>(
+    gh.lazySingleton<_i44.Dio>(
         () => registerModule.provideDio(gh<_i5.CombiningSmartInterceptor>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i44.RegisterModule {}
+class _$RegisterModule extends _i45.RegisterModule {}

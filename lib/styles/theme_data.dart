@@ -374,7 +374,7 @@ class KKTheme {
         infoBodySubHeader: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
         titleHeader: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w700, height: 32 / 24),
         titleSubHeader: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w500, height: 28 / 16),
-        copyBig: TextStyle(fontSize: 32, color: color, fontFamily: ThemeFonts.body, height: 28 / 32),
+        copyBig: TextStyle(fontSize: 32, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w700, height: 28 / 32),
         copyHuge: TextStyle(fontSize: 64, color: color, fontFamily: ThemeFonts.body, height: 28 / 64),
         copyDefault: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.body, height: 28 / 18),
         copySubtle: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),

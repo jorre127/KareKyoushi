@@ -5,6 +5,7 @@ class ThemeAssets {
   ThemeAssets._();
 
   static const _imagePath = 'assets/images';
+  static const _iconPath = '$_imagePath/icons';
 
   static String _getIcon(BuildContext context, String name) {
     if (context.isIOSTheme) {
@@ -32,6 +33,12 @@ class ThemeAssets {
   static String doneIcon(BuildContext context) => _getIcon(context, 'done');
 
   static String analyticsImage(BuildContext context) => _getImage(context, 'analytics');
+
+  // Icons
+
+  static String leftArrowIcon = '$_iconPath/arrow_left.svg';
+
+  // Images
 
   static String splashImage = '$_imagePath/splash.png';
 }

@@ -30,4 +30,6 @@ class KanjiGradeListViewModel with ChangeNotifierEx {
     if (disposed) return;
     notifyListeners();
   }
+
+  Future<void> onGradeTapped(Jlpt jlpt) => _navigator.goToKanjiListScreen(jlpt: jlpt);
 }

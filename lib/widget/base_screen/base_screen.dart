@@ -19,6 +19,7 @@ class BaseScreen extends StatelessWidget {
   final int? itemCount;
   final Color? background;
   final String? title;
+  final Widget? titleWidget;
   final Widget? child;
   final EdgeInsets padding;
   final List<Widget> children;
@@ -28,6 +29,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen({
     required this.children,
+    this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
     this.isLoading = false,
@@ -48,6 +50,7 @@ class BaseScreen extends StatelessWidget {
   const BaseScreen.builder({
     required this.itemBuilder,
     required this.itemCount,
+    this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
     this.isLoading = false,
@@ -66,6 +69,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.slivers({
     required this.children,
+    this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
     this.hasBottomSafeSpace = true,
@@ -85,6 +89,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.child({
     required this.child,
+    this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
     this.isLoading = false,
@@ -125,6 +130,7 @@ class BaseScreen extends StatelessWidget {
                             if (showHeader) ...[
                               KKHeader(
                                 title: title,
+                                titleWidget: titleWidget,
                                 onBackTapped: onBackTapped ?? viewModel.onBackTapped,
                               ),
                             ],

@@ -4,10 +4,12 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class KKHeader extends StatelessWidget {
   final String? title;
+  final Widget? titleWidget;
   final List<Widget> trailingItems;
   final VoidCallback? onBackTapped;
 
   const KKHeader({
+    this.titleWidget,
     this.onBackTapped,
     this.title,
     this.trailingItems = const [],
@@ -30,7 +32,9 @@ class KKHeader extends StatelessWidget {
                 KKBackButton.light(onClick: onBackTapped),
                 const SizedBox(width: 12),
               ],
-              if (title != null) ...[
+              if (titleWidget != null) ...[
+                Expanded(child: titleWidget!),
+              ] else if (title != null) ...[
                 Expanded(
                   child: Text(
                     title!,
@@ -46,6 +50,7 @@ class KKHeader extends StatelessWidget {
                     child: KKBackButton.light(onClick: () {}),
                   ),
                 ),
+                const SizedBox(width: 12),
               ],
             ],
           ),
