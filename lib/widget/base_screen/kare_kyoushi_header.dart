@@ -28,16 +28,25 @@ class KKHeader extends StatelessWidget {
             children: [
               if (ModalRoute.of(context)?.impliesAppBarDismissal ?? false) ...[
                 KKBackButton.light(onClick: onBackTapped),
-                const SizedBox(width: 24),
+                const SizedBox(width: 12),
               ],
               if (title != null) ...[
-                Text(
-                  title!.toUpperCase(),
-                  style: theme.textThemes.coreTextTheme.titleHeader,
+                Expanded(
+                  child: Text(
+                    title!,
+                    style: theme.textThemes.coreTextTheme.titleHeader,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
-              const Spacer(),
-              ...trailingItems,
+              if (ModalRoute.of(context)?.impliesAppBarDismissal ?? false) ...[
+                IgnorePointer(
+                  child: Opacity(
+                    opacity: 0,
+                    child: KKBackButton.light(onClick: () {}),
+                  ),
+                ),
+              ],
             ],
           ),
         ),

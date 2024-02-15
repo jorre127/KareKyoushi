@@ -20,10 +20,22 @@ class ThemeColors {
   static const error = Color(0xFFE30000);
   static const success = Color(0xFF3E9103);
 
+  // Accents
+  static const accent1 = Color.fromRGBO(220, 29, 98, 1);
+  static const accent2 = Color.fromRGBO(233, 70, 34, 1);
+  static const accent3 = Color.fromRGBO(195, 165, 9, 1);
+  static const accent4 = Color.fromRGBO(91, 161, 2, 1);
+  static const accent5 = Color.fromRGBO(0, 166, 136, 1);
+
+  // Backgrounds
   static const bgDefault = Color.fromRGBO(20, 22, 27, 1);
   static const bgCard = Color.fromRGBO(28, 31, 38, 1);
+
+  // Text
   static const copySubtle = Color.fromRGBO(212, 216, 231, 1);
   static const copyXtraSubtle = Color.fromRGBO(98, 106, 131, 1);
   static const copyDefault = Color.fromRGBO(255, 255, 255, 1);
+
+  // Misc
   static const button = Color.fromRGBO(61, 67, 87, 1);
 }

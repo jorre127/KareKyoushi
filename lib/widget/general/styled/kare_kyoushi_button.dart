@@ -44,7 +44,7 @@ class KKButton extends StatelessWidget {
       case ButtonType.regular:
         return theme.textThemes.inverseCoreTextTheme.titleHeader;
       case ButtonType.text:
-        return theme.textThemes.accentTextTheme.titleHeader;
+        return theme.textThemes.accent5TextTheme.titleHeader;
     }
   }
 

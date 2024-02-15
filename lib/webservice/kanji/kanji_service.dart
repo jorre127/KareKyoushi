@@ -14,6 +14,7 @@ class KanjiService {
     final dictionary = xmlDocument.findElements('kanjidic2').first;
     final characters = dictionary.findElements('character');
 
+    // ignore: avoid_print
     print(characters.length);
   }
 }

@@ -23,6 +23,7 @@ class BottomNavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     final hasSpaceForLabel = MediaQuery.of(context).textScaleFactor <= 1;
     final child = DataProviderWidget(
       childBuilder: (context, theme, localization) => Center(

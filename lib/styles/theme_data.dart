@@ -138,11 +138,23 @@ class KKColorsTheme {
 
   final Color debugTitleBackground;
 
+  // Accent
+  final Color accent1;
+  final Color accent2;
+  final Color accent3;
+  final Color accent4;
+  final Color accent5;
+
+  // Background
   final Color bgDefault;
   final Color bgCard;
+
+  // Text
   final Color copySubtle;
   final Color copyXtraSubtle;
   final Color copyDefault;
+
+  // Misc
   final Color button;
 
   const KKColorsTheme({
@@ -183,6 +195,11 @@ class KKColorsTheme {
     required this.copyXtraSubtle,
     required this.copyDefault,
     required this.button,
+    required this.accent1,
+    required this.accent2,
+    required this.accent3,
+    required this.accent4,
+    required this.accent5,
   });
 }
 
@@ -191,7 +208,11 @@ class KKTextThemes {
   final KKTextTheme subtleTextTheme;
   final KKTextTheme xtraSubtleTextTheme;
   final KKTextTheme inverseCoreTextTheme;
-  final KKTextTheme accentTextTheme;
+  final KKTextTheme accent1TextTheme;
+  final KKTextTheme accent2TextTheme;
+  final KKTextTheme accent3TextTheme;
+  final KKTextTheme accent4TextTheme;
+  final KKTextTheme accent5TextTheme;
   final KKTextTheme disabledTextTheme;
 
   KKTextThemes({
@@ -199,7 +220,11 @@ class KKTextThemes {
     required this.subtleTextTheme,
     required this.xtraSubtleTextTheme,
     required this.inverseCoreTextTheme,
-    required this.accentTextTheme,
+    required this.accent1TextTheme,
+    required this.accent2TextTheme,
+    required this.accent3TextTheme,
+    required this.accent4TextTheme,
+    required this.accent5TextTheme,
     required this.disabledTextTheme,
   });
 }
@@ -257,6 +282,11 @@ class KKTheme {
       copyXtraSubtle: ThemeColors.copyXtraSubtle,
       copyDefault: ThemeColors.copyDefault,
       button: ThemeColors.button,
+      accent1: ThemeColors.accent1,
+      accent2: ThemeColors.accent2,
+      accent3: ThemeColors.accent3,
+      accent4: ThemeColors.accent4,
+      accent5: ThemeColors.accent5,
     ),
   );
 
@@ -300,6 +330,11 @@ class KKTheme {
       copyXtraSubtle: ThemeColors.copyXtraSubtle,
       copyDefault: ThemeColors.copyDefault,
       button: ThemeColors.button,
+      accent1: ThemeColors.accent1,
+      accent2: ThemeColors.accent2,
+      accent3: ThemeColors.accent3,
+      accent4: ThemeColors.accent4,
+      accent5: ThemeColors.accent5,
     ),
   );
 
@@ -314,7 +349,11 @@ class KKTheme {
           disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
           coreTextTheme: _getTextThemeFromColor(colorTheme.copyDefault),
           inverseCoreTextTheme: _getTextThemeFromColor(colorTheme.inverseText),
-          accentTextTheme: _getTextThemeFromColor(colorTheme.accent),
+          accent1TextTheme: _getTextThemeFromColor(colorTheme.accent1),
+          accent2TextTheme: _getTextThemeFromColor(colorTheme.accent2),
+          accent3TextTheme: _getTextThemeFromColor(colorTheme.accent3),
+          accent4TextTheme: _getTextThemeFromColor(colorTheme.accent4),
+          accent5TextTheme: _getTextThemeFromColor(colorTheme.accent5),
           subtleTextTheme: _getTextThemeFromColor(colorTheme.copySubtle),
           xtraSubtleTextTheme: _getTextThemeFromColor(colorTheme.copyXtraSubtle),
         ),
@@ -333,13 +372,13 @@ class KKTheme {
         bodySmall: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body),
         bodyUltraSmall: TextStyle(fontSize: 12, color: color, fontFamily: ThemeFonts.body),
         infoBodySubHeader: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w600),
-        titleHeader: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.body, height: 32 / 24),
-        titleSubHeader: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),
+        titleHeader: TextStyle(fontSize: 24, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w700, height: 32 / 24),
+        titleSubHeader: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w500, height: 28 / 16),
         copyBig: TextStyle(fontSize: 32, color: color, fontFamily: ThemeFonts.body, height: 28 / 32),
         copyHuge: TextStyle(fontSize: 64, color: color, fontFamily: ThemeFonts.body, height: 28 / 64),
         copyDefault: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.body, height: 28 / 18),
         copySubtle: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),
-        copyXtraSubtle: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, height: 28 / 14),
+        copyXtraSubtle: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 28 / 14),
       );
 
   const KKTheme._({

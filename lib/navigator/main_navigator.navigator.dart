@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
+import '../screen/kanji_grade_list/kanji_grade_list_screen.dart';
 import '../screen/license/license_screen.dart';
 import '../screen/login/login_screen.dart';
 import '../screen/main/main_screen.dart';
@@ -23,6 +24,14 @@ mixin BaseNavigator {
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteNames.homeScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => HomeScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
       case RouteNames.splashScreen:
         return MaterialPageRoute<void>(
           builder: (_) => SplashScreen(
@@ -34,6 +43,22 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.kanjiGradeListScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => KanjiGradeListScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.mainScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => MainScreen(
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -79,26 +104,15 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.mainScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => MainScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.homeScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => HomeScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
     }
     return null;
   }
 
+  Future<void> goToHomeScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.homeScreen,
+        arguments: {'key': key},
+      );
   void goToSplashScreen({_i1.Key? key}) =>
       navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.splashScreen,
@@ -108,6 +122,17 @@ mixin BaseNavigator {
   Future<void> goToLicenseScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToKanjiGradeListScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.kanjiGradeListScreen,
+        arguments: {'key': key},
+      );
+  void goToMainScreen({_i1.Key? key}) =>
+      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
+        RouteNames.mainScreen,
+        (_) => false,
         arguments: {'key': key},
       );
   Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
@@ -136,17 +161,6 @@ mixin BaseNavigator {
         RouteNames.debugScreen,
         arguments: {'key': key},
       );
-  void goToMainScreen({_i1.Key? key}) =>
-      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
-        RouteNames.mainScreen,
-        (_) => false,
-        arguments: {'key': key},
-      );
-  Future<void> goToHomeScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.homeScreen,
-        arguments: {'key': key},
-      );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
       navigatorKey.currentState?.pop(result);
@@ -166,9 +180,15 @@ mixin BaseNavigator {
 }
 
 class RouteNames {
+  static const homeScreen = '/home';
+
   static const splashScreen = '/splash';
 
   static const licenseScreen = '/license';
+
+  static const kanjiGradeListScreen = '/kanji-grade-list';
+
+  static const mainScreen = '/main';
 
   static const analyticsPermissionScreen = '/analytics-permission';
 
@@ -179,8 +199,4 @@ class RouteNames {
   static const debugPlatformSelectorScreen = '/debug-platform-selector';
 
   static const debugScreen = '/debug';
-
-  static const mainScreen = '/main';
-
-  static const homeScreen = '/home';
 }

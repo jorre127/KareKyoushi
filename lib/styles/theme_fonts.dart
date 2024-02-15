@@ -1,9 +1,9 @@
 class ThemeFonts {
   ThemeFonts._();
 
-  static const _openSans = 'OpenSans';
+  static const _sfPro = 'SF-Pro';
 
-  static const title = _openSans;
-  static const body = _openSans;
-  static const button = _openSans;
+  static const title = _sfPro;
+  static const body = _sfPro;
+  static const button = _sfPro;
 }

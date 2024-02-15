@@ -278,4 +278,44 @@ class LocalizationKeys {
   /// en:  **'Login'**
   static const loginButton = 'login_button';
 
+  /// Translations:
+  ///
+  /// en:  **'Hiragana'**
+  static const hiragana = 'hiragana';
+
+  /// Translations:
+  ///
+  /// en:  **'ひらがな'**
+  static const hiraganaJp = 'hiragana_jp';
+
+  /// Translations:
+  ///
+  /// en:  **'Katakana'**
+  static const katakana = 'katakana';
+
+  /// Translations:
+  ///
+  /// en:  **'カタカナ'**
+  static const katakanaJp = 'katakana_jp';
+
+  /// Translations:
+  ///
+  /// en:  **'Kanji'**
+  static const kanji = 'kanji';
+
+  /// Translations:
+  ///
+  /// en:  **'漢字'**
+  static const kanjiJp = 'kanji_jp';
+
+  /// Translations:
+  ///
+  /// en:  **'Your study subjects'**
+  static const homeSectionStudySubject = 'home_section_study_subject';
+
+  /// Translations:
+  ///
+  /// en:  **'What level of kanji do you want to learn today?'**
+  static const kanjiGradeListScreenTitle = 'kanji_grade_list_screen_title';
+
 }

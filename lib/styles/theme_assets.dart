@@ -5,7 +5,6 @@ class ThemeAssets {
   ThemeAssets._();
 
   static const _imagePath = 'assets/images';
-  static const _iconPath = '$_imagePath/icons';
 
   static String _getIcon(BuildContext context, String name) {
     if (context.isIOSTheme) {

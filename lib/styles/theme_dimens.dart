@@ -17,7 +17,6 @@ class ThemeDimens {
   static const double padding80 = 80;
   static const double padding96 = 96;
   static const double padding128 = 128;
-  static const double cardBorderRadius = 5;
 
   static const double enabledOpacity = 1;
   static const double disabledOpacity = 0.24;
@@ -27,4 +26,5 @@ class ThemeDimens {
 
   static BorderRadius inputBorderRadius = BorderRadius.circular(8);
   static BorderRadius buttonBorderRadius = BorderRadius.circular(16);
+  static BorderRadius cardBorderRadius = BorderRadius.circular(16);
 }

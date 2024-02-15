@@ -53,5 +53,13 @@
   "debug_permission_reset_analytics": "Reset analytics permission",
   "login_screen_username_label": "Username",
   "login_screen_password_label": "Password",
-  "login_button": "Login"
+  "login_button": "Login",
+  "hiragana": "Hiragana",
+  "hiragana_jp": "ひらがな",
+  "katakana": "Katakana",
+  "katakana_jp": "カタカナ",
+  "kanji": "Kanji",
+  "kanji_jp": "漢字",
+  "home_section_study_subject": "Your study subjects",
+  "kanji_grade_list_screen_title": "What level of kanji do you want to learn today?"
 }

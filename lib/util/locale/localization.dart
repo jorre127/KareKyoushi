@@ -332,6 +332,46 @@ class Localization {
   /// en:  **'Login'**
   String get loginButton => _t(LocalizationKeys.loginButton);
 
+  /// Translations:
+  ///
+  /// en:  **'Hiragana'**
+  String get hiragana => _t(LocalizationKeys.hiragana);
+
+  /// Translations:
+  ///
+  /// en:  **'ひらがな'**
+  String get hiraganaJp => _t(LocalizationKeys.hiraganaJp);
+
+  /// Translations:
+  ///
+  /// en:  **'Katakana'**
+  String get katakana => _t(LocalizationKeys.katakana);
+
+  /// Translations:
+  ///
+  /// en:  **'カタカナ'**
+  String get katakanaJp => _t(LocalizationKeys.katakanaJp);
+
+  /// Translations:
+  ///
+  /// en:  **'Kanji'**
+  String get kanji => _t(LocalizationKeys.kanji);
+
+  /// Translations:
+  ///
+  /// en:  **'漢字'**
+  String get kanjiJp => _t(LocalizationKeys.kanjiJp);
+
+  /// Translations:
+  ///
+  /// en:  **'Your study subjects'**
+  String get homeSectionStudySubject => _t(LocalizationKeys.homeSectionStudySubject);
+
+  /// Translations:
+  ///
+  /// en:  **'What level of kanji do you want to learn today?'**
+  String get kanjiGradeListScreenTitle => _t(LocalizationKeys.kanjiGradeListScreenTitle);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

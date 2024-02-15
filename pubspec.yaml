@@ -75,7 +75,7 @@ flutter:
   assets:
     - assets/api/
     - assets/fonts/
-    - assets/fonts/open_sans/
+    - assets/fonts/sf_pro/
     - assets/locale/
     - assets/images/
     - assets/images/icons/
@@ -83,9 +83,11 @@ flutter:
     - assets/images/icons/ios/
     - assets/dictionary/
   fonts:
-    - family: OpenSans
+    - family: SF-Pro
       fonts:
-        - asset: assets/fonts/open_sans/OpenSans-Regular.ttf
+        - asset:  assets/fonts/sf_pro/SF-Pro-Display-Bold.otf
+          weight: 700
+        - asset: assets/fonts/sf_pro/SF-Pro.ttf
 
 locale_gen:
   default_language: 'en'
