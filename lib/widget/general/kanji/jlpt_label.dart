@@ -3,10 +3,10 @@ import 'package:kare_kyoushi/model/enum/jlpt.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
-class KanjiGradeLabel extends StatelessWidget {
+class JlptLabel extends StatelessWidget {
   final Jlpt jlptLevel;
 
-  const KanjiGradeLabel({
+  const JlptLabel({
     required this.jlptLevel,
     super.key,
   });

@@ -2,6 +2,7 @@ import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
 import 'package:kare_kyoushi/model/kanji/kanji.dart';
+import 'package:kare_kyoushi/util/extension/xml_extension.dart';
 import 'package:xml/xml.dart';
 
 @lazySingleton
@@ -18,13 +19,26 @@ class KanjiService {
 
     final kanji = <Kanji>[];
     for (final character in characters) {
-      final kanjiValue = character.findElements('literal').first.innerText;
-      final jlptString = character.findElements('misc').first.findElements('jlpt').firstOrNull?.innerText;
+      final kanjiValue = character.getElementValue('literal')!;
+      final misc = character.getElement('misc')!;
+      final jlptString = misc.getElementValue('jlpt');
+      final grade = misc.getElementValue('grade');
+      final frequency = misc.getElementValue('freq');
+      final readingMeaning = character.getElement('reading_meaning')?.getElement('rmgroup');
+      final meanings = readingMeaning?.findElements('meaning');
+      final onyomi = readingMeaning?.findElements('reading').where((element) => element.attributes.first.value.toString() == 'ja_on');
+      final kunyomi = readingMeaning?.findElements('reading').where((element) => element.attributes.first.value.toString() == 'ja_kun');
       final jlpt = jlptString == null ? null : Jlpt.values.firstWhere((jlptLevel) => jlptLevel.rank == int.parse(jlptString));
+
       kanji.add(
         Kanji(
           kanjiValue: kanjiValue,
           jlpt: jlpt,
+          frequency: int.tryParse(frequency ?? ''),
+          grade: int.tryParse(grade ?? ''),
+          kunyomi: kunyomi?.map((e) => e.innerText).toList() ?? [],
+          onyomi: onyomi?.map((e) => e.innerText).toList() ?? [],
+          meanings: meanings?.map((e) => e.innerText).toList() ?? [],
         ),
       );
     }

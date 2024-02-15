@@ -4,7 +4,7 @@ import 'package:kare_kyoushi/di/injectable.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
 import 'package:kare_kyoushi/viewmodel/kanji_list/kanji_list_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
-import 'package:kare_kyoushi/widget/kanji_grade/kanji_grade_label.dart';
+import 'package:kare_kyoushi/widget/general/kanji/jlpt_label.dart';
 import 'package:kare_kyoushi/widget/kanji_list/kanji_grid.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
@@ -32,7 +32,7 @@ class KanjiListScreenState extends State<KanjiListScreen> {
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            KanjiGradeLabel(jlptLevel: viewModel.jlpt),
+            JlptLabel(jlptLevel: viewModel.jlpt),
             const SizedBox(width: 8),
             Text(
               localization.getTranslation(viewModel.jlpt.difficultyKey),
@@ -40,7 +40,10 @@ class KanjiListScreenState extends State<KanjiListScreen> {
             ),
           ],
         ),
-        child: KanjiGrid(kanji: viewModel.kanji),
+        child: KanjiGrid(
+          kanji: viewModel.kanji,
+          onKanjiTapped: viewModel.onKanjiTapped,
+        ),
       ),
     );
   }

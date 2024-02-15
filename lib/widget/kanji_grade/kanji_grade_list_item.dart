@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
 import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
-import 'package:kare_kyoushi/widget/kanji_grade/kanji_grade_label.dart';
+import 'package:kare_kyoushi/widget/general/kanji/jlpt_label.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class KanjiGradeListItem extends StatelessWidget {
@@ -26,7 +26,7 @@ class KanjiGradeListItem extends StatelessWidget {
           children: [
             Row(
               children: [
-                KanjiGradeLabel(jlptLevel: jlptLevel),
+                JlptLabel(jlptLevel: jlptLevel),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(

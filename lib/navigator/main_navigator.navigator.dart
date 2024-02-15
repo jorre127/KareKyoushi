@@ -8,11 +8,14 @@
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart' as _i2;
+import 'package:kare_kyoushi/model/kanji/kanji.dart' as _i3;
 
 import '../model/enum/jlpt.dart';
+import '../model/kanji/kanji.dart';
 import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
+import '../screen/kanji_detail/kanji_detail_screen.dart';
 import '../screen/kanji_grade_list/kanji_grade_list_screen.dart';
 import '../screen/kanji_list/kanji_list_screen.dart';
 import '../screen/license/license_screen.dart';
@@ -116,6 +119,16 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.kanjiDetailScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => KanjiDetailScreen(
+            kanji:
+                (settings.arguments as Map<String, dynamic>)['kanji'] as Kanji,
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
     }
     return null;
   }
@@ -181,6 +194,14 @@ mixin BaseNavigator {
         RouteNames.kanjiListScreen,
         arguments: {'jlpt': jlpt, 'key': key},
       );
+  Future<void> goToKanjiDetailScreen({
+    required _i3.Kanji kanji,
+    _i1.Key? key,
+  }) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.kanjiDetailScreen,
+        arguments: {'kanji': kanji, 'key': key},
+      );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
       navigatorKey.currentState?.pop(result);
@@ -221,4 +242,6 @@ class RouteNames {
   static const debugScreen = '/debug';
 
   static const kanjiListScreen = '/kanji-list';
+
+  static const kanjiDetailScreen = '/kanji-detail';
 }

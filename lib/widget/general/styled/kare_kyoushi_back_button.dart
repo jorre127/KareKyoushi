@@ -38,7 +38,7 @@ class KKBackButton extends StatelessWidget {
 
   String getCorrectIcon(BuildContext context) {
     if (fullScreen) {
-      return ThemeAssets.leftArrowIcon;
+      return ThemeAssets.crossIcon;
     }
     return ThemeAssets.leftArrowIcon;
   }

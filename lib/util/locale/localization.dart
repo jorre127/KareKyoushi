@@ -432,6 +432,11 @@ class Localization {
   /// en:  **'Expert'**
   String get n1Difficulty => _t(LocalizationKeys.n1Difficulty);
 
+  /// Translations:
+  ///
+  /// en:  **'Grade'**
+  String get grade => _t(LocalizationKeys.grade);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

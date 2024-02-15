@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/kanji/kanji.dart';
-import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
+import 'package:kare_kyoushi/widget/kanji_list/kanji_grid_item.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class KanjiGrid extends StatelessWidget {
   final List<Kanji> kanji;
+  final ValueChanged<Kanji> onKanjiTapped;
 
   const KanjiGrid({
     required this.kanji,
+    required this.onKanjiTapped,
     super.key,
   });
 
@@ -24,13 +26,9 @@ class KanjiGrid extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         itemBuilder: (context, index) {
           final kanjiItem = kanji[index];
-          return KKCard(
-            child: Center(
-              child: Text(
-                kanjiItem.kanjiValue,
-                style: theme.textThemes.coreTextTheme.copyBig,
-              ),
-            ),
+          return KanjiGridItem(
+            kanji: kanjiItem,
+            onTapped: () => onKanjiTapped(kanjiItem),
           );
         },
       ),

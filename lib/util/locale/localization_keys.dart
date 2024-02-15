@@ -378,4 +378,9 @@ class LocalizationKeys {
   /// en:  **'Expert'**
   static const n1Difficulty = 'n1_difficulty';
 
+  /// Translations:
+  ///
+  /// en:  **'Grade'**
+  static const grade = 'grade';
+
 }

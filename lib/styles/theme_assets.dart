@@ -37,6 +37,7 @@ class ThemeAssets {
   // Icons
 
   static String leftArrowIcon = '$_iconPath/arrow_left.svg';
+  static String crossIcon = '$_iconPath/cross.svg';
 
   // Images
 

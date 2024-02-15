@@ -73,5 +73,6 @@
   "n4_difficulty": "Moderate",
   "n3_difficulty": "Intermediate",
   "n2_difficulty": "Hard",
-  "n1_difficulty": "Expert"
+  "n1_difficulty": "Expert",
+  "grade": "Grade"
 }

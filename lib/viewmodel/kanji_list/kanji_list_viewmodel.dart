@@ -8,9 +8,9 @@ import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart';
 @injectable
 class KanjiListViewModel with ChangeNotifierEx {
   late Jlpt _jlpt;
-  final KanjiRepository _kanjiRepository;
 
   final MainNavigator _navigator;
+  final KanjiRepository _kanjiRepository;
 
   final _kanji = <Kanji>[];
 
@@ -29,8 +29,10 @@ class KanjiListViewModel with ChangeNotifierEx {
   }
 
   Future<void> _getKanji() async {
-    _kanji.replaceAll(await _kanjiRepository.getKanjiForLevel(_jlpt.rank));
+    _kanji.replaceAll((await _kanjiRepository.getKanjiForLevel(_jlpt.rank))..sortBy((item) => item.frequency));
     if (disposed) return;
     notifyListeners();
   }
+
+  void onKanjiTapped(Kanji kanji) => _navigator.goToKanjiDetailScreen(kanji: kanji);
 }

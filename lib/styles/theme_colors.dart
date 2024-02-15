@@ -38,4 +38,5 @@ class ThemeColors {
 
   // Misc
   static const button = Color.fromRGBO(61, 67, 87, 1);
+  static const stroke = Color.fromRGBO(61, 67, 87, 1);
 }
