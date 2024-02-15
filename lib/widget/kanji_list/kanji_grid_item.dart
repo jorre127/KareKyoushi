@@ -25,7 +25,7 @@ class _KanjiGridItemState extends State<KanjiGridItem> {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => KKCard(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.zero,
         onTapped: widget.onTapped,
         child: Center(
           child: Stack(
