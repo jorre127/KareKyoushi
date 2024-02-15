@@ -9,7 +9,7 @@ import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
 import 'package:kare_kyoushi/widget/kanji_detail/kanji_detail_header.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
-@flutterRoute
+@FlutterRoute(isFullscreenDialog: true)
 class KanjiDetailScreen extends StatefulWidget {
   final Kanji kanji;
 

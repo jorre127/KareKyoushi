@@ -127,7 +127,7 @@ mixin BaseNavigator {
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
-          fullscreenDialog: false,
+          fullscreenDialog: true,
         );
     }
     return null;
