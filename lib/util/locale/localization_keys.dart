@@ -315,6 +315,16 @@ class LocalizationKeys {
 
   /// Translations:
   ///
+  /// en:  **'Your saved words'**
+  static const homeSectionItemSavedWords = 'home_section_item_saved_words';
+
+  /// Translations:
+  ///
+  /// en:  **'言葉'**
+  static const homeSectionItemSavedWordJp = 'home_section_item_saved_word_jp';
+
+  /// Translations:
+  ///
   /// en:  **'What level of kanji do you want to learn today?'**
   static const kanjiGradeListScreenTitle = 'kanji_grade_list_screen_title';
 

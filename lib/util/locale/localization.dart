@@ -369,6 +369,16 @@ class Localization {
 
   /// Translations:
   ///
+  /// en:  **'Your saved words'**
+  String get homeSectionItemSavedWords => _t(LocalizationKeys.homeSectionItemSavedWords);
+
+  /// Translations:
+  ///
+  /// en:  **'言葉'**
+  String get homeSectionItemSavedWordJp => _t(LocalizationKeys.homeSectionItemSavedWordJp);
+
+  /// Translations:
+  ///
   /// en:  **'What level of kanji do you want to learn today?'**
   String get kanjiGradeListScreenTitle => _t(LocalizationKeys.kanjiGradeListScreenTitle);
 

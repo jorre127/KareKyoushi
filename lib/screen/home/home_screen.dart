@@ -40,7 +40,8 @@ class HomeScreenState extends State<HomeScreen> {
                 onTapped: () => viewModel.onAlphabetTapped(alphabet),
               ),
             ),
-          )
+          ),
+          HomeListItem(title: localization.homeSectionItemSavedWords, subTitle: subTitle, color: color)
         ],
       ),
     );
