@@ -27,7 +27,10 @@ class KanjiGradeListScreenState extends State<KanjiGradeListScreen> {
             .map(
               (jlptLevel) => Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: KanjiGradeListItem(jlptLevel: jlptLevel),
+                child: KanjiGradeListItem(
+                  jlptLevel: jlptLevel,
+                  total: viewModel.kanjiCountMap[jlptLevel] ?? 0,
+                ),
               ),
             )
             .toList(),

@@ -5,11 +5,13 @@ import 'package:kare_kyoushi/widget/kanji_grade/kanji_grade_label.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class KanjiGradeListItem extends StatelessWidget {
+  final int total;
   final Jlpt jlptLevel;
   final VoidCallback? onTapped;
 
   const KanjiGradeListItem({
     required this.jlptLevel,
+    required this.total,
     this.onTapped,
     super.key,
   });
@@ -26,9 +28,15 @@ class KanjiGradeListItem extends StatelessWidget {
               children: [
                 KanjiGradeLabel(jlptLevel: jlptLevel),
                 const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    localization.getTranslation(jlptLevel.difficultyKey),
+                    style: theme.textThemes.coreTextTheme.copyDefault,
+                  ),
+                ),
                 Text(
-                  localization.getTranslation(jlptLevel.difficultyKey),
-                  style: theme.textThemes.coreTextTheme.copyDefault,
+                  '$total ${localization.kanjiJp}',
+                  style: theme.textThemes.subtleTextTheme.copySubtle,
                 ),
               ],
             )

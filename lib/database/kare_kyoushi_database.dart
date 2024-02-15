@@ -1,8 +1,12 @@
 import 'package:drift/drift.dart';
+import 'package:kare_kyoushi/model/database/kanji/kanji_table.dart';
+import 'package:kare_kyoushi/model/enum/jlpt.dart';
+import 'package:kare_kyoushi/model/type_converter/jlpt_type_converter.dart';
 
 part 'kare_kyoushi_database.g.dart';
 
 @DriftDatabase(tables: [
+  DbKanjiTable,
 ])
 class KKDatabase extends _$KKDatabase {
   KKDatabase(super.db);

@@ -5,6 +5,8 @@ targets:
         generate_for:
           include:
             - lib/database/**.dart
+            - lib/model/database/**.dart
+            - lib/model/type_convert/**.dart
       # Should be removed in the future
       retrofit_generator|retrofit:
         enabled: true
