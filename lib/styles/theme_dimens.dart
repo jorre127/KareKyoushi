@@ -27,4 +27,5 @@ class ThemeDimens {
   static BorderRadius inputBorderRadius = BorderRadius.circular(8);
   static BorderRadius buttonBorderRadius = BorderRadius.circular(16);
   static BorderRadius cardBorderRadius = BorderRadius.circular(16);
+  static BorderRadius tagBorderRadius = BorderRadius.circular(10);
 }

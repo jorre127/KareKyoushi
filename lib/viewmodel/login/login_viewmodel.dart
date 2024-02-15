@@ -36,6 +36,7 @@ class LoginViewModel with ChangeNotifierEx {
 
   Future<void> onLoginClicked() async {
     _isLoading = true;
+    notifyListeners();
     await _loginRepo
         .login(
           email: _email,

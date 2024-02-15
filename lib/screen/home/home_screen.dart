@@ -4,7 +4,7 @@ import 'package:kare_kyoushi/di/injectable.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
-import 'package:kare_kyoushi/widget/general/home/home_list_item.dart';
+import 'package:kare_kyoushi/widget/home/home_list_item.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @flutterRoute
@@ -41,7 +41,11 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          HomeListItem(title: localization.homeSectionItemSavedWords, subTitle: subTitle, color: color)
+          HomeListItem(
+            title: localization.homeSectionItemSavedWords,
+            subTitle: localization.homeSectionItemSavedWordJp,
+            color: theme.colorsTheme.accent2,
+          ),
         ],
       ),
     );

@@ -382,6 +382,56 @@ class Localization {
   /// en:  **'What level of kanji do you want to learn today?'**
   String get kanjiGradeListScreenTitle => _t(LocalizationKeys.kanjiGradeListScreenTitle);
 
+  /// Translations:
+  ///
+  /// en:  **'N5'**
+  String get n5Title => _t(LocalizationKeys.n5Title);
+
+  /// Translations:
+  ///
+  /// en:  **'N4'**
+  String get n4Title => _t(LocalizationKeys.n4Title);
+
+  /// Translations:
+  ///
+  /// en:  **'N3'**
+  String get n3Title => _t(LocalizationKeys.n3Title);
+
+  /// Translations:
+  ///
+  /// en:  **'N2'**
+  String get n2Title => _t(LocalizationKeys.n2Title);
+
+  /// Translations:
+  ///
+  /// en:  **'N1'**
+  String get n1Title => _t(LocalizationKeys.n1Title);
+
+  /// Translations:
+  ///
+  /// en:  **'Easy'**
+  String get n5Difficulty => _t(LocalizationKeys.n5Difficulty);
+
+  /// Translations:
+  ///
+  /// en:  **'Moderate'**
+  String get n4Difficulty => _t(LocalizationKeys.n4Difficulty);
+
+  /// Translations:
+  ///
+  /// en:  **'Intermediate'**
+  String get n3Difficulty => _t(LocalizationKeys.n3Difficulty);
+
+  /// Translations:
+  ///
+  /// en:  **'Hard'**
+  String get n2Difficulty => _t(LocalizationKeys.n2Difficulty);
+
+  /// Translations:
+  ///
+  /// en:  **'Expert'**
+  String get n1Difficulty => _t(LocalizationKeys.n1Difficulty);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

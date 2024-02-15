@@ -328,4 +328,54 @@ class LocalizationKeys {
   /// en:  **'What level of kanji do you want to learn today?'**
   static const kanjiGradeListScreenTitle = 'kanji_grade_list_screen_title';
 
+  /// Translations:
+  ///
+  /// en:  **'N5'**
+  static const n5Title = 'n5_title';
+
+  /// Translations:
+  ///
+  /// en:  **'N4'**
+  static const n4Title = 'n4_title';
+
+  /// Translations:
+  ///
+  /// en:  **'N3'**
+  static const n3Title = 'n3_title';
+
+  /// Translations:
+  ///
+  /// en:  **'N2'**
+  static const n2Title = 'n2_title';
+
+  /// Translations:
+  ///
+  /// en:  **'N1'**
+  static const n1Title = 'n1_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Easy'**
+  static const n5Difficulty = 'n5_difficulty';
+
+  /// Translations:
+  ///
+  /// en:  **'Moderate'**
+  static const n4Difficulty = 'n4_difficulty';
+
+  /// Translations:
+  ///
+  /// en:  **'Intermediate'**
+  static const n3Difficulty = 'n3_difficulty';
+
+  /// Translations:
+  ///
+  /// en:  **'Hard'**
+  static const n2Difficulty = 'n2_difficulty';
+
+  /// Translations:
+  ///
+  /// en:  **'Expert'**
+  static const n1Difficulty = 'n1_difficulty';
+
 }

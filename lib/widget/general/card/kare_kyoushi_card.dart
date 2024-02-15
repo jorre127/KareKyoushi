@@ -5,11 +5,13 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class KKCard extends StatelessWidget {
   final VoidCallback? onTapped;
+  final EdgeInsets? padding;
   final Widget? child;
 
   const KKCard({
     required this.onTapped,
     required this.child,
+    this.padding = const EdgeInsets.all(24),
     super.key,
   });
 
@@ -21,7 +23,7 @@ class KKCard extends StatelessWidget {
         borderRadius: ThemeDimens.cardBorderRadius,
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(24),
+          padding: padding,
           decoration: BoxDecoration(
             color: theme.colorsTheme.bgCard,
             borderRadius: ThemeDimens.cardBorderRadius,

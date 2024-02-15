@@ -63,5 +63,15 @@
   "home_section_study_subject": "Your study subjects",
   "home_section_item_saved_words": "Your saved words",
   "home_section_item_saved_word_jp": "言葉",
-  "kanji_grade_list_screen_title": "What level of kanji do you want to learn today?"
+  "kanji_grade_list_screen_title": "What level of kanji do you want to learn today?",
+  "n5_title": "N5",
+  "n4_title": "N4",
+  "n3_title": "N3",
+  "n2_title": "N2",
+  "n1_title": "N1",
+  "n5_difficulty": "Easy",
+  "n4_difficulty": "Moderate",
+  "n3_difficulty": "Intermediate",
+  "n2_difficulty": "Hard",
+  "n1_difficulty": "Expert"
 }
