@@ -32,7 +32,7 @@ class KanjiDetailWordsContaining extends StatelessWidget {
               color: theme.colorsTheme.bgDefault,
               borderRadius: ThemeDimens.tagBorderRadius,
               padding: const EdgeInsets.symmetric(
-                horizontal: 8,
+                horizontal: 12,
                 vertical: 12,
               ),
               child: Row(
