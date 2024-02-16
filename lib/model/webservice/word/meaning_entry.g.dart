@@ -9,19 +9,20 @@ part of 'meaning_entry.dart';
 MeaningEntry _$MeaningEntryFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['type', 'meanings'],
+    requiredKeys: const ['typeString', 'meanings'],
   );
   return MeaningEntry(
-    type: json['type'] as String,
+    typeString: json['typeString'] as String,
     meanings:
         (json['meanings'] as List<dynamic>).map((e) => e as String).toList(),
+    type: $enumDecodeNullable(_$WordTypeEnumMap, json['type']),
     misc: json['misc'] as String?,
   );
 }
 
 Map<String, dynamic> _$MeaningEntryToJson(MeaningEntry instance) {
   final val = <String, dynamic>{
-    'type': instance.type,
+    'typeString': instance.typeString,
     'meanings': instance.meanings,
   };
 
@@ -31,6 +32,12 @@ Map<String, dynamic> _$MeaningEntryToJson(MeaningEntry instance) {
     }
   }
 
+  writeNotNull('type', _$WordTypeEnumMap[instance.type]);
   writeNotNull('misc', instance.misc);
   return val;
 }
+
+const _$WordTypeEnumMap = {
+  WordType.noun: 'noun',
+  WordType.adjective: 'adjective',
+};

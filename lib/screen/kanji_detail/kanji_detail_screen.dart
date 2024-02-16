@@ -68,11 +68,7 @@ class KanjiDetailScreenState extends State<KanjiDetailScreen> {
                     ),
                     const SliverSizedBox(height: 4),
                     KanjiDetailWordsContainingTitle(kanji: viewModel.kanji),
-                    KanjiDetailWordsContaining(
-                      words: viewModel.wordsContaining,
-                      localization: localization,
-                      theme: theme,
-                    ),
+                    KanjiDetailWordsContaining(words: viewModel.wordsContaining),
                   ],
                 ),
               ),

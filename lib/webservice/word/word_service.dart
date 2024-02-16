@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kare_kyoushi/model/enum/wordtype.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
 import 'package:kare_kyoushi/util/extension/xml_extension.dart';
@@ -39,9 +40,11 @@ class WordService {
       final meaningEntries = <MeaningEntry>[];
 
       for (final meaningEntry in meaningsInfo) {
+        final typeString = meaningEntry.getElementValue('pos')!;
         meaningEntries.add(
           MeaningEntry(
-            type: meaningEntry.getElementValue('pos')!,
+            typeString: typeString,
+            type: typeString.toWordType(),
             meanings: meaningEntry.findAllElements('gloss').map((e) => e.innerText).toList(),
             misc: meaningEntry.getElementValue('misc'),
           ),

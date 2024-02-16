@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
-import 'package:kare_kyoushi/styles/theme_data.dart';
-import 'package:kare_kyoushi/styles/theme_dimens.dart';
-import 'package:kare_kyoushi/util/locale/localization.dart';
-import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
-import 'package:kare_kyoushi/widget/general/kanji/jlpt_label.dart';
-import 'package:kare_kyoushi/widget/general/kanji/label.dart';
-import 'package:kare_kyoushi/widget/layout/spacing_row.dart';
+import 'package:kare_kyoushi/widget/kanji_detail/kanji_detail_words_containing_item.dart';
 
 class KanjiDetailWordsContaining extends StatelessWidget {
-  final KKTheme theme;
-  final Localization localization;
   final List<Word> words;
 
   const KanjiDetailWordsContaining({
     required this.words,
-    required this.theme,
-    required this.localization,
     super.key,
   });
 
@@ -25,54 +15,7 @@ class KanjiDetailWordsContaining extends StatelessWidget {
         itemCount: words.length,
         itemBuilder: (context, index) {
           final word = words[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 4,
-            ),
-            child: KKCard(
-              color: theme.colorsTheme.bgDefault,
-              borderRadius: ThemeDimens.tagBorderRadius,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 12,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          word.reading,
-                          style: theme.textThemes.subtleTextTheme.copyXtraSubtle.copyWith(height: 1),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          word.value,
-                          style: theme.textThemes.coreTextTheme.copyDefault.copyWith(height: 1),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SpacingRow(
-                    spacing: 8,
-                    children: [
-                      if (word.isCommon) ...[
-                        KKLabel(text: localization.common),
-                      ],
-                      if (word.jlpt != null) ...[
-                        JlptLabel(
-                          jlptLevel: word.jlpt!,
-                          style: JlptTagStyle.simple,
-                        ),
-                      ]
-                    ],
-                  )
-                ],
-              ),
-            ),
-          );
+          return KanjiDetailListWordsContainingItem(word: word);
         },
       );
 }

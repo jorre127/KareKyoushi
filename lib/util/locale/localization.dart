@@ -467,6 +467,16 @@ class Localization {
   /// en:  **'Common'**
   String get common => _t(LocalizationKeys.common);
 
+  /// Translations:
+  ///
+  /// en:  **'Noun'**
+  String get noun => _t(LocalizationKeys.noun);
+
+  /// Translations:
+  ///
+  /// en:  **'Adjective'**
+  String get adjective => _t(LocalizationKeys.adjective);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

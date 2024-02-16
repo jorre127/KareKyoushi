@@ -413,4 +413,14 @@ class LocalizationKeys {
   /// en:  **'Common'**
   static const common = 'common';
 
+  /// Translations:
+  ///
+  /// en:  **'Noun'**
+  static const noun = 'noun';
+
+  /// Translations:
+  ///
+  /// en:  **'Adjective'**
+  static const adjective = 'adjective';
+
 }

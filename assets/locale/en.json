@@ -80,5 +80,7 @@
   "kanji_detail_screen_kanji_reading_kunyomi": "Kunyomi",
   "kanji_detail_screen_kanji_reading_onyomi": "Onyomi",
   "kanji_detail_screen_words_containing": "Words containing",
-  "common": "Common"
+  "common": "Common",
+  "noun": "Noun",
+  "adjective": "Adjective"
 }

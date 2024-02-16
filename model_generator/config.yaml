@@ -12,10 +12,15 @@ Word:
 MeaningEntry:
   path: webservice/word
   properties:
-    type: String
+    typeString: String
+    type: WordType?
     misc: String?
     meanings: List<String>
 
 Jlpt:
   path: enum/jlpt.dart
+  type: custom
+
+WordType:
+  path: enum/wordtype.dart
   type: custom
