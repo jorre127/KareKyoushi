@@ -11,6 +11,8 @@ abstract class KanjiDaoStorage {
   @factoryMethod
   factory KanjiDaoStorage(KKDatabase database) = _KanjiDaoStorage;
 
+  Future<bool> hasData();
+
   Future<void> initKanji(List<Kanji> kanji);
 
   Future<List<Kanji>> getKanjiForLevel(int level);
@@ -25,12 +27,10 @@ class _KanjiDaoStorage extends DatabaseAccessor<KKDatabase> with _$_KanjiDaoStor
   _KanjiDaoStorage(super.db);
 
   @override
-  Future<void> initKanji(List<Kanji> kanji) async {
-    final kanjiCount = await db.dbKanjiTable.count().getSingle();
-    if (kanjiCount == 0) {
-      await batch((batch) => batch.insertAllOnConflictUpdate(db.dbKanjiTable, kanji.map((kanji) => kanji.dbModel)));
-    }
-  }
+  Future<bool> hasData() async => await (db.dbKanjiTable.count().getSingle()) > 0;
+
+  @override
+  Future<void> initKanji(List<Kanji> kanji) => batch((batch) => batch.insertAllOnConflictUpdate(db.dbKanjiTable, kanji.map((kanji) => kanji.dbModel)));
 
   @override
   Future<List<Kanji>> getKanjiForLevel(int level) async {

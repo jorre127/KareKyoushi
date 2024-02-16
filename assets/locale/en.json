@@ -74,5 +74,11 @@
   "n3_difficulty": "Intermediate",
   "n2_difficulty": "Hard",
   "n1_difficulty": "Expert",
-  "grade": "Grade"
+  "grade": "Grade",
+  "kanji_detail_screen_kanji_meaning": "Meaning",
+  "kanji_detail_screen_kanj_reading": "Readings",
+  "kanji_detail_screen_kanji_reading_kunyomi": "Kunyomi",
+  "kanji_detail_screen_kanji_reading_onyomi": "Onyomi",
+  "kanji_detail_screen_words_containing": "Words containing",
+  "common": "Common"
 }

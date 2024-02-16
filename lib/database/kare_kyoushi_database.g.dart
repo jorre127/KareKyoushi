@@ -388,12 +388,361 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
   }
 }
 
+class $DbWordTableTable extends DbWordTable
+    with TableInfo<$DbWordTableTable, DbWord> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DbWordTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
+  @override
+  late final GeneratedColumn<String> value = GeneratedColumn<String>(
+      'value', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _readingMeta =
+      const VerificationMeta('reading');
+  @override
+  late final GeneratedColumn<String> reading = GeneratedColumn<String>(
+      'reading', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _isCommonMeta =
+      const VerificationMeta('isCommon');
+  @override
+  late final GeneratedColumn<bool> isCommon = GeneratedColumn<bool>(
+      'is_common', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('CHECK ("is_common" IN (0, 1))'));
+  static const VerificationMeta _priorityMeta =
+      const VerificationMeta('priority');
+  @override
+  late final GeneratedColumn<int> priority = GeneratedColumn<int>(
+      'priority', aliasedName, true,
+      type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _meaningEntriesMeta =
+      const VerificationMeta('meaningEntries');
+  @override
+  late final GeneratedColumnWithTypeConverter<List<MeaningEntry>, String>
+      meaningEntries = GeneratedColumn<String>(
+              'meaning_entries', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<List<MeaningEntry>>(
+              $DbWordTableTable.$convertermeaningEntries);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, value, reading, isCommon, priority, meaningEntries];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'db_word_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<DbWord> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+    } else if (isInserting) {
+      context.missing(_valueMeta);
+    }
+    if (data.containsKey('reading')) {
+      context.handle(_readingMeta,
+          reading.isAcceptableOrUnknown(data['reading']!, _readingMeta));
+    } else if (isInserting) {
+      context.missing(_readingMeta);
+    }
+    if (data.containsKey('is_common')) {
+      context.handle(_isCommonMeta,
+          isCommon.isAcceptableOrUnknown(data['is_common']!, _isCommonMeta));
+    } else if (isInserting) {
+      context.missing(_isCommonMeta);
+    }
+    if (data.containsKey('priority')) {
+      context.handle(_priorityMeta,
+          priority.isAcceptableOrUnknown(data['priority']!, _priorityMeta));
+    }
+    context.handle(_meaningEntriesMeta, const VerificationResult.success());
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DbWord map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DbWord(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}value'])!,
+      reading: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}reading'])!,
+      isCommon: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_common'])!,
+      priority: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}priority']),
+      meaningEntries: $DbWordTableTable.$convertermeaningEntries.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.string, data['${effectivePrefix}meaning_entries'])!),
+    );
+  }
+
+  @override
+  $DbWordTableTable createAlias(String alias) {
+    return $DbWordTableTable(attachedDatabase, alias);
+  }
+
+  static TypeConverter<List<MeaningEntry>, String> $convertermeaningEntries =
+      const ListConverter(callback: MeaningEntry.fromJson);
+}
+
+class DbWord extends DataClass implements Insertable<DbWord> {
+  final String id;
+  final String value;
+  final String reading;
+  final bool isCommon;
+  final int? priority;
+  final List<MeaningEntry> meaningEntries;
+  const DbWord(
+      {required this.id,
+      required this.value,
+      required this.reading,
+      required this.isCommon,
+      this.priority,
+      required this.meaningEntries});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['value'] = Variable<String>(value);
+    map['reading'] = Variable<String>(reading);
+    map['is_common'] = Variable<bool>(isCommon);
+    if (!nullToAbsent || priority != null) {
+      map['priority'] = Variable<int>(priority);
+    }
+    {
+      map['meaning_entries'] = Variable<String>(
+          $DbWordTableTable.$convertermeaningEntries.toSql(meaningEntries));
+    }
+    return map;
+  }
+
+  DbWordTableCompanion toCompanion(bool nullToAbsent) {
+    return DbWordTableCompanion(
+      id: Value(id),
+      value: Value(value),
+      reading: Value(reading),
+      isCommon: Value(isCommon),
+      priority: priority == null && nullToAbsent
+          ? const Value.absent()
+          : Value(priority),
+      meaningEntries: Value(meaningEntries),
+    );
+  }
+
+  factory DbWord.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DbWord(
+      id: serializer.fromJson<String>(json['id']),
+      value: serializer.fromJson<String>(json['value']),
+      reading: serializer.fromJson<String>(json['reading']),
+      isCommon: serializer.fromJson<bool>(json['isCommon']),
+      priority: serializer.fromJson<int?>(json['priority']),
+      meaningEntries:
+          serializer.fromJson<List<MeaningEntry>>(json['meaningEntries']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'value': serializer.toJson<String>(value),
+      'reading': serializer.toJson<String>(reading),
+      'isCommon': serializer.toJson<bool>(isCommon),
+      'priority': serializer.toJson<int?>(priority),
+      'meaningEntries': serializer.toJson<List<MeaningEntry>>(meaningEntries),
+    };
+  }
+
+  DbWord copyWith(
+          {String? id,
+          String? value,
+          String? reading,
+          bool? isCommon,
+          Value<int?> priority = const Value.absent(),
+          List<MeaningEntry>? meaningEntries}) =>
+      DbWord(
+        id: id ?? this.id,
+        value: value ?? this.value,
+        reading: reading ?? this.reading,
+        isCommon: isCommon ?? this.isCommon,
+        priority: priority.present ? priority.value : this.priority,
+        meaningEntries: meaningEntries ?? this.meaningEntries,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('DbWord(')
+          ..write('id: $id, ')
+          ..write('value: $value, ')
+          ..write('reading: $reading, ')
+          ..write('isCommon: $isCommon, ')
+          ..write('priority: $priority, ')
+          ..write('meaningEntries: $meaningEntries')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, value, reading, isCommon, priority, meaningEntries);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DbWord &&
+          other.id == this.id &&
+          other.value == this.value &&
+          other.reading == this.reading &&
+          other.isCommon == this.isCommon &&
+          other.priority == this.priority &&
+          other.meaningEntries == this.meaningEntries);
+}
+
+class DbWordTableCompanion extends UpdateCompanion<DbWord> {
+  final Value<String> id;
+  final Value<String> value;
+  final Value<String> reading;
+  final Value<bool> isCommon;
+  final Value<int?> priority;
+  final Value<List<MeaningEntry>> meaningEntries;
+  final Value<int> rowid;
+  const DbWordTableCompanion({
+    this.id = const Value.absent(),
+    this.value = const Value.absent(),
+    this.reading = const Value.absent(),
+    this.isCommon = const Value.absent(),
+    this.priority = const Value.absent(),
+    this.meaningEntries = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DbWordTableCompanion.insert({
+    required String id,
+    required String value,
+    required String reading,
+    required bool isCommon,
+    this.priority = const Value.absent(),
+    required List<MeaningEntry> meaningEntries,
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        value = Value(value),
+        reading = Value(reading),
+        isCommon = Value(isCommon),
+        meaningEntries = Value(meaningEntries);
+  static Insertable<DbWord> custom({
+    Expression<String>? id,
+    Expression<String>? value,
+    Expression<String>? reading,
+    Expression<bool>? isCommon,
+    Expression<int>? priority,
+    Expression<String>? meaningEntries,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (value != null) 'value': value,
+      if (reading != null) 'reading': reading,
+      if (isCommon != null) 'is_common': isCommon,
+      if (priority != null) 'priority': priority,
+      if (meaningEntries != null) 'meaning_entries': meaningEntries,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DbWordTableCompanion copyWith(
+      {Value<String>? id,
+      Value<String>? value,
+      Value<String>? reading,
+      Value<bool>? isCommon,
+      Value<int?>? priority,
+      Value<List<MeaningEntry>>? meaningEntries,
+      Value<int>? rowid}) {
+    return DbWordTableCompanion(
+      id: id ?? this.id,
+      value: value ?? this.value,
+      reading: reading ?? this.reading,
+      isCommon: isCommon ?? this.isCommon,
+      priority: priority ?? this.priority,
+      meaningEntries: meaningEntries ?? this.meaningEntries,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (value.present) {
+      map['value'] = Variable<String>(value.value);
+    }
+    if (reading.present) {
+      map['reading'] = Variable<String>(reading.value);
+    }
+    if (isCommon.present) {
+      map['is_common'] = Variable<bool>(isCommon.value);
+    }
+    if (priority.present) {
+      map['priority'] = Variable<int>(priority.value);
+    }
+    if (meaningEntries.present) {
+      map['meaning_entries'] = Variable<String>($DbWordTableTable
+          .$convertermeaningEntries
+          .toSql(meaningEntries.value));
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DbWordTableCompanion(')
+          ..write('id: $id, ')
+          ..write('value: $value, ')
+          ..write('reading: $reading, ')
+          ..write('isCommon: $isCommon, ')
+          ..write('priority: $priority, ')
+          ..write('meaningEntries: $meaningEntries, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$KKDatabase extends GeneratedDatabase {
   _$KKDatabase(QueryExecutor e) : super(e);
   late final $DbKanjiTableTable dbKanjiTable = $DbKanjiTableTable(this);
+  late final $DbWordTableTable dbWordTable = $DbWordTableTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [dbKanjiTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [dbKanjiTable, dbWordTable];
 }

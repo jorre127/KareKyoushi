@@ -437,6 +437,36 @@ class Localization {
   /// en:  **'Grade'**
   String get grade => _t(LocalizationKeys.grade);
 
+  /// Translations:
+  ///
+  /// en:  **'Meaning'**
+  String get kanjiDetailScreenKanjiMeaning => _t(LocalizationKeys.kanjiDetailScreenKanjiMeaning);
+
+  /// Translations:
+  ///
+  /// en:  **'Readings'**
+  String get kanjiDetailScreenKanjReading => _t(LocalizationKeys.kanjiDetailScreenKanjReading);
+
+  /// Translations:
+  ///
+  /// en:  **'Kunyomi'**
+  String get kanjiDetailScreenKanjiReadingKunyomi => _t(LocalizationKeys.kanjiDetailScreenKanjiReadingKunyomi);
+
+  /// Translations:
+  ///
+  /// en:  **'Onyomi'**
+  String get kanjiDetailScreenKanjiReadingOnyomi => _t(LocalizationKeys.kanjiDetailScreenKanjiReadingOnyomi);
+
+  /// Translations:
+  ///
+  /// en:  **'Words containing'**
+  String get kanjiDetailScreenWordsContaining => _t(LocalizationKeys.kanjiDetailScreenWordsContaining);
+
+  /// Translations:
+  ///
+  /// en:  **'Common'**
+  String get common => _t(LocalizationKeys.common);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

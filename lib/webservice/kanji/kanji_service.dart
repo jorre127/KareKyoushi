@@ -25,7 +25,7 @@ class KanjiService {
       final grade = misc.getElementValue('grade');
       final frequency = misc.getElementValue('freq');
       final readingMeaning = character.getElement('reading_meaning')?.getElement('rmgroup');
-      final meanings = readingMeaning?.findElements('meaning');
+      final meanings = readingMeaning?.findElements('meaning').where((element) => element.attributes.isEmpty);
       final onyomi = readingMeaning?.findElements('reading').where((element) => element.attributes.first.value.toString() == 'ja_on');
       final kunyomi = readingMeaning?.findElements('reading').where((element) => element.attributes.first.value.toString() == 'ja_kun');
       final jlpt = jlptString == null ? null : Jlpt.values.firstWhere((jlptLevel) => jlptLevel.rank == int.parse(jlptString));

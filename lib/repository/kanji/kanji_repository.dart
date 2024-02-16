@@ -24,6 +24,8 @@ class _KanjiRepository implements KanjiRepository {
 
   @override
   Future<void> initKanji() async {
+    final hasBeenIntialised = await _kanjiDaoStorage.hasData();
+    if (hasBeenIntialised) return;
     final kanji = await _kanjiService.getKanji();
     await _kanjiDaoStorage.initKanji(kanji);
   }

@@ -22,45 +22,51 @@ class KanjiDetailHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilder: (context, theme, localization) => Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          children: [
-            Row(
+      childBuilder: (context, theme, localization) => Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
+            child: Column(
               children: [
-                IgnorePointer(
-                  child: Opacity(
-                    opacity: 0,
-                    child: KKBackButton.light(
+                Row(
+                  children: [
+                    IgnorePointer(
+                      child: Opacity(
+                        opacity: 0,
+                        child: KKBackButton.light(
+                          onClick: onCloseTapped,
+                          fullScreen: true,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: JlptLabel(jlptLevel: jlptLevel),
+                      ),
+                    ),
+                    KKBackButton.light(
                       onClick: onCloseTapped,
                       fullScreen: true,
                     ),
-                  ),
+                  ],
                 ),
-                Expanded(
-                  child: Center(
-                    child: JlptLabel(jlptLevel: jlptLevel),
-                  ),
-                ),
-                KKBackButton.light(
-                  onClick: onCloseTapped,
-                  fullScreen: true,
-                ),
+                const SizedBox(height: 48),
+                KanjiAndReading(kanji: kanji),
+                const SizedBox(height: 64),
               ],
             ),
-            const SizedBox(height: 48),
-            KanjiAndReading(kanji: kanji),
-            if (kanji.grade != null) ...[
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: KanjiGradeLabel(kanjiGrade: kanji.grade!),
-                ),
+          ),
+          if (kanji.grade != null) ...[
+            Positioned(
+              bottom: 24,
+              right: 48,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: KanjiGradeLabel(kanjiGrade: kanji.grade!),
               ),
-            ],
+            ),
           ],
-        ),
+        ],
       ),
     );
   }

@@ -1,0 +1,16 @@
+Word:
+  path: webservice/word
+  properties:
+    id: String
+    value: String
+    reading: String
+    isCommon: bool
+    priority: int?
+    meaningEntries: List<MeaningEntry>
+
+MeaningEntry:
+  path: webservice/word
+  properties:
+    type: String
+    misc: String?
+    meanings: List<String>

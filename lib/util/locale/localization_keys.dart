@@ -383,4 +383,34 @@ class LocalizationKeys {
   /// en:  **'Grade'**
   static const grade = 'grade';
 
+  /// Translations:
+  ///
+  /// en:  **'Meaning'**
+  static const kanjiDetailScreenKanjiMeaning = 'kanji_detail_screen_kanji_meaning';
+
+  /// Translations:
+  ///
+  /// en:  **'Readings'**
+  static const kanjiDetailScreenKanjReading = 'kanji_detail_screen_kanj_reading';
+
+  /// Translations:
+  ///
+  /// en:  **'Kunyomi'**
+  static const kanjiDetailScreenKanjiReadingKunyomi = 'kanji_detail_screen_kanji_reading_kunyomi';
+
+  /// Translations:
+  ///
+  /// en:  **'Onyomi'**
+  static const kanjiDetailScreenKanjiReadingOnyomi = 'kanji_detail_screen_kanji_reading_onyomi';
+
+  /// Translations:
+  ///
+  /// en:  **'Words containing'**
+  static const kanjiDetailScreenWordsContaining = 'kanji_detail_screen_words_containing';
+
+  /// Translations:
+  ///
+  /// en:  **'Common'**
+  static const common = 'common';
+
 }
