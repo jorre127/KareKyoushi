@@ -74,6 +74,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/jlpt_levels/
     - assets/api/
     - assets/fonts/
     - assets/fonts/sf_pro/

@@ -4,7 +4,9 @@ import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/util/locale/localization.dart';
 import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
+import 'package:kare_kyoushi/widget/general/kanji/jlpt_label.dart';
 import 'package:kare_kyoushi/widget/general/kanji/label.dart';
+import 'package:kare_kyoushi/widget/layout/spacing_row.dart';
 
 class KanjiDetailWordsContaining extends StatelessWidget {
   final KKTheme theme;
@@ -53,9 +55,20 @@ class KanjiDetailWordsContaining extends StatelessWidget {
                       ],
                     ),
                   ),
-                  if (word.isCommon) ...[
-                    KKLabel(text: localization.common),
-                  ]
+                  SpacingRow(
+                    spacing: 8,
+                    children: [
+                      if (word.isCommon) ...[
+                        KKLabel(text: localization.common),
+                      ],
+                      if (word.jlpt != null) ...[
+                        JlptLabel(
+                          jlptLevel: word.jlpt!,
+                          style: JlptTagStyle.simple,
+                        ),
+                      ]
+                    ],
+                  )
                 ],
               ),
             ),

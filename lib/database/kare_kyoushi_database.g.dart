@@ -425,6 +425,12 @@ class $DbWordTableTable extends DbWordTable
   late final GeneratedColumn<int> priority = GeneratedColumn<int>(
       'priority', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _jlptMeta = const VerificationMeta('jlpt');
+  @override
+  late final GeneratedColumnWithTypeConverter<Jlpt?, int> jlpt =
+      GeneratedColumn<int>('jlpt', aliasedName, true,
+              type: DriftSqlType.int, requiredDuringInsert: false)
+          .withConverter<Jlpt?>($DbWordTableTable.$converterjlpt);
   static const VerificationMeta _meaningEntriesMeta =
       const VerificationMeta('meaningEntries');
   @override
@@ -436,7 +442,7 @@ class $DbWordTableTable extends DbWordTable
               $DbWordTableTable.$convertermeaningEntries);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, value, reading, isCommon, priority, meaningEntries];
+      [id, value, reading, isCommon, priority, jlpt, meaningEntries];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -474,6 +480,7 @@ class $DbWordTableTable extends DbWordTable
       context.handle(_priorityMeta,
           priority.isAcceptableOrUnknown(data['priority']!, _priorityMeta));
     }
+    context.handle(_jlptMeta, const VerificationResult.success());
     context.handle(_meaningEntriesMeta, const VerificationResult.success());
     return context;
   }
@@ -494,6 +501,9 @@ class $DbWordTableTable extends DbWordTable
           .read(DriftSqlType.bool, data['${effectivePrefix}is_common'])!,
       priority: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}priority']),
+      jlpt: $DbWordTableTable.$converterjlpt.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}jlpt'])),
       meaningEntries: $DbWordTableTable.$convertermeaningEntries.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}meaning_entries'])!),
@@ -505,6 +515,7 @@ class $DbWordTableTable extends DbWordTable
     return $DbWordTableTable(attachedDatabase, alias);
   }
 
+  static TypeConverter<Jlpt?, int?> $converterjlpt = const JlptTypeConverter();
   static TypeConverter<List<MeaningEntry>, String> $convertermeaningEntries =
       const ListConverter(callback: MeaningEntry.fromJson);
 }
@@ -515,6 +526,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
   final String reading;
   final bool isCommon;
   final int? priority;
+  final Jlpt? jlpt;
   final List<MeaningEntry> meaningEntries;
   const DbWord(
       {required this.id,
@@ -522,6 +534,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       required this.reading,
       required this.isCommon,
       this.priority,
+      this.jlpt,
       required this.meaningEntries});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -532,6 +545,9 @@ class DbWord extends DataClass implements Insertable<DbWord> {
     map['is_common'] = Variable<bool>(isCommon);
     if (!nullToAbsent || priority != null) {
       map['priority'] = Variable<int>(priority);
+    }
+    if (!nullToAbsent || jlpt != null) {
+      map['jlpt'] = Variable<int>($DbWordTableTable.$converterjlpt.toSql(jlpt));
     }
     {
       map['meaning_entries'] = Variable<String>(
@@ -549,6 +565,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       priority: priority == null && nullToAbsent
           ? const Value.absent()
           : Value(priority),
+      jlpt: jlpt == null && nullToAbsent ? const Value.absent() : Value(jlpt),
       meaningEntries: Value(meaningEntries),
     );
   }
@@ -562,6 +579,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       reading: serializer.fromJson<String>(json['reading']),
       isCommon: serializer.fromJson<bool>(json['isCommon']),
       priority: serializer.fromJson<int?>(json['priority']),
+      jlpt: serializer.fromJson<Jlpt?>(json['jlpt']),
       meaningEntries:
           serializer.fromJson<List<MeaningEntry>>(json['meaningEntries']),
     );
@@ -575,6 +593,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       'reading': serializer.toJson<String>(reading),
       'isCommon': serializer.toJson<bool>(isCommon),
       'priority': serializer.toJson<int?>(priority),
+      'jlpt': serializer.toJson<Jlpt?>(jlpt),
       'meaningEntries': serializer.toJson<List<MeaningEntry>>(meaningEntries),
     };
   }
@@ -585,6 +604,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
           String? reading,
           bool? isCommon,
           Value<int?> priority = const Value.absent(),
+          Value<Jlpt?> jlpt = const Value.absent(),
           List<MeaningEntry>? meaningEntries}) =>
       DbWord(
         id: id ?? this.id,
@@ -592,6 +612,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
         reading: reading ?? this.reading,
         isCommon: isCommon ?? this.isCommon,
         priority: priority.present ? priority.value : this.priority,
+        jlpt: jlpt.present ? jlpt.value : this.jlpt,
         meaningEntries: meaningEntries ?? this.meaningEntries,
       );
   @override
@@ -602,6 +623,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
           ..write('reading: $reading, ')
           ..write('isCommon: $isCommon, ')
           ..write('priority: $priority, ')
+          ..write('jlpt: $jlpt, ')
           ..write('meaningEntries: $meaningEntries')
           ..write(')'))
         .toString();
@@ -609,7 +631,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
 
   @override
   int get hashCode =>
-      Object.hash(id, value, reading, isCommon, priority, meaningEntries);
+      Object.hash(id, value, reading, isCommon, priority, jlpt, meaningEntries);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -619,6 +641,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
           other.reading == this.reading &&
           other.isCommon == this.isCommon &&
           other.priority == this.priority &&
+          other.jlpt == this.jlpt &&
           other.meaningEntries == this.meaningEntries);
 }
 
@@ -628,6 +651,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
   final Value<String> reading;
   final Value<bool> isCommon;
   final Value<int?> priority;
+  final Value<Jlpt?> jlpt;
   final Value<List<MeaningEntry>> meaningEntries;
   final Value<int> rowid;
   const DbWordTableCompanion({
@@ -636,6 +660,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
     this.reading = const Value.absent(),
     this.isCommon = const Value.absent(),
     this.priority = const Value.absent(),
+    this.jlpt = const Value.absent(),
     this.meaningEntries = const Value.absent(),
     this.rowid = const Value.absent(),
   });
@@ -645,6 +670,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
     required String reading,
     required bool isCommon,
     this.priority = const Value.absent(),
+    this.jlpt = const Value.absent(),
     required List<MeaningEntry> meaningEntries,
     this.rowid = const Value.absent(),
   })  : id = Value(id),
@@ -658,6 +684,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
     Expression<String>? reading,
     Expression<bool>? isCommon,
     Expression<int>? priority,
+    Expression<int>? jlpt,
     Expression<String>? meaningEntries,
     Expression<int>? rowid,
   }) {
@@ -667,6 +694,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
       if (reading != null) 'reading': reading,
       if (isCommon != null) 'is_common': isCommon,
       if (priority != null) 'priority': priority,
+      if (jlpt != null) 'jlpt': jlpt,
       if (meaningEntries != null) 'meaning_entries': meaningEntries,
       if (rowid != null) 'rowid': rowid,
     });
@@ -678,6 +706,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
       Value<String>? reading,
       Value<bool>? isCommon,
       Value<int?>? priority,
+      Value<Jlpt?>? jlpt,
       Value<List<MeaningEntry>>? meaningEntries,
       Value<int>? rowid}) {
     return DbWordTableCompanion(
@@ -686,6 +715,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
       reading: reading ?? this.reading,
       isCommon: isCommon ?? this.isCommon,
       priority: priority ?? this.priority,
+      jlpt: jlpt ?? this.jlpt,
       meaningEntries: meaningEntries ?? this.meaningEntries,
       rowid: rowid ?? this.rowid,
     );
@@ -709,6 +739,10 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
     if (priority.present) {
       map['priority'] = Variable<int>(priority.value);
     }
+    if (jlpt.present) {
+      map['jlpt'] =
+          Variable<int>($DbWordTableTable.$converterjlpt.toSql(jlpt.value));
+    }
     if (meaningEntries.present) {
       map['meaning_entries'] = Variable<String>($DbWordTableTable
           .$convertermeaningEntries
@@ -728,6 +762,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
           ..write('reading: $reading, ')
           ..write('isCommon: $isCommon, ')
           ..write('priority: $priority, ')
+          ..write('jlpt: $jlpt, ')
           ..write('meaningEntries: $meaningEntries, ')
           ..write('rowid: $rowid')
           ..write(')'))

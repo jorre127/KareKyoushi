@@ -31,7 +31,7 @@ class KanjiReadingsSection extends StatelessWidget {
               separatorBuilder: (context) => Text(
                 ',',
                 style: theme.textThemes.xtraSubtleTextTheme.copySubtle,
-              ),
+              ), 
             ),
           ],
         );

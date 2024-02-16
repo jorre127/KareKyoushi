@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
+import 'package:kare_kyoushi/model/type_converter/jlpt_type_converter.dart';
 import 'package:kare_kyoushi/model/type_converter/list_converter.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
@@ -19,6 +20,8 @@ class DbWordTable extends Table {
 
   IntColumn? get priority => integer().nullable()();
 
+  IntColumn? get jlpt => integer().nullable().map(const JlptTypeConverter())();
+
   TextColumn get meaningEntries => text().map(const ListConverter<MeaningEntry>(callback: MeaningEntry.fromJson))();
 }
 
@@ -30,6 +33,7 @@ extension WordExtension on Word {
         priority: priority,
         isCommon: isCommon,
         meaningEntries: meaningEntries,
+        jlpt: jlpt,
       );
 }
 
@@ -41,5 +45,6 @@ extension DbWordExtension on DbWord {
         priority: priority,
         isCommon: isCommon,
         meaningEntries: meaningEntries,
+        jlpt: jlpt,
       );
 }

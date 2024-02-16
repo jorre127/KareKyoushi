@@ -4,10 +4,13 @@ import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
 import 'package:kare_kyoushi/util/extension/xml_extension.dart';
+import 'package:kare_kyoushi/util/jlpt/jlpt_matcher.dart';
 import 'package:xml/xml.dart';
 
 @lazySingleton
 class WordService {
+  final JlptMatcher _matcher;
+
   static const _wordsXmlPath = 'assets/dictionary/JMdict_e.xml';
   static const _commonPriorities = [
     "news1",
@@ -16,7 +19,7 @@ class WordService {
     "gai1",
   ];
 
-  WordService();
+  WordService(this._matcher);
 
   Future<List<Word>> getWords() async {
     final kanjiXml = await rootBundle.loadString(_wordsXmlPath);
@@ -48,6 +51,7 @@ class WordService {
         Word(
           id: id,
           value: value ?? '',
+          jlpt: value == null ? null : await _matcher.getLevelForWord(value),
           reading: reading,
           isCommon: priority?.any((priority) => _commonPriorities.contains(priority)) ?? false,
           priority: int.tryParse(priority?.firstWhereOrNull((priority) => priority.contains('nf'))?.substring(2) ?? ''),
