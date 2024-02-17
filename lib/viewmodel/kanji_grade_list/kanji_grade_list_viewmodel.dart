@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
@@ -44,5 +45,8 @@ class KanjiGradeListViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  Future<void> onGradeTapped(Jlpt jlpt) => _navigator.goToKanjiListScreen(jlpt: jlpt);
+  Future<void> onGradeTapped(Jlpt jlpt) {
+    HapticFeedback.mediumImpact();
+    return _navigator.goToKanjiListScreen(jlpt: jlpt);
+  }
 }

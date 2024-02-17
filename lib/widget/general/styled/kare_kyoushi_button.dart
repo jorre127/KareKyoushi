@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
@@ -99,7 +100,12 @@ class KKButton extends StatelessWidget {
         ]);
         if (context.isIOSTheme) {
           return TouchFeedBack(
-            onClick: isEnabled ? onClick : null,
+            onClick: isEnabled
+                ? () {
+                    HapticFeedback.mediumImpact();
+                    onClick?.call();
+                  }
+                : null,
             child: AnimatedContainer(
               decoration: BoxDecoration(
                 color: color ?? (isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme)),

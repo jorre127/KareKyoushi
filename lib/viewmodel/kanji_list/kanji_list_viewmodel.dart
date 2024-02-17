@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
@@ -34,5 +35,8 @@ class KanjiListViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  void onKanjiTapped(Kanji kanji) => _navigator.goToKanjiDetailScreen(kanji: kanji.kanjiValue);
+  void onKanjiTapped(Kanji kanji) {
+    HapticFeedback.mediumImpact();
+    _navigator.goToKanjiDetailScreen(kanji: kanji.kanjiValue);
+  }
 }

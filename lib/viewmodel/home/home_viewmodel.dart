@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/services.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
@@ -31,9 +34,12 @@ class HomeViewModel with ChangeNotifierEx {
     notifyListeners();
   }
 
-  void onAlphabetTapped(Alphbabet alphbabet) => switch (alphbabet) {
-        Alphbabet.hiragana => null,
-        Alphbabet.katakana => null,
-        Alphbabet.kanji => _navigator.goToKanjiGradeListScreen(),
-      };
+  Future<void> onAlphabetTapped(Alphbabet alphbabet) async {
+    unawaited(HapticFeedback.mediumImpact());
+    return switch (alphbabet) {
+      Alphbabet.hiragana => null,
+      Alphbabet.katakana => null,
+      Alphbabet.kanji => _navigator.goToKanjiGradeListScreen(),
+    };
+  }
 }
