@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart';
+import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 
 @immutable
 class Kanji {
@@ -10,6 +11,7 @@ class Kanji {
   final List<String> kunyomi;
   final List<String> onyomi;
   final List<String> meanings;
+  final KnowledgeLevel? knowledgeLevel;
 
   const Kanji({
     required this.kanjiValue,
@@ -18,6 +20,7 @@ class Kanji {
     required this.meanings,
     required this.grade,
     required this.frequency,
-    this.jlpt,
+    required this.knowledgeLevel,
+    required this.jlpt,
   });
 }

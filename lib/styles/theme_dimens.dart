@@ -24,10 +24,12 @@ class ThemeDimens {
   static const double iconSize = 24;
   static const double largeIcon = 32;
 
+  static BorderRadius progressBorderRadius = BorderRadius.circular(4);
   static BorderRadius inputBorderRadius = BorderRadius.circular(8);
   static BorderRadius buttonBorderRadius = BorderRadius.circular(16);
   static BorderRadius cardBorderRadius = BorderRadius.circular(16);
   static BorderRadius largeCardBorderRadius = BorderRadius.circular(20);
+  static BorderRadius hugeCardBorderRadius = BorderRadius.circular(24);
   static BorderRadius tagBorderRadius = BorderRadius.circular(tagBorderRadiusValue);
   static double tagBorderRadiusValue = 8;
 }

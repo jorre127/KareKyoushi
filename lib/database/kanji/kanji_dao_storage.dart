@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
 import 'package:kare_kyoushi/model/database/kanji/kanji_table.dart';
+import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/model/kanji/kanji.dart';
 
 part 'kanji_dao_storage.g.dart';
@@ -15,7 +16,16 @@ abstract class KanjiDaoStorage {
 
   Future<void> initKanji(List<Kanji> kanji);
 
-  Future<List<Kanji>> getKanjiForLevel(int level);
+  Stream<List<Kanji>> getKanjiForLevelStream(int level);
+
+  Future<Kanji> getKanji(String kanji);
+
+  Stream<List<Kanji>> getKanjiStream();
+
+  Future<void> updateKnowledgeLevelForKanji({
+    required KnowledgeLevel? level,
+    required String kanji,
+  });
 }
 
 @DriftAccessor(
@@ -33,12 +43,23 @@ class _KanjiDaoStorage extends DatabaseAccessor<KKDatabase> with _$_KanjiDaoStor
   Future<void> initKanji(List<Kanji> kanji) => batch((batch) => batch.insertAllOnConflictUpdate(db.dbKanjiTable, kanji.map((kanji) => kanji.dbModel)));
 
   @override
-  Future<List<Kanji>> getKanjiForLevel(int level) async {
-    final kanji = await (select(db.dbKanjiTable)
-          ..where((tbl) {
-            return tbl.jlpt.equals(level);
-          }))
-        .get();
-    return kanji.map((item) => item.model).toList();
-  }
+  Stream<List<Kanji>> getKanjiForLevelStream(int level) => (select(db.dbKanjiTable)
+        ..where(
+          (tbl) => tbl.jlpt.equals(level),
+        ))
+      .watch()
+      .map((kanjiList) => kanjiList.map((kanji) => kanji.model).toList());
+
+  @override
+  Future<void> updateKnowledgeLevelForKanji({
+    required KnowledgeLevel? level,
+    required String kanji,
+  }) =>
+      (update(db.dbKanjiTable)..where((tbl) => tbl.kanjiValue.equals(kanji))).write(DbKanjiTableCompanion(knowledgeLevel: Value(level)));
+
+  @override
+  Future<Kanji> getKanji(String kanji) async => (await (select(db.dbKanjiTable)..where((tbl) => tbl.kanjiValue.equals(kanji))).getSingle()).model;
+
+  @override
+  Stream<List<Kanji>> getKanjiStream() => select(db.dbKanjiTable).watch().map((event) => event.map((e) => e.model).toList());
 }

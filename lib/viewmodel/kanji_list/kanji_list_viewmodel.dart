@@ -25,14 +25,14 @@ class KanjiListViewModel with ChangeNotifierEx {
 
   Future<void> init(Jlpt jlpt) async {
     _jlpt = jlpt;
-    await _getKanji();
+    registerDisposeStream(_kanjiRepository.getKanjiForLevelStream(_jlpt.rank).listen(_onkanjiUpdated));
   }
 
-  Future<void> _getKanji() async {
-    _kanji.replaceAll((await _kanjiRepository.getKanjiForLevel(_jlpt.rank))..sortBy((item) => item.frequency));
+  Future<void> _onkanjiUpdated(List<Kanji> kanji) async {
+    _kanji.replaceAll((kanji)..sortBy((item) => item.frequency));
     if (disposed) return;
     notifyListeners();
   }
 
-  void onKanjiTapped(Kanji kanji) => _navigator.goToKanjiDetailScreen(kanji: kanji);
+  void onKanjiTapped(Kanji kanji) => _navigator.goToKanjiDetailScreen(kanji: kanji.kanjiValue);
 }

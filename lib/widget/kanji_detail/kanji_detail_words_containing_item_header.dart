@@ -73,7 +73,7 @@ class KanjiDetailListWordsContainingItemHeader extends StatelessWidget {
                     ),
                   ],
                   AnimatedRotation(
-                    turns: isExpanded ? 0 : 0.5,
+                    turns: isExpanded ? 0.5 : 0,
                     duration: ThemeDurations.shortAnimationDuration,
                     child: ActionItem(
                       svgAsset: ThemeAssets.chevronIcon,

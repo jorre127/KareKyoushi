@@ -39,6 +39,7 @@ class KanjiService {
           kunyomi: kunyomi?.map((e) => e.innerText).toList() ?? [],
           onyomi: onyomi?.map((e) => e.innerText).toList() ?? [],
           meanings: meanings?.map((e) => e.innerText).toList() ?? [],
+          knowledgeLevel: null,
         ),
       );
     }

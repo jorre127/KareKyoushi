@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
 import 'package:kare_kyoushi/model/kanji/kanji.dart';
 import 'package:kare_kyoushi/model/type_converter/jlpt_type_converter.dart';
+import 'package:kare_kyoushi/model/type_converter/knowledge_level_type_converter.dart';
 import 'package:kare_kyoushi/model/type_converter/list_converter.dart';
 
 @DataClassName('DbKanji')
@@ -22,6 +23,8 @@ class DbKanjiTable extends Table {
   IntColumn? get grade => integer().nullable()();
 
   IntColumn? get frequency => integer().nullable()();
+
+  IntColumn? get knowledgeLevel => integer().nullable().map(const KnowledgeLevelTypeConverter())();
 }
 
 extension KanjiExtension on Kanji {
@@ -33,6 +36,7 @@ extension KanjiExtension on Kanji {
         meanings: meanings,
         grade: grade,
         frequency: frequency,
+        knowledgeLevel: knowledgeLevel,
       );
 }
 
@@ -45,5 +49,6 @@ extension DbKanjiExtension on DbKanji {
         meanings: meanings,
         grade: grade,
         frequency: frequency,
+        knowledgeLevel: knowledgeLevel,
       );
 }

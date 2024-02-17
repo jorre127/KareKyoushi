@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/styles/theme_colors.dart';
 import 'package:kare_kyoushi/styles/theme_fonts.dart';
+import 'package:kare_kyoushi/styles/theme_shadows.dart';
 
 class KKThemeData {
   KKThemeData._();
@@ -239,6 +240,7 @@ enum KKThemeStyle {
 class KKTheme {
   final KKTextThemes textThemes;
   final KKColorsTheme colorsTheme;
+  final KKShadows shadows;
   final bool isDarkTheme;
 
   bool get isLightTheme => !isDarkTheme;
@@ -349,6 +351,7 @@ class KKTheme {
       KKTheme._(
         isDarkTheme: isDarkTheme,
         colorsTheme: colorTheme,
+        shadows: KKShadows(shadow: colorTheme.shadow),
         textThemes: KKTextThemes(
           disabledTextTheme: _getTextThemeFromColor(colorTheme.disabled),
           coreTextTheme: _getTextThemeFromColor(colorTheme.copyDefault),
@@ -389,6 +392,7 @@ class KKTheme {
     required this.textThemes,
     required this.colorsTheme,
     required this.isDarkTheme,
+    required this.shadows,
   });
 
   static KKTheme of(BuildContext context, {bool forceDark = false, bool forceLight = false}) {

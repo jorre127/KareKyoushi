@@ -24,20 +24,20 @@ import 'package:kare_kyoushi/navigator/main_navigator.dart' as _i16;
 import 'package:kare_kyoushi/navigator/onboarding_navigator.dart' as _i39;
 import 'package:kare_kyoushi/repository/analytics/firebase_analytics_repository.dart'
     as _i26;
-import 'package:kare_kyoushi/repository/debug/debug_repository.dart' as _i33;
-import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart' as _i29;
+import 'package:kare_kyoushi/repository/debug/debug_repository.dart' as _i31;
+import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart' as _i27;
 import 'package:kare_kyoushi/repository/locale/locale_repository.dart' as _i37;
 import 'package:kare_kyoushi/repository/login/login_repository.dart' as _i15;
 import 'package:kare_kyoushi/repository/refresh/refresh_repository.dart'
     as _i40;
 import 'package:kare_kyoushi/repository/secure_storage/auth/auth_storage.dart'
-    as _i32;
+    as _i30;
 import 'package:kare_kyoushi/repository/secure_storage/secure_storage.dart'
     as _i19;
 import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart'
     as _i36;
 import 'package:kare_kyoushi/repository/startup/startup_helper.dart' as _i41;
-import 'package:kare_kyoushi/repository/word/word_repository.dart' as _i31;
+import 'package:kare_kyoushi/repository/word/word_repository.dart' as _i29;
 import 'package:kare_kyoushi/util/cache/cache_controller.dart' as _i4;
 import 'package:kare_kyoushi/util/cache/cache_controlling.dart' as _i3;
 import 'package:kare_kyoushi/util/interceptor/network_auth_interceptor.dart'
@@ -59,14 +59,14 @@ import 'package:kare_kyoushi/viewmodel/debug/debug_theme_selector_viewmodel.dart
     as _i48;
 import 'package:kare_kyoushi/viewmodel/debug/debug_viewmodel.dart' as _i43;
 import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart' as _i44;
-import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart' as _i27;
+import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart' as _i32;
 import 'package:kare_kyoushi/viewmodel/kanji_detail/kanji_detail_viewmodel.dart'
-    as _i28;
+    as _i33;
 import 'package:kare_kyoushi/viewmodel/kanji_grade_list/kanji_grade_list_viewmodel.dart'
     as _i34;
 import 'package:kare_kyoushi/viewmodel/kanji_list/kanji_list_viewmodel.dart'
     as _i35;
-import 'package:kare_kyoushi/viewmodel/license/license_viewmodel.dart' as _i30;
+import 'package:kare_kyoushi/viewmodel/license/license_viewmodel.dart' as _i28;
 import 'package:kare_kyoushi/viewmodel/login/login_viewmodel.dart' as _i45;
 import 'package:kare_kyoushi/viewmodel/permission/analytics_permission_viewmodel.dart'
     as _i42;
@@ -128,18 +128,12 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i25.DebugPlatformSelectorViewModel(gh<_i16.MainNavigator>()));
     gh.lazySingleton<_i26.FireBaseAnalyticsRepository>(
         () => _i26.FireBaseAnalyticsRepository(gh<_i8.FirebaseAnalytics>()));
-    gh.factory<_i27.HomeViewModel>(
-        () => _i27.HomeViewModel(gh<_i16.MainNavigator>()));
-    gh.factory<_i28.KanjiDetailViewModel>(() => _i28.KanjiDetailViewModel(
-          gh<_i16.MainNavigator>(),
-          gh<_i22.WordDaoStorage>(),
-        ));
-    gh.lazySingleton<_i29.KanjiRepository>(() => _i29.KanjiRepository(
+    gh.lazySingleton<_i27.KanjiRepository>(() => _i27.KanjiRepository(
           gh<_i13.KanjiDaoStorage>(),
           gh<_i14.KanjiService>(),
         ));
-    gh.factory<_i30.LicenseViewModel>(
-        () => _i30.LicenseViewModel(gh<_i16.MainNavigator>()));
+    gh.factory<_i28.LicenseViewModel>(
+        () => _i28.LicenseViewModel(gh<_i16.MainNavigator>()));
     gh.lazySingleton<_i5.SharedPreferenceStorage>(
         () => registerModule.sharedPreferences(gh<_i20.SharedPreferences>()));
     gh.lazySingleton<_i5.SimpleKeyValueStorage>(
@@ -147,40 +141,49 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i5.SharedPreferenceStorage>(),
               gh<_i19.SecureStorage>(),
             ));
-    gh.lazySingleton<_i31.WordRepository>(() => _i31.WordRepository(
+    gh.lazySingleton<_i29.WordRepository>(() => _i29.WordRepository(
           gh<_i23.WordService>(),
           gh<_i22.WordDaoStorage>(),
         ));
-    gh.lazySingleton<_i32.AuthStorage>(
-        () => _i32.AuthStorage(gh<_i5.SimpleKeyValueStorage>()));
-    gh.lazySingleton<_i33.DebugRepository>(
-        () => _i33.DebugRepository(gh<_i5.SharedPreferenceStorage>()));
+    gh.lazySingleton<_i30.AuthStorage>(
+        () => _i30.AuthStorage(gh<_i5.SimpleKeyValueStorage>()));
+    gh.lazySingleton<_i31.DebugRepository>(
+        () => _i31.DebugRepository(gh<_i5.SharedPreferenceStorage>()));
+    gh.factory<_i32.HomeViewModel>(() => _i32.HomeViewModel(
+          gh<_i16.MainNavigator>(),
+          gh<_i27.KanjiRepository>(),
+        ));
+    gh.factory<_i33.KanjiDetailViewModel>(() => _i33.KanjiDetailViewModel(
+          gh<_i16.MainNavigator>(),
+          gh<_i22.WordDaoStorage>(),
+          gh<_i27.KanjiRepository>(),
+        ));
     gh.factory<_i34.KanjiGradeListViewModel>(() => _i34.KanjiGradeListViewModel(
           gh<_i16.MainNavigator>(),
-          gh<_i29.KanjiRepository>(),
+          gh<_i27.KanjiRepository>(),
         ));
     gh.factory<_i35.KanjiListViewModel>(() => _i35.KanjiListViewModel(
           gh<_i16.MainNavigator>(),
-          gh<_i29.KanjiRepository>(),
+          gh<_i27.KanjiRepository>(),
         ));
     gh.lazySingleton<_i36.LocalStorage>(() => _i36.LocalStorage(
-          gh<_i32.AuthStorage>(),
+          gh<_i30.AuthStorage>(),
           gh<_i5.SharedPreferenceStorage>(),
         ));
     gh.lazySingleton<_i37.LocaleRepository>(
         () => _i37.LocaleRepository(gh<_i5.SharedPreferenceStorage>()));
     gh.singleton<_i38.NetworkAuthInterceptor>(
-        _i38.NetworkAuthInterceptor(gh<_i32.AuthStorage>()));
+        _i38.NetworkAuthInterceptor(gh<_i30.AuthStorage>()));
     gh.lazySingleton<_i39.OnboardingNavigator>(() => _i39.OnboardingNavigator(
           gh<_i16.MainNavigator>(),
           gh<_i36.LocalStorage>(),
           gh<_i15.LoginRepository>(),
         ));
     gh.lazySingleton<_i40.RefreshRepository>(
-        () => _i40.RefreshRepository(gh<_i32.AuthStorage>()));
+        () => _i40.RefreshRepository(gh<_i30.AuthStorage>()));
     gh.lazySingleton<_i41.StartupHelper>(() => _i41.StartupHelper(
-          gh<_i29.KanjiRepository>(),
-          gh<_i31.WordRepository>(),
+          gh<_i27.KanjiRepository>(),
+          gh<_i29.WordRepository>(),
         ));
     gh.factory<_i42.AnalyticsPermissionViewModel>(
         () => _i42.AnalyticsPermissionViewModel(
@@ -188,14 +191,14 @@ extension GetItInjectableX on _i1.GetIt {
               gh<_i36.LocalStorage>(),
             ));
     gh.factory<_i43.DebugViewModel>(() => _i43.DebugViewModel(
-          gh<_i33.DebugRepository>(),
+          gh<_i31.DebugRepository>(),
           gh<_i16.MainNavigator>(),
           gh<_i12.KKDatabase>(),
           gh<_i36.LocalStorage>(),
         ));
     gh.lazySingleton<_i44.GlobalViewModel>(() => _i44.GlobalViewModel(
           gh<_i37.LocaleRepository>(),
-          gh<_i33.DebugRepository>(),
+          gh<_i31.DebugRepository>(),
           gh<_i36.LocalStorage>(),
           gh<_i21.ThemeConfigUtil>(),
         ));
@@ -205,7 +208,7 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i41.StartupHelper>(),
         ));
     gh.singleton<_i46.NetworkRefreshInterceptor>(_i46.NetworkRefreshInterceptor(
-      gh<_i32.AuthStorage>(),
+      gh<_i30.AuthStorage>(),
       gh<_i40.RefreshRepository>(),
     ));
     gh.factory<_i47.SplashViewModel>(() => _i47.SplashViewModel(

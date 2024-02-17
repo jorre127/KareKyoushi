@@ -13,6 +13,7 @@ enum ButtonType {
 
 class KKButton extends StatelessWidget {
   final String text;
+  final Color? color;
   final bool isEnabled;
   final bool isExpanded;
   final bool isLoading;
@@ -22,6 +23,7 @@ class KKButton extends StatelessWidget {
   const KKButton({
     required this.text,
     required this.onClick,
+    this.color,
     this.isLoading = false,
     this.isExpanded = true,
     this.isEnabled = true,
@@ -32,6 +34,7 @@ class KKButton extends StatelessWidget {
   const KKButton.text({
     required this.text,
     required this.onClick,
+    this.color,
     this.isLoading = false,
     this.isExpanded = false,
     this.isEnabled = true,
@@ -99,7 +102,7 @@ class KKButton extends StatelessWidget {
             onClick: isEnabled ? onClick : null,
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+                color: color ?? (isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme)),
                 borderRadius: ThemeDimens.buttonBorderRadius,
               ),
               duration: ThemeDurations.shortAnimationDuration,
@@ -109,7 +112,7 @@ class KKButton extends StatelessWidget {
         }
         return AnimatedContainer(
           decoration: BoxDecoration(
-            color: isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme),
+            color: color ?? (isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme)),
             borderRadius: ThemeDimens.buttonBorderRadius,
           ),
           duration: ThemeDurations.shortAnimationDuration,

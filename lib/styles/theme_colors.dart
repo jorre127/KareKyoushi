@@ -16,7 +16,7 @@ class ThemeColors {
   static const lightGrey = Color(0x33000000); //black 20%
   static const backgroundGrey = Color(0xFFF1F2F3);
   static const disabledGrey = Color(0xFFE6E6E6);
-  static const shadow = Color(0x1e000000); //black 12%
+  static const shadow = Colors.black;
   static const error = Color(0xFFE30000);
   static const success = Color(0xFF3E9103);
 
@@ -26,6 +26,12 @@ class ThemeColors {
   static const accent3 = Color.fromRGBO(195, 165, 9, 1);
   static const accent4 = Color.fromRGBO(91, 161, 2, 1);
   static const accent5 = Color.fromRGBO(0, 166, 136, 1);
+
+  static const accent1Dark = Color.fromRGBO(132, 29, 66, 1);
+  static const accent2Dark = Color.fromRGBO(157, 57, 34, 1);
+  static const accent3Dark = Color.fromRGBO(113, 100, 30, 1);
+  static const accent4Dark = Color.fromRGBO(63, 100, 15, 1);
+  static const accent5Dark = Color.fromRGBO(7, 88, 73, 1);
 
   // Backgrounds
   static const bgDefault = Color.fromRGBO(20, 22, 27, 1);

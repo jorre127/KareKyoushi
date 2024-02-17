@@ -52,9 +52,26 @@ class $DbKanjiTableTable extends DbKanjiTable
   late final GeneratedColumn<int> frequency = GeneratedColumn<int>(
       'frequency', aliasedName, true,
       type: DriftSqlType.int, requiredDuringInsert: false);
+  static const VerificationMeta _knowledgeLevelMeta =
+      const VerificationMeta('knowledgeLevel');
   @override
-  List<GeneratedColumn> get $columns =>
-      [kanjiValue, kunyomi, onyomi, meanings, jlpt, grade, frequency];
+  late final GeneratedColumnWithTypeConverter<KnowledgeLevel?, int>
+      knowledgeLevel = GeneratedColumn<int>(
+              'knowledge_level', aliasedName, true,
+              type: DriftSqlType.int, requiredDuringInsert: false)
+          .withConverter<KnowledgeLevel?>(
+              $DbKanjiTableTable.$converterknowledgeLevel);
+  @override
+  List<GeneratedColumn> get $columns => [
+        kanjiValue,
+        kunyomi,
+        onyomi,
+        meanings,
+        jlpt,
+        grade,
+        frequency,
+        knowledgeLevel
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -85,6 +102,7 @@ class $DbKanjiTableTable extends DbKanjiTable
       context.handle(_frequencyMeta,
           frequency.isAcceptableOrUnknown(data['frequency']!, _frequencyMeta));
     }
+    context.handle(_knowledgeLevelMeta, const VerificationResult.success());
     return context;
   }
 
@@ -112,6 +130,9 @@ class $DbKanjiTableTable extends DbKanjiTable
           .read(DriftSqlType.int, data['${effectivePrefix}grade']),
       frequency: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}frequency']),
+      knowledgeLevel: $DbKanjiTableTable.$converterknowledgeLevel.fromSql(
+          attachedDatabase.typeMapping.read(
+              DriftSqlType.int, data['${effectivePrefix}knowledge_level'])),
     );
   }
 
@@ -127,6 +148,8 @@ class $DbKanjiTableTable extends DbKanjiTable
   static TypeConverter<List<String>, String> $convertermeanings =
       const ListConverter();
   static TypeConverter<Jlpt?, int?> $converterjlpt = const JlptTypeConverter();
+  static TypeConverter<KnowledgeLevel?, int?> $converterknowledgeLevel =
+      const KnowledgeLevelTypeConverter();
 }
 
 class DbKanji extends DataClass implements Insertable<DbKanji> {
@@ -137,6 +160,7 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
   final Jlpt? jlpt;
   final int? grade;
   final int? frequency;
+  final KnowledgeLevel? knowledgeLevel;
   const DbKanji(
       {required this.kanjiValue,
       required this.kunyomi,
@@ -144,7 +168,8 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
       required this.meanings,
       this.jlpt,
       this.grade,
-      this.frequency});
+      this.frequency,
+      this.knowledgeLevel});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -171,6 +196,10 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
     if (!nullToAbsent || frequency != null) {
       map['frequency'] = Variable<int>(frequency);
     }
+    if (!nullToAbsent || knowledgeLevel != null) {
+      map['knowledge_level'] = Variable<int>(
+          $DbKanjiTableTable.$converterknowledgeLevel.toSql(knowledgeLevel));
+    }
     return map;
   }
 
@@ -186,6 +215,9 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
       frequency: frequency == null && nullToAbsent
           ? const Value.absent()
           : Value(frequency),
+      knowledgeLevel: knowledgeLevel == null && nullToAbsent
+          ? const Value.absent()
+          : Value(knowledgeLevel),
     );
   }
 
@@ -200,6 +232,8 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
       jlpt: serializer.fromJson<Jlpt?>(json['jlpt']),
       grade: serializer.fromJson<int?>(json['grade']),
       frequency: serializer.fromJson<int?>(json['frequency']),
+      knowledgeLevel:
+          serializer.fromJson<KnowledgeLevel?>(json['knowledgeLevel']),
     );
   }
   @override
@@ -213,6 +247,7 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
       'jlpt': serializer.toJson<Jlpt?>(jlpt),
       'grade': serializer.toJson<int?>(grade),
       'frequency': serializer.toJson<int?>(frequency),
+      'knowledgeLevel': serializer.toJson<KnowledgeLevel?>(knowledgeLevel),
     };
   }
 
@@ -223,7 +258,8 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
           List<String>? meanings,
           Value<Jlpt?> jlpt = const Value.absent(),
           Value<int?> grade = const Value.absent(),
-          Value<int?> frequency = const Value.absent()}) =>
+          Value<int?> frequency = const Value.absent(),
+          Value<KnowledgeLevel?> knowledgeLevel = const Value.absent()}) =>
       DbKanji(
         kanjiValue: kanjiValue ?? this.kanjiValue,
         kunyomi: kunyomi ?? this.kunyomi,
@@ -232,6 +268,8 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
         jlpt: jlpt.present ? jlpt.value : this.jlpt,
         grade: grade.present ? grade.value : this.grade,
         frequency: frequency.present ? frequency.value : this.frequency,
+        knowledgeLevel:
+            knowledgeLevel.present ? knowledgeLevel.value : this.knowledgeLevel,
       );
   @override
   String toString() {
@@ -242,14 +280,15 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
           ..write('meanings: $meanings, ')
           ..write('jlpt: $jlpt, ')
           ..write('grade: $grade, ')
-          ..write('frequency: $frequency')
+          ..write('frequency: $frequency, ')
+          ..write('knowledgeLevel: $knowledgeLevel')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-      kanjiValue, kunyomi, onyomi, meanings, jlpt, grade, frequency);
+  int get hashCode => Object.hash(kanjiValue, kunyomi, onyomi, meanings, jlpt,
+      grade, frequency, knowledgeLevel);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -260,7 +299,8 @@ class DbKanji extends DataClass implements Insertable<DbKanji> {
           other.meanings == this.meanings &&
           other.jlpt == this.jlpt &&
           other.grade == this.grade &&
-          other.frequency == this.frequency);
+          other.frequency == this.frequency &&
+          other.knowledgeLevel == this.knowledgeLevel);
 }
 
 class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
@@ -271,6 +311,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
   final Value<Jlpt?> jlpt;
   final Value<int?> grade;
   final Value<int?> frequency;
+  final Value<KnowledgeLevel?> knowledgeLevel;
   final Value<int> rowid;
   const DbKanjiTableCompanion({
     this.kanjiValue = const Value.absent(),
@@ -280,6 +321,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
     this.jlpt = const Value.absent(),
     this.grade = const Value.absent(),
     this.frequency = const Value.absent(),
+    this.knowledgeLevel = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   DbKanjiTableCompanion.insert({
@@ -290,6 +332,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
     this.jlpt = const Value.absent(),
     this.grade = const Value.absent(),
     this.frequency = const Value.absent(),
+    this.knowledgeLevel = const Value.absent(),
     this.rowid = const Value.absent(),
   })  : kanjiValue = Value(kanjiValue),
         kunyomi = Value(kunyomi),
@@ -303,6 +346,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
     Expression<int>? jlpt,
     Expression<int>? grade,
     Expression<int>? frequency,
+    Expression<int>? knowledgeLevel,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
@@ -313,6 +357,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
       if (jlpt != null) 'jlpt': jlpt,
       if (grade != null) 'grade': grade,
       if (frequency != null) 'frequency': frequency,
+      if (knowledgeLevel != null) 'knowledge_level': knowledgeLevel,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -325,6 +370,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
       Value<Jlpt?>? jlpt,
       Value<int?>? grade,
       Value<int?>? frequency,
+      Value<KnowledgeLevel?>? knowledgeLevel,
       Value<int>? rowid}) {
     return DbKanjiTableCompanion(
       kanjiValue: kanjiValue ?? this.kanjiValue,
@@ -334,6 +380,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
       jlpt: jlpt ?? this.jlpt,
       grade: grade ?? this.grade,
       frequency: frequency ?? this.frequency,
+      knowledgeLevel: knowledgeLevel ?? this.knowledgeLevel,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -366,6 +413,11 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
     if (frequency.present) {
       map['frequency'] = Variable<int>(frequency.value);
     }
+    if (knowledgeLevel.present) {
+      map['knowledge_level'] = Variable<int>($DbKanjiTableTable
+          .$converterknowledgeLevel
+          .toSql(knowledgeLevel.value));
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -382,6 +434,7 @@ class DbKanjiTableCompanion extends UpdateCompanion<DbKanji> {
           ..write('jlpt: $jlpt, ')
           ..write('grade: $grade, ')
           ..write('frequency: $frequency, ')
+          ..write('knowledgeLevel: $knowledgeLevel, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();

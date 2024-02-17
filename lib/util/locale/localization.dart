@@ -477,6 +477,16 @@ class Localization {
   /// en:  **'Adjective'**
   String get adjective => _t(LocalizationKeys.adjective);
 
+  /// Translations:
+  ///
+  /// en:  **'Meh'**
+  String get kanjiDetailMeh => _t(LocalizationKeys.kanjiDetailMeh);
+
+  /// Translations:
+  ///
+  /// en:  **'Got it!'**
+  String get kanjiDetailGotIt => _t(LocalizationKeys.kanjiDetailGotIt);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

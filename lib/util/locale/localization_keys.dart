@@ -423,4 +423,14 @@ class LocalizationKeys {
   /// en:  **'Adjective'**
   static const adjective = 'adjective';
 
+  /// Translations:
+  ///
+  /// en:  **'Meh'**
+  static const kanjiDetailMeh = 'kanji_detail_meh';
+
+  /// Translations:
+  ///
+  /// en:  **'Got it!'**
+  static const kanjiDetailGotIt = 'kanji_detail_got_it';
+
 }

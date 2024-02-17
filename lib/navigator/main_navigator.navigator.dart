@@ -8,10 +8,8 @@
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/enum/jlpt.dart' as _i2;
-import 'package:kare_kyoushi/model/kanji/kanji.dart' as _i3;
 
 import '../model/enum/jlpt.dart';
-import '../model/kanji/kanji.dart';
 import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
@@ -123,7 +121,7 @@ mixin BaseNavigator {
         return MaterialPageRoute<void>(
           builder: (_) => KanjiDetailScreen(
             kanji:
-                (settings.arguments as Map<String, dynamic>)['kanji'] as Kanji,
+                (settings.arguments as Map<String, dynamic>)['kanji'] as String,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -195,7 +193,7 @@ mixin BaseNavigator {
         arguments: {'jlpt': jlpt, 'key': key},
       );
   Future<void> goToKanjiDetailScreen({
-    required _i3.Kanji kanji,
+    required String kanji,
     _i1.Key? key,
   }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
