@@ -20,7 +20,7 @@ Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
     file.deleteSync();
     staticLogger.debug('Databasefile `db.sqlite` is deleted');
   }
-*/
+  */
   final receivePort = ReceivePort();
 
   await Isolate.spawn(

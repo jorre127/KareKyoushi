@@ -103,7 +103,8 @@ extension GetItInjectableX on _i1.GetIt {
         () => registerModule.provideKKDatabase(gh<_i6.DatabaseConnection>()));
     gh.lazySingleton<_i13.KanjiDaoStorage>(
         () => _i13.KanjiDaoStorage(gh<_i12.KKDatabase>()));
-    gh.lazySingleton<_i14.KanjiService>(() => _i14.KanjiService());
+    gh.lazySingleton<_i14.KanjiService>(
+        () => _i14.KanjiService(gh<_i11.JlptMatcher>()));
     gh.lazySingleton<_i15.LoginRepository>(
         () => _i15.LoginRepository(gh<_i9.FirebaseAuth>()));
     gh.lazySingleton<_i16.MainNavigator>(
