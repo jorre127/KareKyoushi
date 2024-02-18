@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
+import 'package:kare_kyoushi/util/platform/platform_util.dart';
 import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_buttons.dart';
@@ -118,7 +119,7 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 44),
+                    padding: EdgeInsets.only(left: 44, right: 44, bottom: PlatformUtil.isWeb ? 24 : 0),
                     child: CharacterDetailButtons(
                       onMehTapped: viewModel.onMehTapped,
                       onGotItTapped: viewModel.onGotItTapped,
