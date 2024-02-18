@@ -19,7 +19,7 @@ class DbCharacterTable extends Table {
 
   TextColumn get meanings => text().map(const ListConverter<String>())();
 
-  IntColumn? get difficultyGrade => integer().nullable().map(const DifficultyGradeTypeConverter())();
+  IntColumn get difficultyGrade => integer().map(const DifficultyGradeTypeConverter())();
 
   TextColumn get alphbabet => text().map(const AlphabetTypeConverter())();
 

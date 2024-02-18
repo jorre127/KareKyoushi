@@ -16,21 +16,21 @@ class Word {
   final String reading;
   @JsonKey(name: 'isCommon', required: true)
   final bool isCommon;
+  @JsonKey(name: 'difficultyGrade', required: true)
+  final DifficultyGrade difficultyGrade;
   @JsonKey(name: 'meaningEntries', required: true)
   final List<MeaningEntry> meaningEntries;
   @JsonKey(name: 'priority', includeIfNull: false)
   final int? priority;
-  @JsonKey(name: 'difficultyGrade', includeIfNull: false)
-  final DifficultyGrade? difficultyGrade;
 
   const Word({
     required this.id,
     required this.value,
     required this.reading,
     required this.isCommon,
+    required this.difficultyGrade,
     required this.meaningEntries,
     this.priority,
-    this.difficultyGrade,
   });
 
   factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);

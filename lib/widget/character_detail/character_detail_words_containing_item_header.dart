@@ -66,12 +66,10 @@ class CharacterDetailListWordsContainingItemHeader extends StatelessWidget {
                   if (word.isCommon) ...[
                     KKLabel(text: localization.common),
                   ],
-                  if (word.difficultyGrade != null) ...[
-                    DifficultyGradeLabel(
-                      difficultyGrade: word.difficultyGrade!,
-                      style: DifficultyGradeTagStyle.simple,
-                    ),
-                  ],
+                  DifficultyGradeLabel(
+                    difficultyGrade: word.difficultyGrade,
+                    style: DifficultyGradeTagStyle.simple,
+                  ),
                   AnimatedRotation(
                     turns: isExpanded ? 0.5 : 0,
                     duration: ThemeDurations.shortAnimationDuration,

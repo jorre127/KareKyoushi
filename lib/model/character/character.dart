@@ -5,7 +5,7 @@ import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 
 @immutable
 class Character {
-  final DifficultyGrade? difficultyGrade;
+  final DifficultyGrade difficultyGrade;
   final Alphabet alphbabet;
   final int? grade;
   final int? frequency;

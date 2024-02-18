@@ -87,7 +87,7 @@ class CharacterService {
         Character(
           value: kanjiValue,
           alphbabet: Alphabet.kanji,
-          difficultyGrade: await _difficultyGradeMatcher.getLevelForKanji(kanjiValue),
+          difficultyGrade: await _difficultyGradeMatcher.getLevelForKanji(kanjiValue) ?? DifficultyGrade.unkown,
           frequency: int.tryParse(frequency ?? ''),
           grade: int.tryParse(grade ?? ''),
           kunyomi: kunyomi?.map((e) => e.innerText).toList() ?? [],

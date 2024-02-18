@@ -19,6 +19,7 @@ class DifficultyGradeMatcher {
   }) async {
     if (difficultyGradeMap.isEmpty) {
       for (final level in Alphabet.kanji.levels) {
+        if (level == DifficultyGrade.unkown) continue;
         final words = await rootBundle.loadString('${assetPath}n${level.rank}.txt');
         difficultyGradeMap[level] = LineSplitter.split(words).toList();
       }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
-import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
@@ -64,7 +63,7 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                         child: Column(
                           children: [
                             CharacterDetailHeader(
-                              difficultyGrade: character.difficultyGrade ?? DifficultyGrade.n5,
+                              difficultyGrade: character.difficultyGrade,
                               onCloseTapped: viewModel.onCloseTapped,
                               character: character,
                             ),

@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/enum/wordtype.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
-import 'package:kare_kyoushi/util/extension/xml_extension.dart';
 import 'package:kare_kyoushi/util/difficulty_grade/diffulty_grade_matcher.dart';
+import 'package:kare_kyoushi/util/extension/xml_extension.dart';
 import 'package:xml/xml.dart';
 
 @lazySingleton
@@ -54,7 +55,7 @@ class WordService {
         Word(
           id: id,
           value: value ?? '',
-          difficultyGrade: value == null ? null : await _matcher.getLevelForWord(value),
+          difficultyGrade: value == null ? DifficultyGrade.unkown : await _matcher.getLevelForWord(value) ?? DifficultyGrade.unkown,
           reading: reading,
           isCommon: priority?.any((priority) => _commonPriorities.contains(priority)) ?? false,
           priority: int.tryParse(priority?.firstWhereOrNull((priority) => priority.contains('nf'))?.substring(2) ?? ''),

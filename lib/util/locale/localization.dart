@@ -409,6 +409,11 @@ class Localization {
 
   /// Translations:
   ///
+  /// en:  **'Nx'**
+  String get unkownTitle => _t(LocalizationKeys.unkownTitle);
+
+  /// Translations:
+  ///
   /// en:  **'Easy'**
   String get n5Difficulty => _t(LocalizationKeys.n5Difficulty);
 
@@ -431,6 +436,11 @@ class Localization {
   ///
   /// en:  **'Expert'**
   String get n1Difficulty => _t(LocalizationKeys.n1Difficulty);
+
+  /// Translations:
+  ///
+  /// en:  **'Extra'**
+  String get unkownDifficulty => _t(LocalizationKeys.unkownDifficulty);
 
   /// Translations:
   ///

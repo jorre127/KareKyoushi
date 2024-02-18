@@ -34,7 +34,7 @@ class CharacterDetailButtons extends StatelessWidget {
               child: KKButton(
                 text: localization.kanjiDetailMeh,
                 onClick: onMehTapped,
-                color: character.knowledgeLevel == KnowledgeLevel.meh ? character.difficultyGrade?.colorDark : null,
+                color: character.knowledgeLevel == KnowledgeLevel.meh ? character.difficultyGrade.colorDark : null,
               ),
             ),
             const SizedBox(width: 12),
@@ -42,7 +42,7 @@ class CharacterDetailButtons extends StatelessWidget {
               child: KKButton(
                 text: localization.kanjiDetailGotIt,
                 onClick: onGotItTapped,
-                  color: character.knowledgeLevel == KnowledgeLevel.gotIt ? character.difficultyGrade?.color : null,
+                color: character.knowledgeLevel == KnowledgeLevel.gotIt ? character.difficultyGrade.color : null,
               ),
             ),
           ],

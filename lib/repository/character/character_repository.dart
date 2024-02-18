@@ -82,10 +82,10 @@ class _CharacterRepository implements CharacterRepository {
 
   List<CharacterProgress> _getProgressForCharacters(List<Character> characters) {
     final characterProgressList = <CharacterProgress>[];
-    final sortedCharacter = characters.groupListsBy((item) => item.difficultyGrade?.rank);
+    final sortedCharacter = characters.groupListsBy((item) => item.difficultyGrade.rank);
     for (final level in sortedCharacter.keys.toList().reversed) {
       final character = sortedCharacter[level];
-      if (level == null || character == null) continue;
+      if (character == null) continue;
       final difficultyGradeLevel = DifficultyGrade.values.firstWhere((character) => character.rank == level);
       characterProgressList.add(
         CharacterProgress(

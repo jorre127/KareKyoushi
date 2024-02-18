@@ -39,11 +39,11 @@ class $DbCharacterTableTable extends DbCharacterTable
   static const VerificationMeta _difficultyGradeMeta =
       const VerificationMeta('difficultyGrade');
   @override
-  late final GeneratedColumnWithTypeConverter<DifficultyGrade?, int>
+  late final GeneratedColumnWithTypeConverter<DifficultyGrade, int>
       difficultyGrade = GeneratedColumn<int>(
-              'difficulty_grade', aliasedName, true,
-              type: DriftSqlType.int, requiredDuringInsert: false)
-          .withConverter<DifficultyGrade?>(
+              'difficulty_grade', aliasedName, false,
+              type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<DifficultyGrade>(
               $DbCharacterTableTable.$converterdifficultyGrade);
   static const VerificationMeta _alphbabetMeta =
       const VerificationMeta('alphbabet');
@@ -136,7 +136,7 @@ class $DbCharacterTableTable extends DbCharacterTable
               .read(DriftSqlType.string, data['${effectivePrefix}meanings'])!),
       difficultyGrade: $DbCharacterTableTable.$converterdifficultyGrade.fromSql(
           attachedDatabase.typeMapping.read(
-              DriftSqlType.int, data['${effectivePrefix}difficulty_grade'])),
+              DriftSqlType.int, data['${effectivePrefix}difficulty_grade'])!),
       alphbabet: $DbCharacterTableTable.$converteralphbabet.fromSql(
           attachedDatabase.typeMapping
               .read(DriftSqlType.string, data['${effectivePrefix}alphbabet'])!),
@@ -161,7 +161,7 @@ class $DbCharacterTableTable extends DbCharacterTable
       const ListConverter();
   static TypeConverter<List<String>, String> $convertermeanings =
       const ListConverter();
-  static TypeConverter<DifficultyGrade?, int?> $converterdifficultyGrade =
+  static TypeConverter<DifficultyGrade, int> $converterdifficultyGrade =
       const DifficultyGradeTypeConverter();
   static TypeConverter<Alphabet, String> $converteralphbabet =
       const AlphabetTypeConverter();
@@ -174,7 +174,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
   final List<String> kunyomi;
   final List<String> onyomi;
   final List<String> meanings;
-  final DifficultyGrade? difficultyGrade;
+  final DifficultyGrade difficultyGrade;
   final Alphabet alphbabet;
   final int? grade;
   final int? frequency;
@@ -184,7 +184,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
       required this.kunyomi,
       required this.onyomi,
       required this.meanings,
-      this.difficultyGrade,
+      required this.difficultyGrade,
       required this.alphbabet,
       this.grade,
       this.frequency,
@@ -205,7 +205,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
       map['meanings'] = Variable<String>(
           $DbCharacterTableTable.$convertermeanings.toSql(meanings));
     }
-    if (!nullToAbsent || difficultyGrade != null) {
+    {
       map['difficulty_grade'] = Variable<int>($DbCharacterTableTable
           .$converterdifficultyGrade
           .toSql(difficultyGrade));
@@ -234,9 +234,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
       kunyomi: Value(kunyomi),
       onyomi: Value(onyomi),
       meanings: Value(meanings),
-      difficultyGrade: difficultyGrade == null && nullToAbsent
-          ? const Value.absent()
-          : Value(difficultyGrade),
+      difficultyGrade: Value(difficultyGrade),
       alphbabet: Value(alphbabet),
       grade:
           grade == null && nullToAbsent ? const Value.absent() : Value(grade),
@@ -258,7 +256,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
       onyomi: serializer.fromJson<List<String>>(json['onyomi']),
       meanings: serializer.fromJson<List<String>>(json['meanings']),
       difficultyGrade:
-          serializer.fromJson<DifficultyGrade?>(json['difficultyGrade']),
+          serializer.fromJson<DifficultyGrade>(json['difficultyGrade']),
       alphbabet: serializer.fromJson<Alphabet>(json['alphbabet']),
       grade: serializer.fromJson<int?>(json['grade']),
       frequency: serializer.fromJson<int?>(json['frequency']),
@@ -274,7 +272,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
       'kunyomi': serializer.toJson<List<String>>(kunyomi),
       'onyomi': serializer.toJson<List<String>>(onyomi),
       'meanings': serializer.toJson<List<String>>(meanings),
-      'difficultyGrade': serializer.toJson<DifficultyGrade?>(difficultyGrade),
+      'difficultyGrade': serializer.toJson<DifficultyGrade>(difficultyGrade),
       'alphbabet': serializer.toJson<Alphabet>(alphbabet),
       'grade': serializer.toJson<int?>(grade),
       'frequency': serializer.toJson<int?>(frequency),
@@ -287,7 +285,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
           List<String>? kunyomi,
           List<String>? onyomi,
           List<String>? meanings,
-          Value<DifficultyGrade?> difficultyGrade = const Value.absent(),
+          DifficultyGrade? difficultyGrade,
           Alphabet? alphbabet,
           Value<int?> grade = const Value.absent(),
           Value<int?> frequency = const Value.absent(),
@@ -297,9 +295,7 @@ class DbCharacter extends DataClass implements Insertable<DbCharacter> {
         kunyomi: kunyomi ?? this.kunyomi,
         onyomi: onyomi ?? this.onyomi,
         meanings: meanings ?? this.meanings,
-        difficultyGrade: difficultyGrade.present
-            ? difficultyGrade.value
-            : this.difficultyGrade,
+        difficultyGrade: difficultyGrade ?? this.difficultyGrade,
         alphbabet: alphbabet ?? this.alphbabet,
         grade: grade.present ? grade.value : this.grade,
         frequency: frequency.present ? frequency.value : this.frequency,
@@ -345,7 +341,7 @@ class DbCharacterTableCompanion extends UpdateCompanion<DbCharacter> {
   final Value<List<String>> kunyomi;
   final Value<List<String>> onyomi;
   final Value<List<String>> meanings;
-  final Value<DifficultyGrade?> difficultyGrade;
+  final Value<DifficultyGrade> difficultyGrade;
   final Value<Alphabet> alphbabet;
   final Value<int?> grade;
   final Value<int?> frequency;
@@ -368,7 +364,7 @@ class DbCharacterTableCompanion extends UpdateCompanion<DbCharacter> {
     required List<String> kunyomi,
     required List<String> onyomi,
     required List<String> meanings,
-    this.difficultyGrade = const Value.absent(),
+    required DifficultyGrade difficultyGrade,
     required Alphabet alphbabet,
     this.grade = const Value.absent(),
     this.frequency = const Value.absent(),
@@ -378,6 +374,7 @@ class DbCharacterTableCompanion extends UpdateCompanion<DbCharacter> {
         kunyomi = Value(kunyomi),
         onyomi = Value(onyomi),
         meanings = Value(meanings),
+        difficultyGrade = Value(difficultyGrade),
         alphbabet = Value(alphbabet);
   static Insertable<DbCharacter> custom({
     Expression<String>? value,
@@ -410,7 +407,7 @@ class DbCharacterTableCompanion extends UpdateCompanion<DbCharacter> {
       Value<List<String>>? kunyomi,
       Value<List<String>>? onyomi,
       Value<List<String>>? meanings,
-      Value<DifficultyGrade?>? difficultyGrade,
+      Value<DifficultyGrade>? difficultyGrade,
       Value<Alphabet>? alphbabet,
       Value<int?>? grade,
       Value<int?>? frequency,
@@ -532,11 +529,11 @@ class $DbWordTableTable extends DbWordTable
   static const VerificationMeta _difficultyGradeMeta =
       const VerificationMeta('difficultyGrade');
   @override
-  late final GeneratedColumnWithTypeConverter<DifficultyGrade?, int>
+  late final GeneratedColumnWithTypeConverter<DifficultyGrade, int>
       difficultyGrade = GeneratedColumn<int>(
-              'difficulty_grade', aliasedName, true,
-              type: DriftSqlType.int, requiredDuringInsert: false)
-          .withConverter<DifficultyGrade?>(
+              'difficulty_grade', aliasedName, false,
+              type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<DifficultyGrade>(
               $DbWordTableTable.$converterdifficultyGrade);
   static const VerificationMeta _meaningEntriesMeta =
       const VerificationMeta('meaningEntries');
@@ -610,7 +607,7 @@ class $DbWordTableTable extends DbWordTable
           .read(DriftSqlType.int, data['${effectivePrefix}priority']),
       difficultyGrade: $DbWordTableTable.$converterdifficultyGrade.fromSql(
           attachedDatabase.typeMapping.read(
-              DriftSqlType.int, data['${effectivePrefix}difficulty_grade'])),
+              DriftSqlType.int, data['${effectivePrefix}difficulty_grade'])!),
       meaningEntries: $DbWordTableTable.$convertermeaningEntries.fromSql(
           attachedDatabase.typeMapping.read(
               DriftSqlType.string, data['${effectivePrefix}meaning_entries'])!),
@@ -622,7 +619,7 @@ class $DbWordTableTable extends DbWordTable
     return $DbWordTableTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<DifficultyGrade?, int?> $converterdifficultyGrade =
+  static TypeConverter<DifficultyGrade, int> $converterdifficultyGrade =
       const DifficultyGradeTypeConverter();
   static TypeConverter<List<MeaningEntry>, String> $convertermeaningEntries =
       const ListConverter(callback: MeaningEntry.fromJson);
@@ -634,7 +631,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
   final String reading;
   final bool isCommon;
   final int? priority;
-  final DifficultyGrade? difficultyGrade;
+  final DifficultyGrade difficultyGrade;
   final List<MeaningEntry> meaningEntries;
   const DbWord(
       {required this.id,
@@ -642,7 +639,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       required this.reading,
       required this.isCommon,
       this.priority,
-      this.difficultyGrade,
+      required this.difficultyGrade,
       required this.meaningEntries});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -654,7 +651,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
     if (!nullToAbsent || priority != null) {
       map['priority'] = Variable<int>(priority);
     }
-    if (!nullToAbsent || difficultyGrade != null) {
+    {
       map['difficulty_grade'] = Variable<int>(
           $DbWordTableTable.$converterdifficultyGrade.toSql(difficultyGrade));
     }
@@ -674,9 +671,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       priority: priority == null && nullToAbsent
           ? const Value.absent()
           : Value(priority),
-      difficultyGrade: difficultyGrade == null && nullToAbsent
-          ? const Value.absent()
-          : Value(difficultyGrade),
+      difficultyGrade: Value(difficultyGrade),
       meaningEntries: Value(meaningEntries),
     );
   }
@@ -691,7 +686,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       isCommon: serializer.fromJson<bool>(json['isCommon']),
       priority: serializer.fromJson<int?>(json['priority']),
       difficultyGrade:
-          serializer.fromJson<DifficultyGrade?>(json['difficultyGrade']),
+          serializer.fromJson<DifficultyGrade>(json['difficultyGrade']),
       meaningEntries:
           serializer.fromJson<List<MeaningEntry>>(json['meaningEntries']),
     );
@@ -705,7 +700,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
       'reading': serializer.toJson<String>(reading),
       'isCommon': serializer.toJson<bool>(isCommon),
       'priority': serializer.toJson<int?>(priority),
-      'difficultyGrade': serializer.toJson<DifficultyGrade?>(difficultyGrade),
+      'difficultyGrade': serializer.toJson<DifficultyGrade>(difficultyGrade),
       'meaningEntries': serializer.toJson<List<MeaningEntry>>(meaningEntries),
     };
   }
@@ -716,7 +711,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
           String? reading,
           bool? isCommon,
           Value<int?> priority = const Value.absent(),
-          Value<DifficultyGrade?> difficultyGrade = const Value.absent(),
+          DifficultyGrade? difficultyGrade,
           List<MeaningEntry>? meaningEntries}) =>
       DbWord(
         id: id ?? this.id,
@@ -724,9 +719,7 @@ class DbWord extends DataClass implements Insertable<DbWord> {
         reading: reading ?? this.reading,
         isCommon: isCommon ?? this.isCommon,
         priority: priority.present ? priority.value : this.priority,
-        difficultyGrade: difficultyGrade.present
-            ? difficultyGrade.value
-            : this.difficultyGrade,
+        difficultyGrade: difficultyGrade ?? this.difficultyGrade,
         meaningEntries: meaningEntries ?? this.meaningEntries,
       );
   @override
@@ -765,7 +758,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
   final Value<String> reading;
   final Value<bool> isCommon;
   final Value<int?> priority;
-  final Value<DifficultyGrade?> difficultyGrade;
+  final Value<DifficultyGrade> difficultyGrade;
   final Value<List<MeaningEntry>> meaningEntries;
   final Value<int> rowid;
   const DbWordTableCompanion({
@@ -784,13 +777,14 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
     required String reading,
     required bool isCommon,
     this.priority = const Value.absent(),
-    this.difficultyGrade = const Value.absent(),
+    required DifficultyGrade difficultyGrade,
     required List<MeaningEntry> meaningEntries,
     this.rowid = const Value.absent(),
   })  : id = Value(id),
         value = Value(value),
         reading = Value(reading),
         isCommon = Value(isCommon),
+        difficultyGrade = Value(difficultyGrade),
         meaningEntries = Value(meaningEntries);
   static Insertable<DbWord> custom({
     Expression<String>? id,
@@ -820,7 +814,7 @@ class DbWordTableCompanion extends UpdateCompanion<DbWord> {
       Value<String>? reading,
       Value<bool>? isCommon,
       Value<int?>? priority,
-      Value<DifficultyGrade?>? difficultyGrade,
+      Value<DifficultyGrade>? difficultyGrade,
       Value<List<MeaningEntry>>? meaningEntries,
       Value<int>? rowid}) {
     return DbWordTableCompanion(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
+import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/util/extension/character_extension.dart';
 import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
@@ -65,8 +65,8 @@ class _CharacterGridItemState extends State<CharacterGridItem> {
   }
 
   Color? _getColor(KKTheme theme) => switch (widget.character.knowledgeLevel) {
-        KnowledgeLevel.gotIt => widget.character.difficultyGrade?.color,
-        KnowledgeLevel.meh => widget.character.difficultyGrade?.colorDark,
+        KnowledgeLevel.gotIt => widget.character.difficultyGrade.color,
+        KnowledgeLevel.meh => widget.character.difficultyGrade.colorDark,
         null => theme.colorsTheme.bgCard,
       };
 }

@@ -6,7 +6,7 @@ Word:
     reading: String
     isCommon: bool
     priority: int?
-    difficultyGrade: DifficultyGrade?
+    difficultyGrade: DifficultyGrade
     meaningEntries: List<MeaningEntry>
 
 MeaningEntry:

@@ -20,7 +20,7 @@ class DbWordTable extends Table {
 
   IntColumn? get priority => integer().nullable()();
 
-  IntColumn? get difficultyGrade => integer().nullable().map(const DifficultyGradeTypeConverter())();
+  IntColumn get difficultyGrade => integer().map(const DifficultyGradeTypeConverter())();
 
   TextColumn get meaningEntries => text().map(const ListConverter<MeaningEntry>(callback: MeaningEntry.fromJson))();
 }

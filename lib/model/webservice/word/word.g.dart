@@ -14,6 +14,7 @@ Word _$WordFromJson(Map<String, dynamic> json) {
       'value',
       'reading',
       'isCommon',
+      'difficultyGrade',
       'meaningEntries'
     ],
   );
@@ -22,12 +23,12 @@ Word _$WordFromJson(Map<String, dynamic> json) {
     value: json['value'] as String,
     reading: json['reading'] as String,
     isCommon: json['isCommon'] as bool,
+    difficultyGrade:
+        $enumDecode(_$DifficultyGradeEnumMap, json['difficultyGrade']),
     meaningEntries: (json['meaningEntries'] as List<dynamic>)
         .map((e) => MeaningEntry.fromJson(e as Map<String, dynamic>))
         .toList(),
     priority: json['priority'] as int?,
-    difficultyGrade:
-        $enumDecodeNullable(_$DifficultyGradeEnumMap, json['difficultyGrade']),
   );
 }
 
@@ -37,6 +38,7 @@ Map<String, dynamic> _$WordToJson(Word instance) {
     'value': instance.value,
     'reading': instance.reading,
     'isCommon': instance.isCommon,
+    'difficultyGrade': _$DifficultyGradeEnumMap[instance.difficultyGrade]!,
     'meaningEntries': instance.meaningEntries.map((e) => e.toJson()).toList(),
   };
 
@@ -47,12 +49,14 @@ Map<String, dynamic> _$WordToJson(Word instance) {
   }
 
   writeNotNull('priority', instance.priority);
-  writeNotNull(
-      'difficultyGrade', _$DifficultyGradeEnumMap[instance.difficultyGrade]);
   return val;
 }
 
 const _$DifficultyGradeEnumMap = {
+  DifficultyGrade.unkown: 'unkown',
+  DifficultyGrade.combined: 'combined',
+  DifficultyGrade.dakuten: 'dakuten',
+  DifficultyGrade.standard: 'standard',
   DifficultyGrade.n5: 'n5',
   DifficultyGrade.n4: 'n4',
   DifficultyGrade.n3: 'n3',

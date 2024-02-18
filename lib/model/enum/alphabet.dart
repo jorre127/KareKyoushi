@@ -37,6 +37,7 @@ enum Alphabet {
       DifficultyGrade.n3,
       DifficultyGrade.n2,
       DifficultyGrade.n1,
+      DifficultyGrade.unkown,
     ],
   );
 

@@ -355,6 +355,11 @@ class LocalizationKeys {
 
   /// Translations:
   ///
+  /// en:  **'Nx'**
+  static const unkownTitle = 'unkown_title';
+
+  /// Translations:
+  ///
   /// en:  **'Easy'**
   static const n5Difficulty = 'n5_difficulty';
 
@@ -377,6 +382,11 @@ class LocalizationKeys {
   ///
   /// en:  **'Expert'**
   static const n1Difficulty = 'n1_difficulty';
+
+  /// Translations:
+  ///
+  /// en:  **'Extra'**
+  static const unkownDifficulty = 'unkown_difficulty';
 
   /// Translations:
   ///
