@@ -14,7 +14,7 @@ Future<DatabaseConnection> createDriftDatabaseConnection(String name) async {
   }
   final dbFolder = await getApplicationDocumentsDirectory();
   final file = File(join(dbFolder.path, '$name.sqlite'));
-
+  
   /*
   if ((FlavorConfig.isDev() || FlavorConfig.isDummy()) && file.existsSync()) {
     file.deleteSync();

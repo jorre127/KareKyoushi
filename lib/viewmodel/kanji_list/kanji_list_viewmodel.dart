@@ -30,7 +30,7 @@ class KanjiListViewModel with ChangeNotifierEx {
   }
 
   Future<void> _onkanjiUpdated(List<Kanji> kanji) async {
-    _kanji.replaceAll((kanji)..sortBy((item) => item.frequency));
+    _kanji.replaceAll((kanji)..sortBy((item) => item.frequency ?? 999));
     if (disposed) return;
     notifyListeners();
   }

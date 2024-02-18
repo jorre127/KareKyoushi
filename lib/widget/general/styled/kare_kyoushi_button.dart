@@ -83,21 +83,25 @@ class KKButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) {
-        final content = Row(mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min, mainAxisAlignment: MainAxisAlignment.center, children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 16,
-              horizontal: 24,
+        final content = Row(
+          mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 24,
+              ),
+              child: isLoading
+                  ? const KKProgressIndicator.light()
+                  : AnimatedDefaultTextStyle(
+                      style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
+                      duration: ThemeDurations.shortAnimationDuration,
+                      child: Text(text),
+                    ),
             ),
-            child: isLoading
-                ? const KKProgressIndicator.light()
-                : AnimatedDefaultTextStyle(
-                    style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
-                    duration: ThemeDurations.shortAnimationDuration,
-                    child: Text(text),
-                  ),
-          ),
-        ]);
+          ],
+        );
         if (context.isIOSTheme) {
           return TouchFeedBack(
             onClick: isEnabled
