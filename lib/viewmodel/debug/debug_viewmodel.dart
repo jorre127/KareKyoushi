@@ -5,7 +5,7 @@ import 'package:kare_kyoushi/di/injectable.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/repository/debug/debug_repository.dart';
 import 'package:kare_kyoushi/repository/shared_prefs/local/local_storage.dart';
-import 'package:kare_kyoushi/webservice/kanji/kanji_service.dart';
+import 'package:kare_kyoushi/webservice/character/character_service.dart';
 import 'package:kare_kyoushi/widget/debug/select_language_dialog.dart';
 
 @injectable
@@ -26,7 +26,7 @@ class DebugViewModel with ChangeNotifierEx {
 
   Future<void> init() async {
     _initValues();
-    await getIt.get<KanjiService>().getKanji();
+    await getIt.get<CharacterService>().getCharacters();
   }
 
   void _initValues() {

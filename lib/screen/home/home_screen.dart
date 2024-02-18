@@ -30,7 +30,7 @@ class HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          ...Alphbabet.values.map(
+          ...Alphabet.values.map(
             (alphabet) => Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: HomeListItem(
@@ -38,7 +38,7 @@ class HomeScreenState extends State<HomeScreen> {
                 subTitle: localization.getTranslation(alphabet.titleJpKey),
                 color: alphabet.color,
                 onTapped: () => viewModel.onAlphabetTapped(alphabet),
-                progress: viewModel.kanjiProgress.where((progress) => alphabet.levels.contains(progress.jlpt)).toList(),
+                progress: viewModel.characterProgress.where((progress) => alphabet.levels.contains(progress.difficultyGrade)).toList(),
               ),
             ),
           ),

@@ -1,19 +1,19 @@
 import 'package:injectable/injectable.dart';
-import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart';
+import 'package:kare_kyoushi/repository/character/character_repository.dart';
 import 'package:kare_kyoushi/repository/word/word_repository.dart';
 
 @lazySingleton
 class StartupHelper {
-  final KanjiRepository _kanjiRepository;
+  final CharacterRepository _characterRepository;
   final WordRepository _wordRepository;
 
   StartupHelper(
-    this._kanjiRepository,
+    this._characterRepository,
     this._wordRepository,
   );
 
   Future<void> startup() async {
-    await _kanjiRepository.initKanji();
+    await _characterRepository.initCharacters();
     await _wordRepository.initWords();
   }
 }

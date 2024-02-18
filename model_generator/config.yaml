@@ -6,7 +6,7 @@ Word:
     reading: String
     isCommon: bool
     priority: int?
-    jlpt: Jlpt?
+    difficultyGrade: DifficultyGrade?
     meaningEntries: List<MeaningEntry>
 
 MeaningEntry:
@@ -17,8 +17,8 @@ MeaningEntry:
     misc: String?
     meanings: List<String>
 
-Jlpt:
-  path: enum/jlpt.dart
+DifficultyGrade:
+  path: enum/difficulty_grade.dart
   type: custom
 
 WordType:

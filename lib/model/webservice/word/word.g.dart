@@ -26,7 +26,8 @@ Word _$WordFromJson(Map<String, dynamic> json) {
         .map((e) => MeaningEntry.fromJson(e as Map<String, dynamic>))
         .toList(),
     priority: json['priority'] as int?,
-    jlpt: $enumDecodeNullable(_$JlptEnumMap, json['jlpt']),
+    difficultyGrade:
+        $enumDecodeNullable(_$DifficultyGradeEnumMap, json['difficultyGrade']),
   );
 }
 
@@ -46,14 +47,15 @@ Map<String, dynamic> _$WordToJson(Word instance) {
   }
 
   writeNotNull('priority', instance.priority);
-  writeNotNull('jlpt', _$JlptEnumMap[instance.jlpt]);
+  writeNotNull(
+      'difficultyGrade', _$DifficultyGradeEnumMap[instance.difficultyGrade]);
   return val;
 }
 
-const _$JlptEnumMap = {
-  Jlpt.n5: 'n5',
-  Jlpt.n4: 'n4',
-  Jlpt.n3: 'n3',
-  Jlpt.n2: 'n2',
-  Jlpt.n1: 'n1',
+const _$DifficultyGradeEnumMap = {
+  DifficultyGrade.n5: 'n5',
+  DifficultyGrade.n4: 'n4',
+  DifficultyGrade.n3: 'n3',
+  DifficultyGrade.n2: 'n2',
+  DifficultyGrade.n1: 'n1',
 };

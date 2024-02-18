@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kare_kyoushi/viewmodel/kanji_grade_list/kanji_grade_list_viewmodel.dart';
+import 'package:kare_kyoushi/viewmodel/character_grade_list/character_grade_list_viewmodel.dart';
 import 'package:kare_kyoushi/widget/general/card/kare_kyoushi_card.dart';
 import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_bar.dart';
 import 'package:kare_kyoushi/widget/layout/spacing_row.dart';
@@ -10,7 +10,7 @@ class HomeListItem extends StatelessWidget {
   final String subTitle;
   final Color color;
   final VoidCallback? onTapped;
-  final List<KanjiProgress>? progress;
+  final List<CharacterProgress>? progress;
 
   const HomeListItem({
     required this.title,
@@ -43,11 +43,11 @@ class HomeListItem extends StatelessWidget {
                     .map(
                       (progress) => Expanded(
                         child: KKProgressBar(
-                          progress1: progress.gotItKanji,
-                          progress2: progress.mehKanji,
-                          progress1Color: progress.jlpt.color,
-                          progress2Color: progress.jlpt.colorDark,
-                          totalProgress: progress.totalKanji,
+                          progress1: progress.gotItCharacter,
+                          progress2: progress.mehCharacter,
+                          progress1Color: progress.difficultyGrade.color,
+                          progress2Color: progress.difficultyGrade.colorDark,
+                          totalProgress: progress.totalCharacter,
                         ),
                       ),
                     )

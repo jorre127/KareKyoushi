@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:kare_kyoushi/model/enum/jlpt.dart';
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
 
 part 'word.g.dart';
@@ -20,8 +20,8 @@ class Word {
   final List<MeaningEntry> meaningEntries;
   @JsonKey(name: 'priority', includeIfNull: false)
   final int? priority;
-  @JsonKey(name: 'jlpt', includeIfNull: false)
-  final Jlpt? jlpt;
+  @JsonKey(name: 'difficultyGrade', includeIfNull: false)
+  final DifficultyGrade? difficultyGrade;
 
   const Word({
     required this.id,
@@ -30,7 +30,7 @@ class Word {
     required this.isCommon,
     required this.meaningEntries,
     this.priority,
-    this.jlpt,
+    this.difficultyGrade,
   });
 
   factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);

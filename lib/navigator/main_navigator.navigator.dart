@@ -7,15 +7,15 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
-import 'package:kare_kyoushi/model/enum/jlpt.dart' as _i2;
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart' as _i2;
 
-import '../model/enum/jlpt.dart';
+import '../model/enum/difficulty_grade.dart';
+import '../screen/character_detail/character_detail_screen.dart';
+import '../screen/character_grade_list/character_grade_list_screen.dart';
+import '../screen/character_list/character_list_screen.dart';
 import '../screen/debug/debug_platform_selector_screen.dart';
 import '../screen/debug/debug_screen.dart';
 import '../screen/home/home_screen.dart';
-import '../screen/kanji_detail/kanji_detail_screen.dart';
-import '../screen/kanji_grade_list/kanji_grade_list_screen.dart';
-import '../screen/kanji_list/kanji_list_screen.dart';
 import '../screen/license/license_screen.dart';
 import '../screen/login/login_screen.dart';
 import '../screen/main/main_screen.dart';
@@ -47,14 +47,6 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.kanjiGradeListScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => KanjiGradeListScreen(
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -108,20 +100,29 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.kanjiListScreen:
+      case RouteNames.characterListScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => KanjiListScreen(
-            jlpt: (settings.arguments as Map<String, dynamic>)['jlpt'] as Jlpt,
+          builder: (_) => CharacterListScreen(
+            difficultyGrade: (settings.arguments
+                as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.kanjiDetailScreen:
+      case RouteNames.characterGradeListScreen:
         return MaterialPageRoute<void>(
-          builder: (_) => KanjiDetailScreen(
-            kanji:
-                (settings.arguments as Map<String, dynamic>)['kanji'] as String,
+          builder: (_) => CharacterGradeListScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.characterDetailScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => CharacterDetailScreen(
+            character: (settings.arguments as Map<String, dynamic>)['character']
+                as String,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -145,11 +146,6 @@ mixin BaseNavigator {
   Future<void> goToLicenseScreen({_i1.Key? key}) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToKanjiGradeListScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.kanjiGradeListScreen,
         arguments: {'key': key},
       );
   void goToMainScreen({_i1.Key? key}) =>
@@ -184,21 +180,26 @@ mixin BaseNavigator {
         RouteNames.debugScreen,
         arguments: {'key': key},
       );
-  Future<void> goToKanjiListScreen({
-    required _i2.Jlpt jlpt,
+  Future<void> goToCharacterListScreen({
+    required _i2.DifficultyGrade difficultyGrade,
     _i1.Key? key,
   }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.kanjiListScreen,
-        arguments: {'jlpt': jlpt, 'key': key},
+        RouteNames.characterListScreen,
+        arguments: {'difficultyGrade': difficultyGrade, 'key': key},
       );
-  Future<void> goToKanjiDetailScreen({
-    required String kanji,
+  Future<void> goToCharacterGradeListScreen({_i1.Key? key}) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.characterGradeListScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToCharacterDetailScreen({
+    required String character,
     _i1.Key? key,
   }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.kanjiDetailScreen,
-        arguments: {'kanji': kanji, 'key': key},
+        RouteNames.characterDetailScreen,
+        arguments: {'character': character, 'key': key},
       );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) =>
@@ -225,8 +226,6 @@ class RouteNames {
 
   static const licenseScreen = '/license';
 
-  static const kanjiGradeListScreen = '/kanji-grade-list';
-
   static const mainScreen = '/main';
 
   static const analyticsPermissionScreen = '/analytics-permission';
@@ -239,7 +238,9 @@ class RouteNames {
 
   static const debugScreen = '/debug';
 
-  static const kanjiListScreen = '/kanji-list';
+  static const characterListScreen = '/character-list';
 
-  static const kanjiDetailScreen = '/kanji-detail';
+  static const characterGradeListScreen = '/character-grade-list';
+
+  static const characterDetailScreen = '/character-detail';
 }

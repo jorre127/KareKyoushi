@@ -6,7 +6,7 @@ class KnowledgeLevelTypeConverter extends TypeConverter<KnowledgeLevel?, int?> {
 
   @override
   KnowledgeLevel? fromSql(int? fromDb) {
-    final intValue = KnowledgeLevel.values.where((jlpt) => jlpt.id == fromDb);
+    final intValue = KnowledgeLevel.values.where((level) => level.id == fromDb);
     if (intValue.isEmpty) return null;
     return intValue.first;
   }

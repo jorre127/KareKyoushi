@@ -4,42 +4,41 @@ import 'package:flutter/services.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
-import 'package:kare_kyoushi/model/enum/jlpt.dart';
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
-import 'package:kare_kyoushi/repository/kanji/kanji_repository.dart';
-import 'package:kare_kyoushi/viewmodel/kanji_grade_list/kanji_grade_list_viewmodel.dart';
+import 'package:kare_kyoushi/repository/character/character_repository.dart';
+import 'package:kare_kyoushi/viewmodel/character_grade_list/character_grade_list_viewmodel.dart';
 
 @injectable
 class HomeViewModel with ChangeNotifierEx {
-  // ignore: unused_field
   final MainNavigator _navigator;
-  final KanjiRepository _kanjiRepository;
+  final CharacterRepository _characterRepository;
 
-  final _kanjiProgress = <KanjiProgress>[];
+  final _characterProgress = <CharacterProgress>[];
 
-  List<KanjiProgress> get kanjiProgress => _kanjiProgress;
+  List<CharacterProgress> get characterProgress => _characterProgress;
 
   HomeViewModel(
     this._navigator,
-    this._kanjiRepository,
+    this._characterRepository,
   );
 
   Future<void> init() async {
-    registerDisposeStream(_kanjiRepository.getKanjiProgressStream().listen(_onKanjiProgressUpdated));
+    registerDisposeStream(_characterRepository.getCharacterProgressStream().listen(_onCharacterProgressUpdated));
   }
 
-  Future<void> _onKanjiProgressUpdated(Map<Jlpt, KanjiProgress> progress) async {
-    _kanjiProgress.replaceAll(progress.values);
+  Future<void> _onCharacterProgressUpdated(Map<DifficultyGrade, CharacterProgress> progress) async {
+    _characterProgress.replaceAll(progress.values);
     if (disposed) return;
     notifyListeners();
   }
 
-  Future<void> onAlphabetTapped(Alphbabet alphbabet) async {
+  Future<void> onAlphabetTapped(Alphabet alphbabet) async {
     unawaited(HapticFeedback.mediumImpact());
     return switch (alphbabet) {
-      Alphbabet.hiragana => null,
-      Alphbabet.katakana => null,
-      Alphbabet.kanji => _navigator.goToKanjiGradeListScreen(),
+      Alphabet.hiragana => null,
+      Alphabet.katakana => null,
+      Alphabet.kanji => _navigator.goToCharacterGradeListScreen(),
     };
   }
 }
