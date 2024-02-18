@@ -1,8 +1,11 @@
 import 'package:drift/drift.dart';
 import 'package:kare_kyoushi/model/database/character/character_table.dart';
 import 'package:kare_kyoushi/model/database/word/word_table.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/model/type_converter/alphabet_type_converter.dart';
+import 'package:kare_kyoushi/model/type_converter/difficulty_grade_type_converter.dart';
 import 'package:kare_kyoushi/model/type_converter/knowledge_level_type_converter.dart';
 import 'package:kare_kyoushi/model/type_converter/list_converter.dart';
 import 'package:kare_kyoushi/model/webservice/word/meaning_entry.dart';
