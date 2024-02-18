@@ -7,8 +7,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
-import 'package:kare_kyoushi/model/enum/difficulty_grade.dart' as _i2;
+import 'package:kare_kyoushi/model/enum/alphabet.dart' as _i2;
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart' as _i3;
 
+import '../model/enum/alphabet.dart';
 import '../model/enum/difficulty_grade.dart';
 import '../screen/character_detail/character_detail_screen.dart';
 import '../screen/character_grade_list/character_grade_list_screen.dart';
@@ -103,6 +105,8 @@ mixin BaseNavigator {
       case RouteNames.characterListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterListScreen(
+            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet']
+                as Alphabet,
             difficultyGrade: (settings.arguments
                 as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
@@ -113,6 +117,8 @@ mixin BaseNavigator {
       case RouteNames.characterGradeListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterGradeListScreen(
+            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet']
+                as Alphabet,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -181,17 +187,25 @@ mixin BaseNavigator {
         arguments: {'key': key},
       );
   Future<void> goToCharacterListScreen({
-    required _i2.DifficultyGrade difficultyGrade,
+    required _i2.Alphabet alphabet,
+    required _i3.DifficultyGrade difficultyGrade,
     _i1.Key? key,
   }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.characterListScreen,
-        arguments: {'difficultyGrade': difficultyGrade, 'key': key},
+        arguments: {
+          'alphabet': alphabet,
+          'difficultyGrade': difficultyGrade,
+          'key': key
+        },
       );
-  Future<void> goToCharacterGradeListScreen({_i1.Key? key}) async =>
+  Future<void> goToCharacterGradeListScreen({
+    required _i2.Alphabet alphabet,
+    _i1.Key? key,
+  }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.characterGradeListScreen,
-        arguments: {'key': key},
+        arguments: {'alphabet': alphabet, 'key': key},
       );
   Future<void> goToCharacterDetailScreen({
     required String character,

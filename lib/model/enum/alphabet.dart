@@ -25,11 +25,11 @@ enum Alphabet {
     color: ThemeColors.accent3,
     value: 'Kanji',
     levels: [
-      DifficultyGrade.n1,
-      DifficultyGrade.n2,
-      DifficultyGrade.n3,
-      DifficultyGrade.n4,
       DifficultyGrade.n5,
+      DifficultyGrade.n4,
+      DifficultyGrade.n3,
+      DifficultyGrade.n2,
+      DifficultyGrade.n1,
     ],
   );
 

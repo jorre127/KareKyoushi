@@ -3,6 +3,8 @@ import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/model/database/character/character_table.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
+import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 
 part 'character_dao_storage.g.dart';
@@ -16,7 +18,10 @@ abstract class CharacterDaoStorage {
 
   Future<void> initCharacters(List<Character> characters);
 
-  Stream<List<Character>> getCharacterForLevelStream(int level);
+  Stream<List<Character>> getCharacterForLevelStream({
+    required DifficultyGrade level,
+    required Alphabet alphabet,
+  });
 
   Future<Character> getCharacter(String character);
 
@@ -40,15 +45,20 @@ class _CharacterDaoStorage extends DatabaseAccessor<KKDatabase> with _$_Characte
   Future<bool> hasData() async => await (db.dbCharacterTable.count().getSingle()) > 0;
 
   @override
-  Future<void> initCharacters(List<Character> characters) => batch((batch) => batch.insertAllOnConflictUpdate(db.dbCharacterTable, characters.map((character) => character.dbModel)));
+  Future<void> initCharacters(List<Character> characters) =>
+      batch((batch) => batch.insertAllOnConflictUpdate(db.dbCharacterTable, characters.map((character) => character.dbModel)));
 
   @override
-  Stream<List<Character>> getCharacterForLevelStream(int level) => (select(db.dbCharacterTable)
-        ..where(
-          (tbl) => tbl.difficultyGrade.equals(level),
-        ))
-      .watch()
-      .map((characterList) => characterList.map((character) => character.model).toList());
+  Stream<List<Character>> getCharacterForLevelStream({
+    required DifficultyGrade level,
+    required Alphabet alphabet,
+  }) =>
+      (select(db.dbCharacterTable)
+            ..where(
+              (tbl) => tbl.difficultyGrade.equalsValue(level) & tbl.alphbabet.equalsValue(alphabet),
+            ))
+          .watch()
+          .map((characterList) => characterList.map((character) => character.model).toList());
 
   @override
   Future<void> updateKnowledgeLevelForCharacter({

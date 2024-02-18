@@ -38,7 +38,7 @@ class HomeScreenState extends State<HomeScreen> {
                 subTitle: localization.getTranslation(alphabet.titleJpKey),
                 color: alphabet.color,
                 onTapped: () => viewModel.onAlphabetTapped(alphabet),
-                progress: viewModel.characterProgress.where((progress) => alphabet.levels.contains(progress.difficultyGrade)).toList(),
+                progress: viewModel.characterProgress[alphabet],
               ),
             ),
           ),

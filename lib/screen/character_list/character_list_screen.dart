@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/viewmodel/character_list/character_list_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
-import 'package:kare_kyoushi/widget/general/character/difficulty_grade_label.dart';
 import 'package:kare_kyoushi/widget/character_list/character_grid.dart';
+import 'package:kare_kyoushi/widget/general/character/difficulty_grade_label.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @flutterRoute
 class CharacterListScreen extends StatefulWidget {
+  final Alphabet alphabet;
   final DifficultyGrade difficultyGrade;
 
   const CharacterListScreen({
+    required this.alphabet,
     required this.difficultyGrade,
     super.key,
   });
@@ -25,7 +28,11 @@ class CharacterListScreenState extends State<CharacterListScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<CharacterListViewModel>(
-      create: () => getIt()..init(widget.difficultyGrade),
+      create: () => getIt()
+        ..init(
+          widget.difficultyGrade,
+          widget.alphabet,
+        ),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen.child(
         showHeader: true,
         padding: EdgeInsets.zero,

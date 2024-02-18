@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/character/character_dao_storage.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/viewmodel/character_grade_list/character_grade_list_viewmodel.dart';
@@ -14,11 +15,13 @@ abstract class CharacterRepository {
 
   Future<void> initCharacters();
 
-  Stream<List<Character>> getCharacterForLevelStream(int level);
+  Stream<List<Character>> getCharacterForLevelStream({required DifficultyGrade level, required Alphabet alphabet});
 
   Future<Character> getCharacter(String character);
 
-  Stream<Map<DifficultyGrade, CharacterProgress>> getCharacterProgressStream();
+  Stream<Map<Alphabet, List<CharacterProgress>>> getCharacterProgressStream();
+
+  Stream<List<CharacterProgress>> getCharacterProgressForAlphabetStream({required Alphabet alphabet});
 
   Future<void> updateKnowledgeLevelForCharacter({
     required KnowledgeLevel? level,
@@ -44,7 +47,14 @@ class _CharacterRepository implements CharacterRepository {
   }
 
   @override
-  Stream<List<Character>> getCharacterForLevelStream(int level) => _characterDaoStorage.getCharacterForLevelStream(level);
+  Stream<List<Character>> getCharacterForLevelStream({
+    required DifficultyGrade level,
+    required Alphabet alphabet,
+  }) =>
+      _characterDaoStorage.getCharacterForLevelStream(
+        level: level,
+        alphabet: alphabet,
+      );
 
   @override
   Future<void> updateKnowledgeLevelForCharacter({
@@ -60,22 +70,35 @@ class _CharacterRepository implements CharacterRepository {
   Future<Character> getCharacter(String character) => _characterDaoStorage.getCharacter(character);
 
   @override
-  Stream<Map<DifficultyGrade, CharacterProgress>> getCharacterProgressStream() => _characterDaoStorage.getCharacterStream().map(
-        (event) {
-          final characterProgressMap = <DifficultyGrade, CharacterProgress>{};
-          final sortedCharacter = event.groupListsBy((item) => item.difficultyGrade?.rank);
-          for (final level in sortedCharacter.keys.toList().reversed) {
-            final character = sortedCharacter[level];
-            if (level == null || character == null) continue;
-            final difficultyGradeLevel = DifficultyGrade.values.firstWhere((character) => character.rank == level);
-            characterProgressMap[difficultyGradeLevel] = CharacterProgress(
-              difficultyGrade: difficultyGradeLevel,
-              totalCharacter: character.length,
-              mehCharacter: character.where((character) => character.knowledgeLevel == KnowledgeLevel.meh).length,
-              gotItCharacter: character.where((character) => character.knowledgeLevel == KnowledgeLevel.gotIt).length,
-            );
+  Stream<Map<Alphabet, List<CharacterProgress>>> getCharacterProgressStream() => _characterDaoStorage.getCharacterStream().map(
+        (characters) {
+          final progressMap = <Alphabet, List<CharacterProgress>>{};
+          for (final alphabet in Alphabet.values) {
+            progressMap[alphabet] = _getProgressForCharacters(characters.where((character) => character.alphbabet == alphabet).toList());
           }
-          return characterProgressMap;
+          return progressMap;
         },
       );
+
+  List<CharacterProgress> _getProgressForCharacters(List<Character> characters) {
+    final characterProgressList = <CharacterProgress>[];
+    final sortedCharacter = characters.groupListsBy((item) => item.difficultyGrade?.rank);
+    for (final level in sortedCharacter.keys.toList().reversed) {
+      final character = sortedCharacter[level];
+      if (level == null || character == null) continue;
+      final difficultyGradeLevel = DifficultyGrade.values.firstWhere((character) => character.rank == level);
+      characterProgressList.add(
+        CharacterProgress(
+          difficultyGrade: difficultyGradeLevel,
+          totalCharacter: character.length,
+          mehCharacter: character.where((character) => character.knowledgeLevel == KnowledgeLevel.meh).length,
+          gotItCharacter: character.where((character) => character.knowledgeLevel == KnowledgeLevel.gotIt).length,
+        ),
+      );
+    }
+    return characterProgressList..sort((a, b) => b.difficultyGrade.rank.compareTo(a.difficultyGrade.rank));
+  }
+
+  @override
+  Stream<List<CharacterProgress>> getCharacterProgressForAlphabetStream({required Alphabet alphabet}) => getCharacterProgressStream().map((event) => event[alphabet]!);
 }
