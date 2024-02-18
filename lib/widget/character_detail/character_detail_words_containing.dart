@@ -15,7 +15,10 @@ class CharacterDetailWordsContaining extends StatelessWidget {
         itemCount: words.length,
         itemBuilder: (context, index) {
           final word = words[index];
-          return CharacterDetailListWordsContainingItem(word: word);
+          return CharacterDetailListWordsContainingItem(
+            word: word,
+            isLast: index == (words.length - 1),
+          );
         },
       );
 }

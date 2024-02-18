@@ -27,18 +27,18 @@ class CharacterGradeListScreenState extends State<CharacterGradeListScreen> {
     return ProviderWidget<CharacterGradeListViewModel>(
       create: () => getIt()..init(widget.alphabet),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
-        title: localization.kanjiGradeListScreenTitle,
+        title: localization.characterGradeListScreenTitle(localization.getTranslation(viewModel.alphabet.titleKey)),
         showHeader: true,
-        children:viewModel.alphabet.levels.map(
+        children: viewModel.alphabet.levels.map(
           (difficultyGrade) {
             final characterprogress = viewModel.characterProgress.firstWhereOrNull((progress) => progress.difficultyGrade == difficultyGrade);
             return Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: CharacterGradeListItem(
                 difficultyGrade: difficultyGrade,
-                total: characterprogress?.totalCharacter??0,
-                current1: characterprogress?.gotItCharacter??0,
-                current2: characterprogress?.mehCharacter??0,
+                total: characterprogress?.totalCharacter ?? 0,
+                current1: characterprogress?.gotItCharacter ?? 0,
+                current2: characterprogress?.mehCharacter ?? 0,
                 onTapped: () => viewModel.onGradeTapped(difficultyGrade),
               ),
             );

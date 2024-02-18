@@ -325,8 +325,8 @@ class LocalizationKeys {
 
   /// Translations:
   ///
-  /// en:  **'What level of kanji do you want to learn today?'**
-  static const kanjiGradeListScreenTitle = 'kanji_grade_list_screen_title';
+  /// en:  **'What level of [arg1 string] do you want to learn today?'**
+  static const characterGradeListScreenTitle = 'character_grade_list_screen_title';
 
   /// Translations:
   ///
@@ -432,5 +432,20 @@ class LocalizationKeys {
   ///
   /// en:  **'Got it!'**
   static const kanjiDetailGotIt = 'kanji_detail_got_it';
+
+  /// Translations:
+  ///
+  /// en:  **'Standard'**
+  static const standardTitle = 'standard_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Dakuten'**
+  static const dakutenTitle = 'dakuten_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Combined'**
+  static const combinedTitle = 'combined_title';
 
 }

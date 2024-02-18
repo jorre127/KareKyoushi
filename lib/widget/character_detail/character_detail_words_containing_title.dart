@@ -15,7 +15,8 @@ class CharacterDetailWordsContainingTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: DataProviderWidget(childBuilder: (context, theme, localization) {
-        return Padding(
+        return Container(
+          color: theme.colorsTheme.bgCard,
           padding: const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 8,

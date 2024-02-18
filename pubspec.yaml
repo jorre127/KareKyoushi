@@ -76,6 +76,7 @@ flutter:
   assets:
     - assets/jlpt_levels/words/
     - assets/jlpt_levels/kanji/
+    - assets/dictionary/kana/
     - assets/api/
     - assets/fonts/
     - assets/fonts/sf_pro/

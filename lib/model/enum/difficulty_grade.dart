@@ -3,6 +3,27 @@ import 'package:kare_kyoushi/styles/theme_colors.dart';
 import 'package:kare_kyoushi/util/locale/localization_keys.dart';
 
 enum DifficultyGrade {
+  combined(
+    titleKey: LocalizationKeys.combinedTitle,
+    difficultyKey: '',
+    color: ThemeColors.accent1,
+    colorDark: ThemeColors.accent1Dark,
+    rank: 6,
+  ),
+  dakuten(
+    titleKey: LocalizationKeys.dakutenTitle,
+    difficultyKey: '',
+    color: ThemeColors.accent3,
+    colorDark: ThemeColors.accent3Dark,
+    rank: 7,
+  ),
+  standard(
+    titleKey: LocalizationKeys.standardTitle,
+    difficultyKey: '',
+    color: ThemeColors.accent5,
+    colorDark: ThemeColors.accent5Dark,
+    rank: 8,
+  ),
   n5(
     titleKey: LocalizationKeys.n5Title,
     difficultyKey: LocalizationKeys.n5Difficulty,

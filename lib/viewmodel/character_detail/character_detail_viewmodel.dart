@@ -1,6 +1,7 @@
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/word/word_dao_storage.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
@@ -22,6 +23,8 @@ class CharacterDetailViewModel with ChangeNotifierEx {
   Character? get character => _character;
 
   List<Word> get wordsContaining => _wordsContaining;
+
+  bool get isKanji => _character?.alphbabet == Alphabet.kanji;
 
   CharacterDetailViewModel(
     this._navigator,

@@ -63,7 +63,7 @@
   "home_section_study_subject": "Your study subjects",
   "home_section_item_saved_words": "Your saved words",
   "home_section_item_saved_word_jp": "言葉",
-  "kanji_grade_list_screen_title": "What level of kanji do you want to learn today?",
+  "character_grade_list_screen_title": "What level of %1$s do you want to learn today?",
   "n5_title": "N5",
   "n4_title": "N4",
   "n3_title": "N3",
@@ -84,5 +84,8 @@
   "noun": "Noun",
   "adjective": "Adjective",
   "kanji_detail_meh": "Meh",
-  "kanji_detail_got_it": "Got it!"
+  "kanji_detail_got_it": "Got it!",
+  "standard_title": "Standard",
+  "dakuten_title": "Dakuten",
+  "combined_title": "Combined"
 }

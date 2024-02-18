@@ -5,15 +5,15 @@ import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
-import 'package:kare_kyoushi/widget/general/slivers/sliver_sized_box.dart';
-import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_divider.dart';
-import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_buttons.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_header.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_words_containing.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_words_containing_title.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_meanings.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_readings.dart';
+import 'package:kare_kyoushi/widget/general/slivers/sliver_sized_box.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_divider.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicator.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @FlutterRoute(isFullscreenDialog: true)
@@ -51,37 +51,65 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
               children: [
                 Container(
                   margin: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: theme.colorsTheme.bgCard,
-                    borderRadius: ThemeDimens.largeCardBorderRadius,
-                  ),
                   child: Column(
                     children: [
-                      CharacterDetailHeader(
-                        difficultyGrade: character.difficultyGrade ?? DifficultyGrade.n5,
-                        onCloseTapped: viewModel.onCloseTapped,
-                        character: character,
+                      Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorsTheme.bgCard,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(ThemeDimens.largeCardBorderRadiusValue),
+                            topRight: Radius.circular(ThemeDimens.largeCardBorderRadiusValue),
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            CharacterDetailHeader(
+                              difficultyGrade: character.difficultyGrade ?? DifficultyGrade.n5,
+                              onCloseTapped: viewModel.onCloseTapped,
+                              character: character,
+                            ),
+                            const KKDivider(),
+                          ],
+                        ),
                       ),
-                      const KKDivider(),
                       Expanded(
                         child: CustomScrollView(
+                          physics: const ClampingScrollPhysics(),
                           slivers: [
                             SliverToBoxAdapter(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CharacterMeanings(characterMeanings: character.meanings),
-                                    const SizedBox(height: 24),
-                                    CharacterReadings(character: character),
-                                  ],
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: theme.colorsTheme.bgCard,
+                                  borderRadius: viewModel.isKanji
+                                      ? null
+                                      : BorderRadius.only(
+                                          bottomLeft: Radius.circular(ThemeDimens.largeCardBorderRadiusValue),
+                                          bottomRight: Radius.circular(ThemeDimens.largeCardBorderRadiusValue),
+                                        ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      if (viewModel.isKanji) ...[
+                                        CharacterMeanings(characterMeanings: character.meanings),
+                                        const SizedBox(height: 24),
+                                      ],
+                                      CharacterReadings(
+                                        character: character,
+                                        isKanji: viewModel.isKanji,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                            const SliverSizedBox(height: 4),
-                            CharacterDetailWordsContainingTitle(character: character),
-                            CharacterDetailWordsContaining(words: viewModel.wordsContaining),
+                            if (viewModel.isKanji) ...[
+                              CharacterDetailWordsContainingTitle(character: character),
+                              CharacterDetailWordsContaining(words: viewModel.wordsContaining),
+                              const SliverSizedBox(height: 100),
+                            ],
                           ],
                         ),
                       ),

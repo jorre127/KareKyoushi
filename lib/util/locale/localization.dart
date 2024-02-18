@@ -379,8 +379,8 @@ class Localization {
 
   /// Translations:
   ///
-  /// en:  **'What level of kanji do you want to learn today?'**
-  String get kanjiGradeListScreenTitle => _t(LocalizationKeys.kanjiGradeListScreenTitle);
+  /// en:  **'What level of [arg1 string] do you want to learn today?'**
+  String characterGradeListScreenTitle(String arg1) => _t(LocalizationKeys.characterGradeListScreenTitle, args: <dynamic>[arg1]);
 
   /// Translations:
   ///
@@ -486,6 +486,21 @@ class Localization {
   ///
   /// en:  **'Got it!'**
   String get kanjiDetailGotIt => _t(LocalizationKeys.kanjiDetailGotIt);
+
+  /// Translations:
+  ///
+  /// en:  **'Standard'**
+  String get standardTitle => _t(LocalizationKeys.standardTitle);
+
+  /// Translations:
+  ///
+  /// en:  **'Dakuten'**
+  String get dakutenTitle => _t(LocalizationKeys.dakutenTitle);
+
+  /// Translations:
+  ///
+  /// en:  **'Combined'**
+  String get combinedTitle => _t(LocalizationKeys.combinedTitle);
 
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 

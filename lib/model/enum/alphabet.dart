@@ -8,21 +8,28 @@ enum Alphabet {
     titleKey: LocalizationKeys.hiragana,
     titleJpKey: LocalizationKeys.hiraganaJp,
     color: ThemeColors.accent5,
-    levels: [],
+    levels: [
+      DifficultyGrade.standard,
+      DifficultyGrade.dakuten,
+      DifficultyGrade.combined,
+    ],
     value: 'Hiragana',
   ),
   katakana(
     titleKey: LocalizationKeys.katakana,
     titleJpKey: LocalizationKeys.katakanaJp,
-    color: ThemeColors.accent1,
-    levels: [],
+    color: ThemeColors.accent3,
+    levels: [
+      DifficultyGrade.standard,
+      DifficultyGrade.dakuten,
+      DifficultyGrade.combined,
+    ],
     value: 'Katakana',
-
   ),
   kanji(
     titleKey: LocalizationKeys.kanji,
     titleJpKey: LocalizationKeys.kanjiJp,
-    color: ThemeColors.accent3,
+    color: ThemeColors.accent1,
     value: 'Kanji',
     levels: [
       DifficultyGrade.n5,
