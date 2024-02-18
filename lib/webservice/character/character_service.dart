@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
@@ -68,7 +69,7 @@ class CharacterService {
 
   Future<List<Character>> _getKanji() async {
     final kanjiXml = await rootBundle.loadString(_kanjiXmlPath);
-    final xmlDocument = XmlDocument.parse(kanjiXml);
+    final xmlDocument = await compute(XmlDocument.parse, kanjiXml);
     final dictionary = xmlDocument.findElements('kanjidic2').first;
     final charactersElements = dictionary.findElements('character');
 
