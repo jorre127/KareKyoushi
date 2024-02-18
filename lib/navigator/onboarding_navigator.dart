@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/repository/login/login_repository.dart';
@@ -16,7 +17,7 @@ class OnboardingNavigator {
   );
 
   Future<void> goToNextScreen() async {
-    if (_localStorage.hasAnalyticsPermission == null) return _navigator.goToAnalyticsPermissionScreen();
+    if (_localStorage.hasAnalyticsPermission == null && !kIsWeb) return _navigator.goToAnalyticsPermissionScreen();
     if (_loginRepository.isNotLoggedIn) return _navigator.goToLoginScreen();
     return _navigator.goToMainScreen();
   }
