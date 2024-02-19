@@ -8,7 +8,7 @@ enum DifficultyGrade {
     difficultyKey: LocalizationKeys.unkownDifficulty,
     color: ThemeColors.stroke,
     colorDark: ThemeColors.bgDefault,
-    rank: 9,
+    rank: 0,
   ),
 
   combined(
