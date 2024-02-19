@@ -29,6 +29,7 @@ class CharacterGradeListScreenState extends State<CharacterGradeListScreen> {
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
         title: localization.characterGradeListScreenTitle(localization.getTranslation(viewModel.alphabet.titleKey)),
         showHeader: true,
+        isScrollable: true,
         children: viewModel.alphabet.levels.map(
           (difficultyGrade) {
             final characterprogress = viewModel.characterProgress.firstWhereOrNull((progress) => progress.difficultyGrade == difficultyGrade);
