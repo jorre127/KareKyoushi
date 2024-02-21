@@ -7,6 +7,7 @@ import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/model/webservice/word/word.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/repository/character/character_repository.dart';
+import 'package:kare_kyoushi/util/extension/string_extension.dart';
 
 @injectable
 class CharacterDetailViewModel with ChangeNotifierEx {
@@ -23,7 +24,8 @@ class CharacterDetailViewModel with ChangeNotifierEx {
 
   Character? get character => _character;
 
-  List<Word> get wordsContaining => _selectedReading == null ? _wordsContaining : _wordsContaining.where((element) => element.reading.contains(_selectedReading!)).toList();
+  List<Word> get wordsContaining =>
+      _selectedReading == null ? _wordsContaining : _wordsContaining.where((element) => element.reading.contains(_selectedReading!.filteredReading)).toList();
 
   bool get isKanji => _character?.alphbabet == Alphabet.kanji;
 
