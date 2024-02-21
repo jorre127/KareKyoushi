@@ -4,11 +4,13 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 class SpacingWrap extends StatelessWidget {
   final Axis direction;
   final double spacing;
+  final double runSpacing;
   final List<Widget> children;
   final WidgetBuilder? separatorBuilder;
 
   const SpacingWrap({
     required this.children,
+    this.runSpacing = 0,
     this.spacing = 16,
     this.direction = Axis.horizontal,
     this.separatorBuilder,
@@ -18,6 +20,7 @@ class SpacingWrap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      runSpacing: runSpacing,
       children: children
           .mapIndexed(
             (index, child) {

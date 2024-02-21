@@ -33,7 +33,10 @@ class CharacterListViewModel with ChangeNotifierEx {
   }
 
   Future<void> _oncharacterUpdated(List<Character> character) async {
-    _characters.replaceAll((character)..sortBy((item) => item.frequency ?? 999));
+    _characters.replaceAll((character));
+    if (_alphabet == Alphabet.kanji) {
+      _characters.sortBy((item) => item.frequency ?? 999);
+    }
     if (disposed) return;
     notifyListeners();
   }

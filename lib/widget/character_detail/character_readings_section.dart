@@ -33,6 +33,7 @@ class CharacterReadingsSection extends StatelessWidget {
             const SizedBox(height: 2),
             SpacingWrap(
               spacing: 4,
+              runSpacing: 4,
               children: readings
                   .map((reading) => CharacterReadingsSectionItem(
                         reading: reading,
