@@ -37,6 +37,8 @@ class CharacterDetailListWordsContainingItemHeader extends StatelessWidget {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(ThemeDimens.tagBorderRadiusValue),
             topRight: Radius.circular(ThemeDimens.tagBorderRadiusValue),
+            bottomLeft: Radius.circular(isExpanded ? 0 : ThemeDimens.tagBorderRadiusValue),
+            bottomRight: Radius.circular(isExpanded ? 0 : ThemeDimens.tagBorderRadiusValue),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: 12,

@@ -50,7 +50,7 @@ class CharacterDetailHeader extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 48),
+                const SizedBox(height: 16),
                 CharacterAndReading(character: character),
                 const SizedBox(height: 64),
               ],

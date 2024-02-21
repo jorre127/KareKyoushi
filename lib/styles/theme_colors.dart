@@ -26,12 +26,14 @@ class ThemeColors {
   static const accent3 = Color.fromRGBO(195, 165, 9, 1);
   static const accent4 = Color.fromRGBO(91, 161, 2, 1);
   static const accent5 = Color.fromRGBO(0, 166, 136, 1);
+  static const accent6 = Color.fromRGBO(110, 102, 158, 1);
 
   static const accent1Dark = Color.fromRGBO(132, 29, 66, 1);
   static const accent2Dark = Color.fromRGBO(157, 57, 34, 1);
   static const accent3Dark = Color.fromRGBO(113, 100, 30, 1);
   static const accent4Dark = Color.fromRGBO(63, 100, 15, 1);
   static const accent5Dark = Color.fromRGBO(7, 88, 73, 1);
+  static const accent6Dark = Color.fromRGBO(78, 71, 120, 1);
 
   // Backgrounds
   static const bgDefault = Color.fromRGBO(20, 22, 27, 1);

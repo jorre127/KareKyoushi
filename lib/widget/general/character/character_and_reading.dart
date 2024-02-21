@@ -11,7 +11,7 @@ class CharacterAndReading extends StatelessWidget {
   const CharacterAndReading({
     required this.character,
     this.style,
-    this.spacing = 8,
+    this.spacing = 4,
     super.key,
   });
 
