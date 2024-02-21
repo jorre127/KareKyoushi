@@ -8,8 +8,25 @@ import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_progress_indicat
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 enum ButtonType {
+  small,
   regular,
   text,
+}
+
+class ButtonData {
+  final TextStyle enabledTextStyle;
+  final TextStyle disabledTextStyle;
+  final Color? enabledButtonColor;
+  final Color? disabledButtonColor;
+  final EdgeInsets padding;
+
+  ButtonData({
+    required this.enabledTextStyle,
+    required this.disabledTextStyle,
+    required this.enabledButtonColor,
+    required this.disabledButtonColor,
+    required this.padding,
+  });
 }
 
 class KKButton extends StatelessWidget {
@@ -43,59 +60,54 @@ class KKButton extends StatelessWidget {
     super.key,
   });
 
-  TextStyle _enabledTextStyle(KKTheme theme) {
-    switch (buttonType) {
-      case ButtonType.regular:
-        return theme.textThemes.inverseCoreTextTheme.titleHeader;
-      case ButtonType.text:
-        return theme.textThemes.accent5TextTheme.titleHeader;
-    }
-  }
-
-  TextStyle _disabledTextStyle(KKTheme theme) {
-    switch (buttonType) {
-      case ButtonType.regular:
-        return theme.textThemes.inverseCoreTextTheme.titleHeader;
-      case ButtonType.text:
-        return theme.textThemes.disabledTextTheme.titleHeader;
-    }
-  }
-
-  Color? _enabledButtonColor(KKTheme theme) {
-    switch (buttonType) {
-      case ButtonType.regular:
-        return theme.colorsTheme.button;
-      case ButtonType.text:
-        return null;
-    }
-  }
-
-  Color? _disabledButtonColor(KKTheme theme) {
-    switch (buttonType) {
-      case ButtonType.regular:
-        return theme.colorsTheme.bgCard;
-      case ButtonType.text:
-        return null;
-    }
-  }
+  ButtonData _getButtonData({required KKTheme theme, required ButtonType type}) => switch (type) {
+        ButtonType.small => ButtonData(
+            enabledTextStyle: theme.textThemes.inverseCoreTextTheme.action,
+            disabledTextStyle: theme.textThemes.inverseCoreTextTheme.action,
+            enabledButtonColor: theme.colorsTheme.button,
+            disabledButtonColor: theme.colorsTheme.bgCard,
+            padding: const EdgeInsets.all(8),
+          ),
+        ButtonType.regular => ButtonData(
+            enabledTextStyle: theme.textThemes.inverseCoreTextTheme.action,
+            disabledTextStyle: theme.textThemes.inverseCoreTextTheme.action,
+            enabledButtonColor: theme.colorsTheme.button,
+            disabledButtonColor: theme.colorsTheme.bgCard,
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 24,
+            ),
+          ),
+        ButtonType.text => ButtonData(
+            enabledTextStyle: theme.textThemes.accent5TextTheme.titleHeader,
+            disabledTextStyle: theme.textThemes.disabledTextTheme.titleHeader,
+            enabledButtonColor: null,
+            disabledButtonColor: null,
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 24,
+            ),
+          ),
+      };
 
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) {
+        final data = _getButtonData(
+          theme: theme,
+          type: buttonType,
+        );
         final content = Row(
           mainAxisSize: isExpanded ? MainAxisSize.max : MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 24,
-              ),
+              padding: data.padding,
               child: isLoading
                   ? const KKProgressIndicator.light()
                   : AnimatedDefaultTextStyle(
-                      style: isEnabled ? _enabledTextStyle(theme) : _disabledTextStyle(theme),
+                      style: isEnabled ? data.enabledTextStyle : data.disabledTextStyle,
                       duration: ThemeDurations.shortAnimationDuration,
                       child: Text(text),
                     ),
@@ -112,7 +124,7 @@ class KKButton extends StatelessWidget {
                 : null,
             child: AnimatedContainer(
               decoration: BoxDecoration(
-                color: color ?? (isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme)),
+                color: color ?? (isEnabled ? data.enabledButtonColor : data.disabledButtonColor),
                 borderRadius: ThemeDimens.buttonBorderRadius,
               ),
               duration: ThemeDurations.shortAnimationDuration,
@@ -122,7 +134,7 @@ class KKButton extends StatelessWidget {
         }
         return AnimatedContainer(
           decoration: BoxDecoration(
-            color: color ?? (isEnabled ? _enabledButtonColor(theme) : _disabledButtonColor(theme)),
+            color: color ?? (isEnabled ? data.enabledButtonColor : data.disabledButtonColor),
             borderRadius: ThemeDimens.buttonBorderRadius,
           ),
           duration: ThemeDurations.shortAnimationDuration,

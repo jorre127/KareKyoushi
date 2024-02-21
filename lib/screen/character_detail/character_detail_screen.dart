@@ -100,6 +100,9 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                                       CharacterReadings(
                                         character: character,
                                         isKanji: viewModel.isKanji,
+                                        onReadingTapped: viewModel.onReadingTapped,
+                                        selectedReading: viewModel.selectedReading,
+                                        selectedColor: character.difficultyGrade.color,
                                       ),
                                     ],
                                   ),
@@ -107,7 +110,11 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                               ),
                             ),
                             if (viewModel.isKanji) ...[
-                              CharacterDetailWordsContainingTitle(character: character),
+                              CharacterDetailWordsContainingTitle(
+                                character: character,
+                                selectedReading: viewModel.selectedReading,
+                                onRemoveTapped: ()=> viewModel.onReadingTapped(null),
+                              ),
                               CharacterDetailWordsContaining(words: viewModel.wordsContaining),
                               const SliverSizedBox(height: 100),
                             ],

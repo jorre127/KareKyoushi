@@ -6,10 +6,16 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 class CharacterReadingsSection extends StatelessWidget {
   final String title;
   final List<String> readings;
+  final ValueChanged<String> onReadingTapped;
+  final Color selectedColor;
+  final String? selectedReading;
 
   const CharacterReadingsSection({
     required this.title,
     required this.readings,
+    required this.onReadingTapped,
+    required this.selectedColor,
+    required this.selectedReading,
     super.key,
   });
 
@@ -27,11 +33,18 @@ class CharacterReadingsSection extends StatelessWidget {
             const SizedBox(height: 2),
             SpacingWrap(
               spacing: 4,
-              children: readings.map((reading) => CharacterReadingsSectionItem(reading: reading)).toList(),
+              children: readings
+                  .map((reading) => CharacterReadingsSectionItem(
+                        reading: reading,
+                        onReadingTapped: onReadingTapped,
+                        selectedColor: selectedColor,
+                        selectedReading: selectedReading,
+                      ))
+                  .toList(),
               separatorBuilder: (context) => Text(
                 ',',
                 style: theme.textThemes.xtraSubtleTextTheme.copySubtle,
-              ), 
+              ),
             ),
           ],
         );

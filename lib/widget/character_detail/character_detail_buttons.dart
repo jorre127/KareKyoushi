@@ -24,7 +24,7 @@ class CharacterDetailButtons extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: theme.colorsTheme.bgCard,
-          borderRadius: ThemeDimens.hugeCardBorderRadius,
+          borderRadius: ThemeDimens.humongousCardBorderRadius,
           border: Border.all(color: theme.colorsTheme.stroke),
           boxShadow: theme.shadows.cardShadow,
         ),
@@ -32,6 +32,7 @@ class CharacterDetailButtons extends StatelessWidget {
           children: [
             Expanded(
               child: KKButton(
+                buttonType: ButtonType.small,
                 text: localization.kanjiDetailMeh,
                 onClick: onMehTapped,
                 color: character.knowledgeLevel == KnowledgeLevel.meh ? character.difficultyGrade.colorDark : null,
@@ -40,6 +41,7 @@ class CharacterDetailButtons extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: KKButton(
+                buttonType: ButtonType.small,
                 text: localization.kanjiDetailGotIt,
                 onClick: onGotItTapped,
                 color: character.knowledgeLevel == KnowledgeLevel.gotIt ? character.difficultyGrade.color : null,

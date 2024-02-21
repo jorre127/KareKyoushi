@@ -76,6 +76,8 @@ class KKTextTheme {
   final TextStyle copySubtle;
   final TextStyle copyXtraSubtle;
 
+  final TextStyle action;
+
   const KKTextTheme({
     required this.titleHuge,
     required this.titleBig,
@@ -96,6 +98,7 @@ class KKTextTheme {
     required this.copyDefault,
     required this.copySubtle,
     required this.copyXtraSubtle,
+    required this.action,
   });
 }
 
@@ -386,6 +389,7 @@ class KKTheme {
         copyDefault: TextStyle(fontSize: 18, color: color, fontFamily: ThemeFonts.body, height: 28 / 18),
         copySubtle: TextStyle(fontSize: 16, color: color, fontFamily: ThemeFonts.body, height: 28 / 16),
         copyXtraSubtle: TextStyle(fontSize: 14, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w400, height: 28 / 14),
+        action: TextStyle(fontSize: 20, color: color, fontFamily: ThemeFonts.body, fontWeight: FontWeight.w500, height: 28 / 20),
       );
 
   const KKTheme._({

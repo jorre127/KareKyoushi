@@ -21,6 +21,7 @@ class ThemeDimens {
   static const double enabledOpacity = 1;
   static const double disabledOpacity = 0.24;
 
+  static const double smallIcon = 16;
   static const double iconSize = 24;
   static const double largeIcon = 32;
 
@@ -30,6 +31,7 @@ class ThemeDimens {
   static BorderRadius cardBorderRadius = BorderRadius.circular(16);
   static BorderRadius largeCardBorderRadius = BorderRadius.circular(20);
   static BorderRadius hugeCardBorderRadius = BorderRadius.circular(24);
+  static BorderRadius humongousCardBorderRadius = BorderRadius.circular(32);
   static BorderRadius tagBorderRadius = BorderRadius.circular(tagBorderRadiusValue);
   static double tagBorderRadiusValue = 8;
   static double largeCardBorderRadiusValue = 20;
