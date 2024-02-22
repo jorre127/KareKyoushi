@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
@@ -26,7 +25,7 @@ class WordService {
 
   Future<List<Word>> getWords() async {
     final kanjiXml = await rootBundle.loadString(_wordsXmlPath);
-    final xmlDocument = await compute(XmlDocument.parse, kanjiXml);
+    final xmlDocument = XmlDocument.parse(kanjiXml);
     final dictionary = xmlDocument.findElements('JMdict').first;
     final wordEntries = dictionary.findElements('entry');
 
