@@ -64,7 +64,7 @@ lane :ci_alpha do
     ensure_git_status_clean
     pr
     git_reset
-    alpha_android
+    #alpha_android
     alpha_ios_build
     git_reset
 end
