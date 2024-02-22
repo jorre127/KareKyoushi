@@ -290,7 +290,7 @@ end
 private_lane :getAppNameIOS do |options|
   flavor = options[:flavor]
   if flavor == "alpha" &&
-      appcenter_app_name = "KK-iOS-Alpha"
+      appcenter_app_name = "kareKyoushi-Alpha"
   elsif flavor == "beta"
       appcenter_app_name = "KK-iOS-Beta"
   elsif flavor == "prod"
