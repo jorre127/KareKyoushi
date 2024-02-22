@@ -35,6 +35,7 @@ class CharacterListScreenState extends State<CharacterListScreen> {
         ),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen.child(
         showHeader: true,
+        hasBottomSafeSpace: false,
         padding: EdgeInsets.zero,
         titleWidget: Row(
           mainAxisAlignment: MainAxisAlignment.center,
