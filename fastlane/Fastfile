@@ -234,7 +234,7 @@ private_lane :convertAppToIpa do |options|
             scheme: options[:flavor],
             configuration: "Release-#{options[:flavor]}",
             export_options: {
-                method: "enterprise",
+                method: "ad-hoc",
                 provisioningProfiles: {
                     "com.kare.kyoushi.app.dev" => "KareKyoushi Debug",
                     "com.kare.kyoushi.app.alpha" => "KareKyoushi Alpha",
