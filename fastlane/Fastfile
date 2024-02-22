@@ -222,9 +222,9 @@ private_lane :buildAppIOSOnly do |options|
 end
 
 private_lane :podRepoUpdate do |options|
-      Dir.chdir "ios" do
-        sh("pod", "repo", "update")
-      end
+      #Dir.chdir "ios" do
+        #sh("pod", "repo", "update")
+      #end
 end
 
 private_lane :convertAppToIpa do |options|
