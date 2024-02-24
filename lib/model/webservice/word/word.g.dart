@@ -53,13 +53,13 @@ Map<String, dynamic> _$WordToJson(Word instance) {
 }
 
 const _$DifficultyGradeEnumMap = {
-  DifficultyGrade.unkown: 'unkown',
-  DifficultyGrade.combined: 'combined',
-  DifficultyGrade.dakuten: 'dakuten',
   DifficultyGrade.standard: 'standard',
+  DifficultyGrade.dakuten: 'dakuten',
+  DifficultyGrade.combined: 'combined',
   DifficultyGrade.n5: 'n5',
   DifficultyGrade.n4: 'n4',
   DifficultyGrade.n3: 'n3',
   DifficultyGrade.n2: 'n2',
   DifficultyGrade.n1: 'n1',
+  DifficultyGrade.unkown: 'unkown',
 };

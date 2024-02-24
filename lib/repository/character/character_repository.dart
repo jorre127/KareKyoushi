@@ -5,6 +5,7 @@ import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
+import 'package:kare_kyoushi/util/extension/list_extension.dart';
 import 'package:kare_kyoushi/viewmodel/character_grade_list/character_grade_list_viewmodel.dart';
 import 'package:kare_kyoushi/webservice/character/character_service.dart';
 
@@ -51,10 +52,12 @@ class _CharacterRepository implements CharacterRepository {
     required DifficultyGrade level,
     required Alphabet alphabet,
   }) =>
-      _characterDaoStorage.getCharacterForLevelStream(
-        level: level,
-        alphabet: alphabet,
-      );
+      _characterDaoStorage
+          .getCharacterForLevelStream(
+            level: level,
+            alphabet: alphabet,
+          )
+          .map((characters) => alphabet == Alphabet.kanji ? (characters..sortByX([(character) => character.frequency ?? 999])) : characters);
 
   @override
   Future<void> updateKnowledgeLevelForCharacter({

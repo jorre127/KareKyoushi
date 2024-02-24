@@ -37,9 +37,12 @@ class CharacterDetailViewModel with ChangeNotifierEx {
     this._characterRepository,
   );
 
-  Future<void> init(String characterValue) async {
+  Future<void> init(String characterValue, Character? character) async {
     _characterValue = characterValue;
-    await _getCharacter();
+    _character = character;
+    if (_character == null) {
+      await _getCharacter();
+    }
     await _initWordsContaining();
   }
 

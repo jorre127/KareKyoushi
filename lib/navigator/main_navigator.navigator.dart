@@ -7,11 +7,15 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i1;
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart' as _i5;
+import 'package:kare_kyoushi/model/character/character.dart' as _i4;
 import 'package:kare_kyoushi/model/enum/alphabet.dart' as _i2;
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart' as _i3;
 
+import '../model/character/character.dart';
 import '../model/enum/alphabet.dart';
 import '../model/enum/difficulty_grade.dart';
+import '../screen/character_detail/character_detail_list_screen.dart';
 import '../screen/character_detail/character_detail_screen.dart';
 import '../screen/character_grade_list/character_grade_list_screen.dart';
 import '../screen/character_list/character_list_screen.dart';
@@ -49,6 +53,46 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.characterListScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => CharacterListScreen(
+            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
+            difficultyGrade: (settings.arguments as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.characterDetailScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => CharacterDetailScreen(
+            character: (settings.arguments as Map<String, dynamic>?)?['character'] as Character?,
+            characterValue: (settings.arguments as Map<String, dynamic>)['characterValue'] as String,
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: true,
+        );
+      case RouteNames.characterDetailListScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => CharacterDetailListScreen(
+            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
+            difficultyGrade: (settings.arguments as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
+            character: (settings.arguments as Map<String, dynamic>)['character'] as Character,
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.characterGradeListScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => CharacterGradeListScreen(
+            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -102,88 +146,21 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
-      case RouteNames.characterListScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => CharacterListScreen(
-            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet']
-                as Alphabet,
-            difficultyGrade: (settings.arguments
-                as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.characterGradeListScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => CharacterGradeListScreen(
-            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet']
-                as Alphabet,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.characterDetailScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => CharacterDetailScreen(
-            character: (settings.arguments as Map<String, dynamic>)['character']
-                as String,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: true,
-        );
     }
     return null;
   }
 
-  Future<void> goToHomeScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
+  Future<void> goToHomeScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.homeScreen,
         arguments: {'key': key},
       );
-  void goToSplashScreen({_i1.Key? key}) =>
-      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
+  void goToSplashScreen({_i1.Key? key}) => navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.splashScreen,
         (_) => false,
         arguments: {'key': key},
       );
-  Future<void> goToLicenseScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
+  Future<void> goToLicenseScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.licenseScreen,
-        arguments: {'key': key},
-      );
-  void goToMainScreen({_i1.Key? key}) =>
-      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
-        RouteNames.mainScreen,
-        (_) => false,
-        arguments: {'key': key},
-      );
-  Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.analyticsPermissionScreen,
-        arguments: {'key': key},
-      );
-  void goToLoginScreen({_i1.Key? key}) =>
-      navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
-        RouteNames.loginScreen,
-        (_) => false,
-        arguments: {'key': key},
-      );
-  Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.themeModeSelectorScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.debugPlatformSelectorScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToDebugScreen({_i1.Key? key}) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.debugScreen,
         arguments: {'key': key},
       );
   Future<void> goToCharacterListScreen({
@@ -193,11 +170,26 @@ mixin BaseNavigator {
   }) async =>
       navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.characterListScreen,
-        arguments: {
-          'alphabet': alphabet,
-          'difficultyGrade': difficultyGrade,
-          'key': key
-        },
+        arguments: {'alphabet': alphabet, 'difficultyGrade': difficultyGrade, 'key': key},
+      );
+  Future<void> goToCharacterDetailScreen({
+    required _i4.Character? character,
+    required String characterValue,
+    _i1.Key? key,
+  }) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.characterDetailScreen,
+        arguments: {'character': character, 'characterValue': characterValue, 'key': key},
+      );
+  Future<void> goToCharacterDetailListScreen({
+    required _i2.Alphabet alphabet,
+    required _i3.DifficultyGrade difficultyGrade,
+    required _i4.Character character,
+    _i5.Key? key,
+  }) async =>
+      navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.characterDetailListScreen,
+        arguments: {'alphabet': alphabet, 'difficultyGrade': difficultyGrade, 'character': character, 'key': key},
       );
   Future<void> goToCharacterGradeListScreen({
     required _i2.Alphabet alphabet,
@@ -207,27 +199,41 @@ mixin BaseNavigator {
         RouteNames.characterGradeListScreen,
         arguments: {'alphabet': alphabet, 'key': key},
       );
-  Future<void> goToCharacterDetailScreen({
-    required String character,
-    _i1.Key? key,
-  }) async =>
-      navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.characterDetailScreen,
-        arguments: {'character': character, 'key': key},
+  void goToMainScreen({_i1.Key? key}) => navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
+        RouteNames.mainScreen,
+        (_) => false,
+        arguments: {'key': key},
+      );
+  Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.analyticsPermissionScreen,
+        arguments: {'key': key},
+      );
+  void goToLoginScreen({_i1.Key? key}) => navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
+        RouteNames.loginScreen,
+        (_) => false,
+        arguments: {'key': key},
+      );
+  Future<void> goToThemeModeSelectorScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.themeModeSelectorScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToDebugPlatformSelectorScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.debugPlatformSelectorScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToDebugScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.debugScreen,
+        arguments: {'key': key},
       );
   void goBack() => navigatorKey.currentState?.pop();
-  void goBackWithResult<T>({T? result}) =>
-      navigatorKey.currentState?.pop(result);
-  void popUntil(bool Function(Route<dynamic>) predicate) =>
-      navigatorKey.currentState?.popUntil(predicate);
-  void goBackTo(String routeName) =>
-      popUntil((route) => route.settings.name == routeName);
+  void goBackWithResult<T>({T? result}) => navigatorKey.currentState?.pop(result);
+  void popUntil(bool Function(Route<dynamic>) predicate) => navigatorKey.currentState?.popUntil(predicate);
+  void goBackTo(String routeName) => popUntil((route) => route.settings.name == routeName);
   Future<T?> showCustomDialog<T>({Widget? widget}) async => showDialog<T>(
         context: navigatorKey.currentContext!,
         builder: (_) => widget ?? const SizedBox.shrink(),
       );
-  Future<T?> showBottomSheet<T>({Widget? widget}) async =>
-      showModalBottomSheet<T>(
+  Future<T?> showBottomSheet<T>({Widget? widget}) async => showModalBottomSheet<T>(
         context: navigatorKey.currentContext!,
         builder: (_) => widget ?? const SizedBox.shrink(),
       );
@@ -240,6 +246,14 @@ class RouteNames {
 
   static const licenseScreen = '/license';
 
+  static const characterListScreen = '/character-list';
+
+  static const characterDetailScreen = '/character-detail';
+
+  static const characterDetailListScreen = '/character-detail-list';
+
+  static const characterGradeListScreen = '/character-grade-list';
+
   static const mainScreen = '/main';
 
   static const analyticsPermissionScreen = '/analytics-permission';
@@ -251,10 +265,4 @@ class RouteNames {
   static const debugPlatformSelectorScreen = '/debug-platform-selector';
 
   static const debugScreen = '/debug';
-
-  static const characterListScreen = '/character-list';
-
-  static const characterGradeListScreen = '/character-grade-list';
-
-  static const characterDetailScreen = '/character-detail';
 }

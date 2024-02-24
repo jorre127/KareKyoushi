@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_navigation_generator_annotations/flutter_navigation_generator_annotations.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
@@ -17,10 +18,12 @@ import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
 @FlutterRoute(isFullscreenDialog: true)
 class CharacterDetailScreen extends StatefulWidget {
-  final String character;
+  final String characterValue;
+  final Character? character;
 
   const CharacterDetailScreen({
     required this.character,
+    required this.characterValue,
     super.key,
   });
 
@@ -32,7 +35,7 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return ProviderWidget<CharacterDetailViewModel>(
-      create: () => getIt()..init(widget.character),
+      create: () => getIt()..init(widget.characterValue, widget.character),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen.child(
         showHeader: false,
         padding: EdgeInsets.zero,
