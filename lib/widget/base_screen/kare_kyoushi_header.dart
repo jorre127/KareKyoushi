@@ -20,9 +20,11 @@ class KKHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 12,
+        padding: const EdgeInsets.only(
+          left: 4,
+          right: 16,
+          bottom: 12,
+          top: 12,
         ),
         child: SafeArea(
           bottom: false,
@@ -30,7 +32,6 @@ class KKHeader extends StatelessWidget {
             children: [
               if (ModalRoute.of(context)?.impliesAppBarDismissal ?? false) ...[
                 KKBackButton.light(onClick: onBackTapped),
-                const SizedBox(width: 12),
               ],
               if (titleWidget != null) ...[
                 Expanded(child: titleWidget!),

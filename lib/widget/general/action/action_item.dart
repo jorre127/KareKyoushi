@@ -21,8 +21,8 @@ class ActionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => SizedBox(
-        height: size,
-        width: size,
+        height: size + 12,
+        width: size + 12,
         child: OverflowBox(
           maxHeight: size * 1.5,
           maxWidth: size * 1.5,
