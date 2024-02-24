@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/knowledge_level.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/util/extension/character_extension.dart';
@@ -25,10 +26,11 @@ class _CharacterGridItemState extends State<CharacterGridItem> {
 
   @override
   Widget build(BuildContext context) {
+    final showReading = widget.character.alphbabet == Alphabet.kanji;
+
     return DataProviderWidget(
       childBuilder: (context, theme, localization) {
         final cardColor = _getColor(theme);
-
         return KKCard(
           padding: EdgeInsets.zero,
           onTapped: widget.onTapped,
@@ -44,18 +46,20 @@ class _CharacterGridItemState extends State<CharacterGridItem> {
                     style: theme.textThemes.coreTextTheme.copyBig.copyWith(height: 1),
                   ),
                 ),
-                CompositedTransformFollower(
-                  link: layerLink,
-                  followerAnchor: Alignment.bottomCenter,
-                  targetAnchor: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 2),
-                    child: Text(
-                      widget.character.reading ?? '',
-                      style: theme.textThemes.subtleTextTheme.copyXtraSubtle,
+                if (showReading) ...[
+                  CompositedTransformFollower(
+                    link: layerLink,
+                    followerAnchor: Alignment.bottomCenter,
+                    targetAnchor: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 2),
+                      child: Text(
+                        widget.character.reading ?? '',
+                        style: theme.textThemes.subtleTextTheme.copyXtraSubtle,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
             ),
           ),
