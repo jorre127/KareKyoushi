@@ -65,11 +65,9 @@ class InternalApp extends StatelessWidget {
         onGenerateRoute: mainNavigator.onGenerateRoute,
         home: home,
         builder: home == null
-            ? (context, child) => FlavorBanner(
-                  child: TextScaleFactor(
-                    child: child ?? const SizedBox.shrink(),
-                  ),
-                )
+            ? (context, child) => TextScaleFactor(
+              child: child ?? const SizedBox.shrink(),
+            )
             : null,
       ),
     );
