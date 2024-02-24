@@ -34,7 +34,7 @@ WORKSPACE = 'ios/Runner.xcworkspace'
 
 #Build Configuration
 BUMP_BUILD_NR = 10
-BUILD_NR = 3 || ENV["BUILD_NUMBER"] || ''
+BUILD_NR = 4 || ENV["BUILD_NUMBER"] || ''
 
 if BUILD_NR == ''
   BUILD_NR = 1
