@@ -6,7 +6,6 @@ import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/styles/theme_data.dart';
 import 'package:kare_kyoushi/util/locale/localization_fallback_cupertino_delegate.dart';
 import 'package:kare_kyoushi/viewmodel/global/global_viewmodel.dart';
-import 'package:kare_kyoushi/widget/general/flavor_banner.dart';
 import 'package:kare_kyoushi/widget/general/text_scale_factor.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
@@ -66,8 +65,8 @@ class InternalApp extends StatelessWidget {
         home: home,
         builder: home == null
             ? (context, child) => TextScaleFactor(
-              child: child ?? const SizedBox.shrink(),
-            )
+                  child: child ?? const SizedBox.shrink(),
+                )
             : null,
       ),
     );
