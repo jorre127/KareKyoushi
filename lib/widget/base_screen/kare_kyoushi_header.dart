@@ -21,8 +21,6 @@ class KKHeader extends StatelessWidget {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => Container(
         padding: const EdgeInsets.only(
-          left: 4,
-          right: 16,
           bottom: 12,
           top: 12,
         ),
@@ -51,7 +49,6 @@ class KKHeader extends StatelessWidget {
                     child: KKBackButton.light(onClick: () {}),
                   ),
                 ),
-                const SizedBox(width: 12),
               ],
             ],
           ),

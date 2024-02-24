@@ -20,21 +20,16 @@ class ActionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DataProviderWidget(
-      childBuilderTheme: (context, theme) => SizedBox(
-        height: size + 12,
-        width: size + 12,
-        child: OverflowBox(
-          maxHeight: size * 1.5,
-          maxWidth: size * 1.5,
-          child: TouchFeedBack(
-            borderRadius: BorderRadius.circular(48),
-            onClick: onClick,
-            child: Center(
-              child: SvgIcon(
-                svgAsset: svgAsset,
-                size: size,
-                color: color ?? theme.colorsTheme.icon,
-              ),
+      childBuilderTheme: (context, theme) => TouchFeedBack(
+        borderRadius: BorderRadius.circular(48),
+        onClick: onClick,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgIcon(
+              svgAsset: svgAsset,
+              size: size,
+              color: color ?? theme.colorsTheme.icon,
             ),
           ),
         ),

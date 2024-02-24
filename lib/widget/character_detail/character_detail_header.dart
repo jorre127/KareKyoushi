@@ -25,7 +25,7 @@ class CharacterDetailHeader extends StatelessWidget {
       childBuilder: (context, theme, localization) => Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 24),
+            padding: const EdgeInsets.only(left: 24, right: 16, top: 16),
             child: Column(
               children: [
                 Row(
