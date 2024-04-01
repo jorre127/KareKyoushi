@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_readings_section_item.dart';
-import 'package:kare_kyoushi/widget/layout/spacing_row.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class CharacterDetailWordsContainingTitle extends StatelessWidget {
@@ -26,26 +25,17 @@ class CharacterDetailWordsContainingTitle extends StatelessWidget {
             horizontal: 12,
             vertical: 10,
           ),
-          child: SpacingRow(
-            spacing: 4,
+          child: Row(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2),
                 child: Text(
-                  localization.kanjiDetailScreenWordsContaining,
+                  '${localization.kanjiDetailScreenWordsContaining} ${character.value} :',
                   style: theme.textThemes.xtraSubtleTextTheme.titleSubHeader,
                 ),
               ),
-              Text(
-                character.value,
-                style: theme.textThemes.xtraSubtleTextTheme.titleSubHeader,
-              ),
-              Text(
-                ':',
-                style: theme.textThemes.xtraSubtleTextTheme.titleSubHeader,
-              ),
               if (selectedReading != null) ...[
-                const SizedBox(width: 4),
+                const SizedBox(width: 8),
                 CharacterReadingsSectionItem(
                   reading: selectedReading ?? '',
                   selectedReading: selectedReading,
