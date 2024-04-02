@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:kare_kyoushi/widget/layout/gap.dart';
 
 class SpacingFlex extends StatelessWidget {
   final Clip clipBehavior;
@@ -45,7 +46,7 @@ class SpacingFlex extends StatelessWidget {
             (index, child) {
               final isLast = index == children.length - 1;
               final isHorizontal = direction == Axis.horizontal;
-              final isEmptySizedBox = child is SizedBox && child.child == null;
+              final isEmptySizedBox = (child is SizedBox && child.child == null) || child is Gap;
 
               return [
                 child,
