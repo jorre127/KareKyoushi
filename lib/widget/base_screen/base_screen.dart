@@ -21,6 +21,7 @@ class BaseScreen extends StatelessWidget {
   final String? title;
   final Widget? titleWidget;
   final Widget? child;
+  final Widget? customHeader;
   final EdgeInsets padding;
   final List<Widget> children;
   final VoidCallback? onBackTapped;
@@ -29,6 +30,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen({
     required this.children,
+    this.customHeader,
     this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
@@ -50,6 +52,7 @@ class BaseScreen extends StatelessWidget {
   const BaseScreen.builder({
     required this.itemBuilder,
     required this.itemCount,
+    this.customHeader,
     this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
@@ -69,6 +72,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.slivers({
     required this.children,
+    this.customHeader,
     this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
@@ -89,6 +93,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.child({
     required this.child,
+    this.customHeader,
     this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
@@ -119,7 +124,7 @@ class BaseScreen extends StatelessWidget {
             child: Stack(
               children: [
                 SafeArea(
-                  top: !showHeader,
+                  top: customHeader == null && !showHeader,
                   bottom: hasBottomSafeSpace,
                   child: isLoading
                       ? const Center(
@@ -127,7 +132,9 @@ class BaseScreen extends StatelessWidget {
                         )
                       : Column(
                           children: [
-                            if (showHeader) ...[
+                            if (customHeader != null) ...[
+                              customHeader!,
+                            ] else if (showHeader) ...[
                               KKHeader(
                                 title: title,
                                 titleWidget: titleWidget,

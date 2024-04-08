@@ -24,3 +24,11 @@ DifficultyGrade:
 WordType:
   path: enum/wordtype.dart
   type: custom
+
+## PROFILE
+
+UserData:
+  path: webservice/user
+  properties:
+    nickname: String
+    photo: String?

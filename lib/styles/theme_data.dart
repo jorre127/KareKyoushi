@@ -313,7 +313,7 @@ class KKTheme {
       inputFieldFill: ThemeColors.white,
       inputFieldHint: ThemeColors.mediumGrey,
       disabled: ThemeColors.disabledGrey,
-      icon: ThemeColors.primary,
+      icon: ThemeColors.white,
       appBarAction: ThemeColors.white,
       inverseIcon: ThemeColors.white,
       progressIndicator: ThemeColors.primary,

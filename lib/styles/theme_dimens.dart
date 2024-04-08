@@ -33,6 +33,8 @@ class ThemeDimens {
   static BorderRadius hugeCardBorderRadius = BorderRadius.circular(24);
   static BorderRadius humongousCardBorderRadius = BorderRadius.circular(32);
   static BorderRadius tagBorderRadius = BorderRadius.circular(tagBorderRadiusValue);
+  static BorderRadius circularBorderRadisu = BorderRadius.circular(9999);
+  static double headerBorderRadiusValue = 24;
   static double tagBorderRadiusValue = 8;
   static double largeCardBorderRadiusValue = 20;
 }

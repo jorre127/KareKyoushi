@@ -6,10 +6,11 @@ import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/navigator/main_navigator.dart';
 import 'package:kare_kyoushi/repository/character/character_repository.dart';
+import 'package:kare_kyoushi/screen/profile/profile_mixin.dart';
 import 'package:kare_kyoushi/viewmodel/character_grade_list/character_grade_list_viewmodel.dart';
 
 @injectable
-class HomeViewModel with ChangeNotifierEx {
+class HomeViewModel with ChangeNotifierEx, UserMixin {
   final MainNavigator _navigator;
   final CharacterRepository _characterRepository;
 
@@ -36,4 +37,6 @@ class HomeViewModel with ChangeNotifierEx {
     unawaited(HapticFeedback.mediumImpact());
     await _navigator.goToCharacterGradeListScreen(alphabet: alphabet);
   }
+
+  void onProfileTapped() => _navigator.goToProfileScreen();
 }

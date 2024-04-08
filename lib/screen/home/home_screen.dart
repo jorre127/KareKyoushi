@@ -4,6 +4,7 @@ import 'package:kare_kyoushi/di/injectable.dart';
 import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/viewmodel/home/home_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
+import 'package:kare_kyoushi/widget/home/home_header.dart';
 import 'package:kare_kyoushi/widget/home/home_list_item.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
@@ -21,6 +22,13 @@ class HomeScreenState extends State<HomeScreen> {
     return ProviderWidget<HomeViewModel>(
       create: () => getIt()..init(),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
+        customHeader: HomeHeader(
+          userNickName: viewModel.userNickName,
+          userPhoto: viewModel.userPhoto,
+          onTapped: viewModel.onProfileTapped,
+        ),
+        isScrollable: true,
+        hasBottomSafeSpace: false,
         children: [
           Align(
             alignment: Alignment.centerLeft,

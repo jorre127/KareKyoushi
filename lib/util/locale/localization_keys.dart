@@ -310,6 +310,26 @@ class LocalizationKeys {
 
   /// Translations:
   ///
+  /// en:  **'Hi [arg1 string]!'**
+  static const homeTitleName = 'home_title_name';
+
+  /// Translations:
+  ///
+  /// en:  **'Continue working on your hiragana!'**
+  static const homeTitleHiragana = 'home_title_hiragana';
+
+  /// Translations:
+  ///
+  /// en:  **'Continue working on your katakana!'**
+  static const homeTitleKatakana = 'home_title_katakana';
+
+  /// Translations:
+  ///
+  /// en:  **'Find the kanji you need!!'**
+  static const homeTitleKanji = 'home_title_kanji';
+
+  /// Translations:
+  ///
   /// en:  **'Your study subjects'**
   static const homeSectionStudySubject = 'home_section_study_subject';
 

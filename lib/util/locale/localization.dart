@@ -364,6 +364,26 @@ class Localization {
 
   /// Translations:
   ///
+  /// en:  **'Hi [arg1 string]!'**
+  String homeTitleName(String arg1) => _t(LocalizationKeys.homeTitleName, args: <dynamic>[arg1]);
+
+  /// Translations:
+  ///
+  /// en:  **'Continue working on your hiragana!'**
+  String get homeTitleHiragana => _t(LocalizationKeys.homeTitleHiragana);
+
+  /// Translations:
+  ///
+  /// en:  **'Continue working on your katakana!'**
+  String get homeTitleKatakana => _t(LocalizationKeys.homeTitleKatakana);
+
+  /// Translations:
+  ///
+  /// en:  **'Find the kanji you need!!'**
+  String get homeTitleKanji => _t(LocalizationKeys.homeTitleKanji);
+
+  /// Translations:
+  ///
   /// en:  **'Your study subjects'**
   String get homeSectionStudySubject => _t(LocalizationKeys.homeSectionStudySubject);
 
