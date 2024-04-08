@@ -30,5 +30,5 @@ WordType:
 UserData:
   path: webservice/user
   properties:
-    nickname: String
+    userName: String
     photo: String?

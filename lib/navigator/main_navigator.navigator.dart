@@ -26,6 +26,7 @@ import '../screen/license/license_screen.dart';
 import '../screen/login/login_screen.dart';
 import '../screen/main/main_screen.dart';
 import '../screen/permission/analytics_permission_screen.dart';
+import '../screen/profile/edit_profile_screen.dart';
 import '../screen/profile/profile_screen.dart';
 import '../screen/splash/splash_screen.dart';
 import '../screen/theme_mode/theme_mode_selector.dart';
@@ -155,6 +156,14 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.editProfileScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => EditProfileScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
     }
     return null;
   }
@@ -238,6 +247,10 @@ mixin BaseNavigator {
         RouteNames.profileScreen,
         arguments: {'key': key},
       );
+  Future<void> goToEditProfileScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.editProfileScreen,
+        arguments: {'key': key},
+      );
   void goBack() => navigatorKey.currentState?.pop();
   void goBackWithResult<T>({T? result}) => navigatorKey.currentState?.pop(result);
   void popUntil(bool Function(Route<dynamic>) predicate) => navigatorKey.currentState?.popUntil(predicate);
@@ -280,4 +293,6 @@ class RouteNames {
   static const debugScreen = '/debug';
 
   static const profileScreen = '/profile';
+
+  static const editProfileScreen = '/edit-profile';
 }

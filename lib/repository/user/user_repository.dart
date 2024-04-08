@@ -17,7 +17,7 @@ class _UserRepository implements UserRepository {
   _UserRepository();
 
   @override
-  UserData get userData => _userData ?? const UserData(nickname: 'Jordy');
+  UserData get userData => _userData ?? const UserData(userName: 'Jordy');
 
   @override
   Future<void> refreshUser() async {

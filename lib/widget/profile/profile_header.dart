@@ -6,13 +6,13 @@ import 'package:kare_kyoushi/widget/general/user/user_avatar.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final String userNickName;
+  final String userName;
   final String? userPhoto;
   final VoidCallback onBackTapped;
   final VoidCallback onEditTapped;
 
   const ProfileHeader({
-    required this.userNickName,
+    required this.userName,
     required this.onBackTapped,
     required this.onEditTapped,
     this.userPhoto,
@@ -48,13 +48,13 @@ class ProfileHeader extends StatelessWidget {
                 child: Column(
                   children: [
                     UserAvatar(
-                      name: userNickName,
+                      name: userName,
                       photo: userPhoto,
                       size: 80,
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      userNickName,
+                      userName,
                       style: theme.textThemes.coreTextTheme.titleHeader,
                     ),
                   ],

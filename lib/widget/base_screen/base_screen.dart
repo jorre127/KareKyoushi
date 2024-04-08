@@ -13,6 +13,7 @@ class BaseScreen extends StatelessWidget {
   final bool isScrollable;
   final bool useSlivers;
   final bool showHeader;
+  final bool showHeaderBackground;
   final bool isLoading;
   final bool hasBottomSafeSpace;
   final Widget? overlayWidget;
@@ -31,6 +32,7 @@ class BaseScreen extends StatelessWidget {
   const BaseScreen({
     required this.children,
     this.customHeader,
+    this.showHeaderBackground = false,
     this.titleWidget,
     this.onRefresh,
     this.overlayWidget,
@@ -52,6 +54,7 @@ class BaseScreen extends StatelessWidget {
   const BaseScreen.builder({
     required this.itemBuilder,
     required this.itemCount,
+    this.showHeaderBackground = false,
     this.customHeader,
     this.titleWidget,
     this.onRefresh,
@@ -72,6 +75,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.slivers({
     required this.children,
+    this.showHeaderBackground = false,
     this.customHeader,
     this.titleWidget,
     this.onRefresh,
@@ -93,6 +97,7 @@ class BaseScreen extends StatelessWidget {
 
   const BaseScreen.child({
     required this.child,
+    this.showHeaderBackground = false,
     this.customHeader,
     this.titleWidget,
     this.onRefresh,
@@ -124,7 +129,7 @@ class BaseScreen extends StatelessWidget {
             child: Stack(
               children: [
                 SafeArea(
-                  top: customHeader == null && !showHeader,
+                  top: false,
                   bottom: hasBottomSafeSpace,
                   child: isLoading
                       ? const Center(
@@ -139,6 +144,7 @@ class BaseScreen extends StatelessWidget {
                                 title: title,
                                 titleWidget: titleWidget,
                                 onBackTapped: onBackTapped ?? viewModel.onBackTapped,
+                                showHeaderBackground: showHeaderBackground,
                               ),
                             ],
                             Expanded(

@@ -478,4 +478,19 @@ class LocalizationKeys {
   /// en:  **'Combined'**
   static const combinedTitle = 'combined_title';
 
+  /// Translations:
+  ///
+  /// en:  **'Profile'**
+  static const editProfileTitle = 'edit_profile_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Username'**
+  static const editProfileUsernameLabel = 'edit_profile_username_label';
+
+  /// Translations:
+  ///
+  /// en:  **'Profile picture'**
+  static const editProfilePictureLabel = 'edit_profile_picture_label';
+
 }

@@ -23,7 +23,7 @@ class HomeScreenState extends State<HomeScreen> {
       create: () => getIt()..init(),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
         customHeader: HomeHeader(
-          userNickName: viewModel.userNickName,
+          userName: viewModel.userName,
           userPhoto: viewModel.userPhoto,
           onTapped: viewModel.onProfileTapped,
         ),

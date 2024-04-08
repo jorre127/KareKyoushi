@@ -4,12 +4,12 @@ import 'package:kare_kyoushi/widget/general/user/user_avatar.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class HomeHeader extends StatelessWidget {
-  final String userNickName;
+  final String userName;
   final String? userPhoto;
   final VoidCallback onTapped;
 
   const HomeHeader({
-    required this.userNickName,
+    required this.userName,
     required this.onTapped,
     this.userPhoto,
     super.key,
@@ -36,13 +36,13 @@ class HomeHeader extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: UserAvatar(
-                  name: userNickName,
+                  name: userName,
                   photo: userPhoto,
                   onTapped: onTapped,
                 ),
               ),
               Text(
-                localization.homeTitleName(userNickName),
+                localization.homeTitleName(userName),
                 style: theme.textThemes.subtleTextTheme.copyDefault,
               ),
               Text(

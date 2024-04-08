@@ -532,6 +532,21 @@ class Localization {
   /// en:  **'Combined'**
   String get combinedTitle => _t(LocalizationKeys.combinedTitle);
 
+  /// Translations:
+  ///
+  /// en:  **'Profile'**
+  String get editProfileTitle => _t(LocalizationKeys.editProfileTitle);
+
+  /// Translations:
+  ///
+  /// en:  **'Username'**
+  String get editProfileUsernameLabel => _t(LocalizationKeys.editProfileUsernameLabel);
+
+  /// Translations:
+  ///
+  /// en:  **'Profile picture'**
+  String get editProfilePictureLabel => _t(LocalizationKeys.editProfilePictureLabel);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

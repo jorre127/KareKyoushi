@@ -93,5 +93,8 @@
   "kanji_detail_got_it": "Got it!",
   "standard_title": "Standard",
   "dakuten_title": "Dakuten",
-  "combined_title": "Combined"
+  "combined_title": "Combined",
+  "edit_profile_title": "Profile",
+  "edit_profile_username_label": "Username",
+  "edit_profile_picture_label": "Profile picture"
 }

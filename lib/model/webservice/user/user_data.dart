@@ -6,13 +6,13 @@ part 'user_data.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class UserData {
-  @JsonKey(name: 'nickname', required: true)
-  final String nickname;
+  @JsonKey(name: 'userName', required: true)
+  final String userName;
   @JsonKey(name: 'photo', includeIfNull: false)
   final String? photo;
 
   const UserData({
-    required this.nickname,
+    required this.userName,
     this.photo,
   });
 

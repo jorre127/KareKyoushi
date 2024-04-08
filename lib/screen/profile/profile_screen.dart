@@ -21,7 +21,7 @@ class ProfileScreenState extends State<ProfileScreen> {
       create: () => getIt()..init(),
       childBuilderWithViewModel: (context, viewModel, theme, localization) => BaseScreen(
         customHeader: ProfileHeader(
-          userNickName: viewModel.userNickName,
+          userName: viewModel.userName,
           userPhoto: viewModel.userPhoto,
           onBackTapped: viewModel.onBackTapped,
           onEditTapped: viewModel.onEditTapped,

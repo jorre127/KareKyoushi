@@ -4,7 +4,7 @@ import 'package:kare_kyoushi/repository/user/user_repository.dart';
 mixin UserMixin {
   final UserRepository _userRepository = getIt();
 
-  String get userNickName => _userRepository.userData.nickname;
+  String get userName => _userRepository.userData.userName;
 
   String? get userPhoto => _userRepository.userData.photo;
 }

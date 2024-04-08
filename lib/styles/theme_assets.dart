@@ -40,6 +40,8 @@ class ThemeAssets {
   static String crossIcon = '$_iconPath/cross.svg';
   static String chevronIcon = '$_iconPath/chevron.svg';
   static String editIcon = '$_iconPath/edit.svg';
+  static String cameraIcon = '$_iconPath/camera.svg';
+  static String imageIcon = '$_iconPath/image.svg';
 
   // Images
 

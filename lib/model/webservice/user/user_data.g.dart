@@ -9,17 +9,17 @@ part of 'user_data.dart';
 UserData _$UserDataFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['nickname'],
+    requiredKeys: const ['userName'],
   );
   return UserData(
-    nickname: json['nickname'] as String,
+    userName: json['userName'] as String,
     photo: json['photo'] as String?,
   );
 }
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) {
   final val = <String, dynamic>{
-    'nickname': instance.nickname,
+    'userName': instance.userName,
   };
 
   void writeNotNull(String key, dynamic value) {
