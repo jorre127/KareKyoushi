@@ -24,6 +24,7 @@ class ThemeDimens {
   static const double smallIcon = 16;
   static const double iconSize = 24;
   static const double largeIcon = 32;
+  static const double hugeIcon = 80;
 
   static BorderRadius progressBorderRadius = BorderRadius.circular(4);
   static BorderRadius inputBorderRadius = BorderRadius.circular(8);
@@ -33,7 +34,7 @@ class ThemeDimens {
   static BorderRadius hugeCardBorderRadius = BorderRadius.circular(24);
   static BorderRadius humongousCardBorderRadius = BorderRadius.circular(32);
   static BorderRadius tagBorderRadius = BorderRadius.circular(tagBorderRadiusValue);
-  static BorderRadius circularBorderRadisu = BorderRadius.circular(9999);
+  static BorderRadius circularBorderRadius = BorderRadius.circular(999);
   static double headerBorderRadiusValue = 24;
   static double tagBorderRadiusValue = 8;
   static double largeCardBorderRadiusValue = 20;

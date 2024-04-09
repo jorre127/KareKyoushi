@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/repository/user/user_repository.dart';
@@ -10,7 +12,14 @@ class EditProfileViewModel with ChangeNotifierEx {
 
   late var _userName = _userRepository.userData.userName;
 
+  bool _showInitialsOptions = false;
+  Color? _selectedColor;
+
   String get userName => _userName;
+
+  bool get showInitialsOptions => _showInitialsOptions;
+
+  Color? get selectedColor => _selectedColor;
 
   EditProfileViewModel(
     this._userRepository,
@@ -32,5 +41,15 @@ class EditProfileViewModel with ChangeNotifierEx {
   Future<void> onImageTapped() async {
     final image = await _imagePickerUtil.pickImageFromCameraRoll();
     print(image);
+  }
+
+  void onInitialsTapped() {
+    _showInitialsOptions = !_showInitialsOptions;
+    notifyListeners();
+  }
+
+  void onColorTapped(Color color) {
+    _selectedColor = color;
+    notifyListeners();
   }
 }

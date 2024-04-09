@@ -50,7 +50,7 @@ class ProfileHeader extends StatelessWidget {
                     UserAvatar(
                       name: userName,
                       photo: userPhoto,
-                      size: 80,
+                      size: ThemeDimens.hugeIcon,
                     ),
                     const SizedBox(height: 16),
                     Text(

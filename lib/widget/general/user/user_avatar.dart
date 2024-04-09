@@ -3,6 +3,7 @@ import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 
 class UserAvatar extends StatelessWidget {
+  final Color? color;
   final String name;
   final String? photo;
   final double? size;
@@ -10,6 +11,7 @@ class UserAvatar extends StatelessWidget {
 
   const UserAvatar({
     required this.name,
+    this.color,
     this.size,
     this.onTapped,
     this.photo,
@@ -25,7 +27,7 @@ class UserAvatar extends StatelessWidget {
           width: size ?? 34,
           height: size ?? 34,
           decoration: BoxDecoration(
-            color: theme.colorsTheme.button,
+            color: color ?? theme.colorsTheme.button,
             shape: BoxShape.circle,
           ),
           child: photo == null
