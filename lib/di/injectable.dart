@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:icapps_architecture/icapps_architecture.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/database/kare_kyoushi_database.dart';
 import 'package:kare_kyoushi/di/db/setup_drift_none.dart'
@@ -46,6 +47,9 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  ImagePicker imagePicker() => ImagePicker();
 
   @lazySingleton
   FirebaseAuth firebaseAuth() => FirebaseAuth.instance;

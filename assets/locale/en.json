@@ -96,5 +96,11 @@
   "combined_title": "Combined",
   "edit_profile_title": "Profile",
   "edit_profile_username_label": "Username",
-  "edit_profile_picture_label": "Profile picture"
+  "edit_profile_picture_label": "Profile picture",
+  "library_permission_allow": "Allow photo access",
+  "library_permission_message": "Please allow access to your photo library to upload images.",
+  "library_permission_title": "Access your photos",
+  "camera_permission_title": "Access your camera",
+  "camera_permission_message": "Please allow access to your camera to upload images.",
+  "camera_permission_allow": "Allow camera access"
 }

@@ -493,4 +493,34 @@ class LocalizationKeys {
   /// en:  **'Profile picture'**
   static const editProfilePictureLabel = 'edit_profile_picture_label';
 
+  /// Translations:
+  ///
+  /// en:  **'Allow photo access'**
+  static const libraryPermissionAllow = 'library_permission_allow';
+
+  /// Translations:
+  ///
+  /// en:  **'Please allow access to your photo library to upload images.'**
+  static const libraryPermissionMessage = 'library_permission_message';
+
+  /// Translations:
+  ///
+  /// en:  **'Access your photos'**
+  static const libraryPermissionTitle = 'library_permission_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Access your camera'**
+  static const cameraPermissionTitle = 'camera_permission_title';
+
+  /// Translations:
+  ///
+  /// en:  **'Please allow access to your camera to upload images.'**
+  static const cameraPermissionMessage = 'camera_permission_message';
+
+  /// Translations:
+  ///
+  /// en:  **'Allow camera access'**
+  static const cameraPermissionAllow = 'camera_permission_allow';
+
 }

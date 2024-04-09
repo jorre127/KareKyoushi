@@ -547,6 +547,36 @@ class Localization {
   /// en:  **'Profile picture'**
   String get editProfilePictureLabel => _t(LocalizationKeys.editProfilePictureLabel);
 
+  /// Translations:
+  ///
+  /// en:  **'Allow photo access'**
+  String get libraryPermissionAllow => _t(LocalizationKeys.libraryPermissionAllow);
+
+  /// Translations:
+  ///
+  /// en:  **'Please allow access to your photo library to upload images.'**
+  String get libraryPermissionMessage => _t(LocalizationKeys.libraryPermissionMessage);
+
+  /// Translations:
+  ///
+  /// en:  **'Access your photos'**
+  String get libraryPermissionTitle => _t(LocalizationKeys.libraryPermissionTitle);
+
+  /// Translations:
+  ///
+  /// en:  **'Access your camera'**
+  String get cameraPermissionTitle => _t(LocalizationKeys.cameraPermissionTitle);
+
+  /// Translations:
+  ///
+  /// en:  **'Please allow access to your camera to upload images.'**
+  String get cameraPermissionMessage => _t(LocalizationKeys.cameraPermissionMessage);
+
+  /// Translations:
+  ///
+  /// en:  **'Allow camera access'**
+  String get cameraPermissionAllow => _t(LocalizationKeys.cameraPermissionAllow);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

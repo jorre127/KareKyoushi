@@ -26,6 +26,8 @@ import '../screen/license/license_screen.dart';
 import '../screen/login/login_screen.dart';
 import '../screen/main/main_screen.dart';
 import '../screen/permission/analytics_permission_screen.dart';
+import '../screen/permission/camera_permission_screen.dart';
+import '../screen/permission/library_permission_screen.dart';
 import '../screen/profile/edit_profile_screen.dart';
 import '../screen/profile/profile_screen.dart';
 import '../screen/splash/splash_screen.dart';
@@ -91,6 +93,22 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.profileScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => ProfileScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.editProfileScreen:
+        return MaterialPageRoute<void>(
+          builder: (_) => EditProfileScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
       case RouteNames.characterGradeListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterGradeListScreen(
@@ -108,9 +126,25 @@ mixin BaseNavigator {
           settings: settings,
           fullscreenDialog: false,
         );
+      case RouteNames.cameraPermissionScreen:
+        return MaterialPageRoute<bool>(
+          builder: (_) => CameraPermissionScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
       case RouteNames.analyticsPermissionScreen:
         return MaterialPageRoute<void>(
           builder: (_) => AnalyticsPermissionScreen(
+            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+          ),
+          settings: settings,
+          fullscreenDialog: false,
+        );
+      case RouteNames.libraryPermissionScreen:
+        return MaterialPageRoute<bool>(
+          builder: (_) => LibraryPermissionScreen(
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -143,22 +177,6 @@ mixin BaseNavigator {
       case RouteNames.debugScreen:
         return MaterialPageRoute<void>(
           builder: (_) => DebugScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.profileScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => ProfileScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
-          ),
-          settings: settings,
-          fullscreenDialog: false,
-        );
-      case RouteNames.editProfileScreen:
-        return MaterialPageRoute<void>(
-          builder: (_) => EditProfileScreen(
             key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
           ),
           settings: settings,
@@ -209,6 +227,14 @@ mixin BaseNavigator {
         RouteNames.characterDetailListScreen,
         arguments: {'alphabet': alphabet, 'difficultyGrade': difficultyGrade, 'character': character, 'key': key},
       );
+  Future<void> goToProfileScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.profileScreen,
+        arguments: {'key': key},
+      );
+  Future<void> goToEditProfileScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
+        RouteNames.editProfileScreen,
+        arguments: {'key': key},
+      );
   Future<void> goToCharacterGradeListScreen({
     required _i2.Alphabet alphabet,
     _i1.Key? key,
@@ -222,10 +248,26 @@ mixin BaseNavigator {
         (_) => false,
         arguments: {'key': key},
       );
+  Future<bool?> goToCameraPermissionScreen({_i1.Key? key}) async {
+    final dynamic result = await navigatorKey.currentState?.pushNamed<dynamic>(
+      RouteNames.cameraPermissionScreen,
+      arguments: {'key': key},
+    );
+    return (result as bool?);
+  }
+
   Future<void> goToAnalyticsPermissionScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.analyticsPermissionScreen,
         arguments: {'key': key},
       );
+  Future<bool?> goToLibraryPermissionScreen({_i1.Key? key}) async {
+    final dynamic result = await navigatorKey.currentState?.pushNamed<dynamic>(
+      RouteNames.libraryPermissionScreen,
+      arguments: {'key': key},
+    );
+    return (result as bool?);
+  }
+
   void goToLoginScreen({_i1.Key? key}) => navigatorKey.currentState?.pushNamedAndRemoveUntil<dynamic>(
         RouteNames.loginScreen,
         (_) => false,
@@ -241,14 +283,6 @@ mixin BaseNavigator {
       );
   Future<void> goToDebugScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
         RouteNames.debugScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToProfileScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.profileScreen,
-        arguments: {'key': key},
-      );
-  Future<void> goToEditProfileScreen({_i1.Key? key}) async => navigatorKey.currentState?.pushNamed<dynamic>(
-        RouteNames.editProfileScreen,
         arguments: {'key': key},
       );
   void goBack() => navigatorKey.currentState?.pop();
@@ -278,11 +312,19 @@ class RouteNames {
 
   static const characterDetailListScreen = '/character-detail-list';
 
+  static const profileScreen = '/profile';
+
+  static const editProfileScreen = '/edit-profile';
+
   static const characterGradeListScreen = '/character-grade-list';
 
   static const mainScreen = '/main';
 
+  static const cameraPermissionScreen = '/camera-permission';
+
   static const analyticsPermissionScreen = '/analytics-permission';
+
+  static const libraryPermissionScreen = '/library-permission';
 
   static const loginScreen = '/login';
 
@@ -291,8 +333,4 @@ class RouteNames {
   static const debugPlatformSelectorScreen = '/debug-platform-selector';
 
   static const debugScreen = '/debug';
-
-  static const profileScreen = '/profile';
-
-  static const editProfileScreen = '/edit-profile';
 }
