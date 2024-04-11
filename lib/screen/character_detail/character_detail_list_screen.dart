@@ -9,7 +9,7 @@ import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_list_vi
 import 'package:kare_kyoushi/widget/character_detail/character_detail_buttons.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
-@flutterRoute
+@FlutterRoute(isFullscreenDialog: true)
 class CharacterDetailListScreen extends StatefulWidget {
   final Character character;
   final Alphabet alphabet;
@@ -41,6 +41,7 @@ class _CharacterDetailListScreenState extends State<CharacterDetailListScreen> {
           PageView.builder(
             controller: viewModel.pageController,
             itemCount: viewModel.characters.length,
+            onPageChanged: viewModel.onPageChanged,
             itemBuilder: (context, index) {
               final character = viewModel.characters[index];
               return CharacterDetailScreen(

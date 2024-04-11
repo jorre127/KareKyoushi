@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: Verifying fastlane version" time="0.000339">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: is_ci" time="0.000193">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: install_provisioning_profiles" time="0.280954">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: is_ci" time="0.0001">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: echo New\ build\ nr:\ 16" time="0.004797">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: clean_build_artifacts" time="0.00013">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: ensure_git_status_clean" time="0.019517">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: Switch to pr lane" time="0.000141">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: Switch to installFvmVersion lane" time="6.1e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: bash ./tool/install_fvm.sh" time="5.522711">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: Switch to checkCompilationAndAnalyzer lane" time="0.000145">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: mv analysis_options.yaml fastlane/analysis_options_original.yaml" time="0.005887">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="12: cp fastlane/analysis_options_check_compilation.yaml analysis_options.yaml" time="0.005164">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="13: fvm flutter analyze" time="5.982799">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="14: mv fastlane/analysis_options_original.yaml analysis_options.yaml" time="0.005182">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="15: fvm flutter analyze" time="3.405994">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="16: fvm flutter test" time="6.876989">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="17: Switch to git_reset lane" time="0.000239">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="18: git reset --hard" time="0.055433">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="19: Switch to git_reset lane" time="0.000115">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="20: git reset --hard" time="0.016532">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="21: Switch to alpha_ios_build lane" time="0.000104">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="22: Switch to buildAppIOSOnly lane" time="8.2e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="23: Switch to podRepoUpdate lane" time="5.7e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="24: pod repo update" time="4.783901">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="25: fvm flutter build ios --release --flavor alpha -tlib/main_alpha.dart --no-codesign --obfuscate --split-debug-info\=./build/debug-info/alpha --build-number\=16" time="93.575051">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="26: Switch to convertAppToIpa lane" time="0.000322">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="27: gym" time="105.839525">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="28: zip" time="15.90986">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="29: Switch to upload_artifacts_to_s3 lane" time="0.00014">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="30: ./tool/packages_get.sh" time="0.807233">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="31: fvm dart run ../tool/s3/dart_s3_executor/bin/main.dart 16 alpha ../tool/s3/s3.sh fluttertemplate" time="1.646578">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="32: Switch to uploadToAppcenterIos lane" time="0.000132">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="33: Switch to getAppNameIOS lane" time="6.9e-05">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="34: appcenter_upload" time="80.455868">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="35: Switch to uploadIOSSymbols lane" time="0.000712">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="36: dart run ./tool/firebase/firebase_uploader.dart ios alpha" time="68.485391">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="37: Switch to git_reset lane" time="0.000263">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="38: git reset --hard" time="0.065232">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

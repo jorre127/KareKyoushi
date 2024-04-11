@@ -92,7 +92,7 @@ mixin BaseNavigator {
             key: arguments['key'] as Key?,
           ),
           settings: settings,
-          fullscreenDialog: false,
+          fullscreenDialog: true,
         );
       case RouteNames.profileScreen:
         return MaterialPageRoute<void>(

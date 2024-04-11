@@ -46,7 +46,17 @@ class CharacterDetailListViewmodel extends ChangeNotifierEx with CharactersMixin
     if (_initialCharacterHasBeenSet) return;
     _initialCharacterHasBeenSet = true;
     final index = characters.indexWhere((element) => element.value == _initialCharacter.value);
-    _pageController.jumpToPage(index);
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(microseconds: 1),
+      curve: Curves.easeInOut,
+    );
+    notifyListeners();
+  }
+
+  void onPageChanged(int index) {
+    if (disposed) return;
+    notifyListeners();
   }
 
   void onMehTapped() => _updateCharacter(KnowledgeLevel.meh);
