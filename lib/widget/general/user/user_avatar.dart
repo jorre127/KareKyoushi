@@ -62,7 +62,7 @@ class UserAvatar extends StatelessWidget {
                           padding: const EdgeInsets.all(4),
                           child: Text(
                             name.isEmpty ? '' : name.substring(0, 1),
-                            style: theme.textThemes.coreTextTheme.titleHuge,
+                            style: theme.textThemes.coreTextTheme.titleHuge.copyWith(color: color == Colors.white ? Colors.black : null),
                           ),
                         ),
                       ),
