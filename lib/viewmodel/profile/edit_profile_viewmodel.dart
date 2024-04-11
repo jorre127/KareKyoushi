@@ -14,7 +14,7 @@ class EditProfileViewModel with ChangeNotifierEx {
   final UserRepository _userRepository;
   final ImagePickerUtil _imagePickerUtil;
 
-  late var _userName = _userRepository.userData.userName;
+  late var _userName = _userRepository.profile.userName;
 
   bool _showInitialsOptions = false;
   bool _isSaving = false;
@@ -37,7 +37,11 @@ class EditProfileViewModel with ChangeNotifierEx {
     this._navigator,
   );
 
-  Future<void> init() async {}
+  Future<void> init() async {
+    if (_userRepository.profile.userColor != null) {
+      _selectedColor = Color(_userRepository.profile.userColor!);
+    }
+  }
 
   void onUserNameChanged(String userName) {
     _userName = userName;
@@ -76,7 +80,7 @@ class EditProfileViewModel with ChangeNotifierEx {
         .updateProfile(
           userName: userName,
           photo: _selectedImage,
-          photoBackgroundColor: _selectedColor.toString(),
+          userColor: _selectedColor?.value,
         )
         .withErrorHandling(
           errorMessage: 'Failed to update profile',

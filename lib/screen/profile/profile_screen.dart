@@ -23,6 +23,7 @@ class ProfileScreenState extends State<ProfileScreen> {
         customHeader: ProfileHeader(
           userName: viewModel.userName,
           userPhoto: viewModel.userPhoto,
+          userColor: viewModel.userColor,
           onBackTapped: viewModel.onBackTapped,
           onEditTapped: viewModel.onEditTapped,
         ),

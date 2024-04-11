@@ -12,14 +12,14 @@ class UserData {
   final String userName;
   @JsonKey(name: 'photo', includeIfNull: false)
   final String? photo;
-  @JsonKey(name: 'photoBackground', includeIfNull: false)
-  final String? photoBackground;
+  @JsonKey(name: 'userColor', includeIfNull: false)
+  final int? userColor;
 
   const UserData({
     required this.id,
     required this.userName,
     this.photo,
-    this.photoBackground,
+    this.userColor,
   });
 
   factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);

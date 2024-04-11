@@ -51,21 +51,12 @@ class InitialsPicker extends StatelessWidget {
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
           children: _colors
-              .map((color) => Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: selectedColor == color
-                            ? Border.all(
-                                width: 4,
-                                color: theme.colorsTheme.stroke,
-                              )
-                            : null),
-                    child: UserAvatar(
-                      name: userName,
-                      color: color,
-                      size: ThemeDimens.hugeIcon,
-                      onTapped: () => onColorTapped(color),
-                    ),
+              .map((color) => UserAvatar(
+                    name: userName,
+                    color: color,
+                    size: ThemeDimens.hugeIcon,
+                    onTapped: () => onColorTapped(color),
+                    isSelected: selectedColor == color,
                   ))
               .toList(),
         ),

@@ -11,7 +11,9 @@ class ProfileViewModel with ChangeNotifierEx, UserMixin {
     this._navigator,
   );
 
-  Future<void> init() async {}
+  Future<void> init() async {
+    initUser();
+  }
 
   void onEditTapped() => _navigator.goToEditProfileScreen();
 

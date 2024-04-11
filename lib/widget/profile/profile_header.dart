@@ -8,6 +8,7 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 class ProfileHeader extends StatelessWidget {
   final String userName;
   final String? userPhoto;
+  final Color? userColor;
   final VoidCallback onBackTapped;
   final VoidCallback onEditTapped;
 
@@ -15,6 +16,7 @@ class ProfileHeader extends StatelessWidget {
     required this.userName,
     required this.onBackTapped,
     required this.onEditTapped,
+    required this.userColor,
     this.userPhoto,
     super.key,
   });
@@ -51,6 +53,7 @@ class ProfileHeader extends StatelessWidget {
                       name: userName,
                       photo: userPhoto,
                       size: ThemeDimens.hugeIcon,
+                      color: userColor,
                     ),
                     const SizedBox(height: 16),
                     Text(

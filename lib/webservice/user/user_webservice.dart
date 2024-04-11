@@ -20,12 +20,13 @@ class UserWebService implements UserService {
     required String id,
     String? userName,
     String? photo,
-    String? photoBackgroundColor,
+    int? userColor,
   }) =>
       _firestore.user(id).set({
+        'id': id,
         if (userName != null) 'userName': userName,
         if (photo != null) 'photo': photo,
-        if (photoBackgroundColor != null) 'photoBackgroundColor': photoBackgroundColor,
+        if (userColor != null) 'userColor': userColor,
       });
 
   @override

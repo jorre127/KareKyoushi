@@ -5,7 +5,7 @@ abstract class UserService {
     required String id,
     String? userName,
     String? photo,
-    String? photoBackgroundColor,
+    int? userColor,
   });
 
   Future<UserData?> getProfile({required String id});

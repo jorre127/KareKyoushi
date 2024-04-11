@@ -26,6 +26,7 @@ class HomeScreenState extends State<HomeScreen> {
           userName: viewModel.userName,
           userPhoto: viewModel.userPhoto,
           onTapped: viewModel.onProfileTapped,
+          userColor: viewModel.userColor,
         ),
         isScrollable: true,
         hasBottomSafeSpace: false,

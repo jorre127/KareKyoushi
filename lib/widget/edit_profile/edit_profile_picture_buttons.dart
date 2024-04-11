@@ -39,6 +39,7 @@ class EditProfilePictureButtons extends StatelessWidget {
             size: ThemeDimens.hugeIcon,
             color: selectedColor,
             localPhoto: selectedImage,
+            isSelected: true,
           ),
           const SizedBox(width: 8),
           EditProfilePictureButton(

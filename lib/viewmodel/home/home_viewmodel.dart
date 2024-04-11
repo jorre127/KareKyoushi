@@ -24,6 +24,7 @@ class HomeViewModel with ChangeNotifierEx, UserMixin {
   );
 
   Future<void> init() async {
+    initUser();
     registerDisposeStream(_characterRepository.getCharacterProgressStream().listen(_onCharacterProgressUpdated));
   }
 

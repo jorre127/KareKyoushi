@@ -1,10 +1,28 @@
+import 'dart:ui';
+
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:kare_kyoushi/di/injectable.dart';
+import 'package:kare_kyoushi/model/webservice/user/user_data.dart';
 import 'package:kare_kyoushi/repository/user/user_repository.dart';
 
-mixin UserMixin {
+mixin UserMixin on ChangeNotifierEx {
   final UserRepository _userRepository = getIt();
 
-  String get userName => _userRepository.userData.userName;
+  UserData? _user;
 
-  String? get userPhoto => _userRepository.userData.photo;
+  void initUser() {
+    registerDisposeStream(_userRepository.profileStream.listen(_onUserChanged));
+  }
+
+  void _onUserChanged(UserData user) {
+    _user = user;
+    if (disposed) return;
+    notifyListeners();
+  }
+
+  String get userName => _user?.userName ?? '';
+
+  String? get userPhoto => _user?.photo;
+
+  Color? get userColor => _user?.userColor == null ? null : Color(_user!.userColor!);
 }

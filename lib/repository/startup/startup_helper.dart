@@ -18,5 +18,6 @@ class StartupHelper {
   Future<void> startup() async {
     await _characterRepository.initCharacters();
     await _wordRepository.initWords();
+    await _userRepository.refreshUser();
   }
 }

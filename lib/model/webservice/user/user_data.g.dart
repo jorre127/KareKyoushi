@@ -15,7 +15,7 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
     id: json['id'] as String,
     userName: json['userName'] as String,
     photo: json['photo'] as String?,
-    photoBackground: json['photoBackground'] as String?,
+    userColor: json['userColor'] as int?,
   );
 }
 
@@ -32,6 +32,6 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) {
   }
 
   writeNotNull('photo', instance.photo);
-  writeNotNull('photoBackground', instance.photoBackground);
+  writeNotNull('userColor', instance.userColor);
   return val;
 }

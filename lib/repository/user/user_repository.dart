@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:icapps_architecture/icapps_architecture.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kare_kyoushi/model/webservice/user/user_data.dart';
 import 'package:kare_kyoushi/webservice/user/user_service.dart';
@@ -15,10 +16,12 @@ abstract class UserRepository {
   Future<void> updateProfile({
     String? userName,
     File? photo,
-    String? photoBackgroundColor,
+    int? userColor,
   });
 
-  UserData get userData;
+  Stream<UserData> get profileStream;
+
+  UserData get profile;
 }
 
 class _UserRepository implements UserRepository {
@@ -27,38 +30,45 @@ class _UserRepository implements UserRepository {
 
   UserData? _userData;
 
+  final _userStreamController = StreamControllerWithInitialValue<UserData>.broadcast();
+
   _UserRepository(
     this._userService,
     this._auth,
   );
 
   @override
-  UserData get userData =>
-      _userData ??
-      const UserData(
-        id: '',
-        userName: 'Jordy',
-      );
+  UserData get profile {
+    if (_userData == null) {
+      throw Exception('Failed userData is null, make sure the refreshUser() method is executed before using this getter');
+    }
+    return _userData!;
+  }
+
+  @override
+  Stream<UserData> get profileStream => _userStreamController.stream;
 
   @override
   Future<void> refreshUser() async {
     final userId = _auth.currentUser?.uid;
     if (userId == null) return;
     _userData = await _userService.getProfile(id: userId);
+    _userStreamController.add(_userData!);
   }
 
   @override
   Future<void> updateProfile({
     String? userName,
     File? photo,
-    String? photoBackgroundColor,
+    int? userColor,
   }) async {
     final userId = _auth.currentUser?.uid;
     if (userId == null) return;
-    return _userService.updateProfile(
+    await _userService.updateProfile(
       id: userId,
       userName: userName,
-      photoBackgroundColor: photoBackgroundColor,
+      userColor: userColor,
     );
+    await refreshUser();
   }
 }

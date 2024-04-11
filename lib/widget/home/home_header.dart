@@ -6,11 +6,13 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 class HomeHeader extends StatelessWidget {
   final String userName;
   final String? userPhoto;
+  final Color? userColor;
   final VoidCallback onTapped;
 
   const HomeHeader({
     required this.userName,
     required this.onTapped,
+    required this.userColor,
     this.userPhoto,
     super.key,
   });
@@ -39,6 +41,7 @@ class HomeHeader extends StatelessWidget {
                   name: userName,
                   photo: userPhoto,
                   onTapped: onTapped,
+                  color: userColor,
                 ),
               ),
               Text(

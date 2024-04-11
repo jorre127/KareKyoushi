@@ -33,5 +33,4 @@ UserData:
     id: String
     userName: String
     photo: String?
-    photoBackgroundColor: String?
-
+    userColor: int?
