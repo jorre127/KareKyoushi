@@ -63,11 +63,21 @@ class _UserRepository implements UserRepository {
     int? userColor,
   }) async {
     final userId = _auth.currentUser?.uid;
+    String? photoUrl;
     if (userId == null) return;
+    if (photo != null) {
+      photoUrl = await _userService.saveProfilePicture(
+        id: userId,
+        picture: photo,
+      );
+    }
     await _userService.updateProfile(
       id: userId,
       userName: userName,
       userColor: userColor,
+      photo: photoUrl,
+      includePhotoIfNull: userColor != null,
+      
     );
     await refreshUser();
   }

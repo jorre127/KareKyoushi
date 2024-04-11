@@ -11,6 +11,7 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 class EditProfilePictureButtons extends StatelessWidget {
   final bool showInitialsOptions;
   final String userName;
+  final String? initialImageUrl;
   final Color? selectedColor;
   final File? selectedImage;
   final VoidCallback onImageTapped;
@@ -25,6 +26,7 @@ class EditProfilePictureButtons extends StatelessWidget {
     required this.selectedColor,
     required this.showInitialsOptions,
     required this.selectedImage,
+    required this.initialImageUrl,
     super.key,
   });
 
@@ -39,6 +41,7 @@ class EditProfilePictureButtons extends StatelessWidget {
             size: ThemeDimens.hugeIcon,
             color: selectedColor,
             localPhoto: selectedImage,
+            photo: initialImageUrl,
             isSelected: true,
           ),
           const SizedBox(width: 8),

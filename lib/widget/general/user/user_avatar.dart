@@ -36,6 +36,9 @@ class UserAvatar extends StatelessWidget {
           decoration: BoxDecoration(
             color: color ?? theme.colorsTheme.button,
             shape: BoxShape.circle,
+          ),
+          foregroundDecoration: BoxDecoration(
+            shape: BoxShape.circle,
             border: isSelected
                 ? Border.all(
                     width: 4,
@@ -50,7 +53,7 @@ class UserAvatar extends StatelessWidget {
                 )
               : photo != null
                   ? Image.network(
-                      name,
+                      photo!,
                       fit: BoxFit.cover,
                     )
                   : Center(

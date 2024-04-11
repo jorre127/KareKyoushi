@@ -44,6 +44,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
           EditProfilePictureButtons(
             selectedColor: viewModel.selectedColor,
             selectedImage: viewModel.selectedImage,
+            initialImageUrl: viewModel.initialImageUrl,
             onCameraTapped: viewModel.onCameraTapped,
             onImageTapped: viewModel.onImageTapped,
             onInitialsTapped: viewModel.onInitialsTapped,

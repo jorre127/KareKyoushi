@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
@@ -18,14 +20,15 @@ class UserWebService implements UserService {
   @override
   Future<void> updateProfile({
     required String id,
+    bool includePhotoIfNull = true,
     String? userName,
     String? photo,
     int? userColor,
   }) =>
-      _firestore.user(id).set({
+      _firestore.user(id).update({
         'id': id,
         if (userName != null) 'userName': userName,
-        if (photo != null) 'photo': photo,
+        if (photo != null || includePhotoIfNull) 'photo': photo,
         if (userColor != null) 'userColor': userColor,
       });
 
@@ -38,5 +41,12 @@ class UserWebService implements UserService {
   }
 
   @override
-  void saveProfilePicture() {}
+  Future<String> saveProfilePicture({
+    required String id,
+    required File picture,
+  }) async {
+    final fileRefrence = _storage.ref().child('$id/profile_picture');
+    await fileRefrence.putFile(picture);
+    return fileRefrence.getDownloadURL();
+  }
 }

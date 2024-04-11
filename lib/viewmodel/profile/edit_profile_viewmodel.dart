@@ -20,6 +20,7 @@ class EditProfileViewModel with ChangeNotifierEx {
   bool _isSaving = false;
   Color? _selectedColor;
   File? _selectedImage;
+  String? _initialImageUrl;
 
   String get userName => _userName;
 
@@ -27,9 +28,11 @@ class EditProfileViewModel with ChangeNotifierEx {
 
   bool get isSaving => _isSaving;
 
-  Color? get selectedColor => _selectedColor;
+  Color? get selectedColor => _selectedColor ?? (_userRepository.profile.userColor == null ? null : Color(_userRepository.profile.userColor!));
 
   File? get selectedImage => _selectedImage;
+
+  String? get initialImageUrl => _initialImageUrl;
 
   EditProfileViewModel(
     this._userRepository,
@@ -38,9 +41,7 @@ class EditProfileViewModel with ChangeNotifierEx {
   );
 
   Future<void> init() async {
-    if (_userRepository.profile.userColor != null) {
-      _selectedColor = Color(_userRepository.profile.userColor!);
-    }
+    _initialImageUrl = _userRepository.profile.photo;
   }
 
   void onUserNameChanged(String userName) {
@@ -58,6 +59,7 @@ class EditProfileViewModel with ChangeNotifierEx {
   Future<void> onImageTapped() async {
     final image = await _imagePickerUtil.pickImageFromCameraRoll();
     _selectedImage = image;
+    _initialImageUrl = null;
     if (disposed) return;
     notifyListeners();
   }
@@ -70,6 +72,7 @@ class EditProfileViewModel with ChangeNotifierEx {
   void onColorTapped(Color color) {
     _selectedColor = color;
     _selectedImage = null;
+    _initialImageUrl = null;
     notifyListeners();
   }
 
