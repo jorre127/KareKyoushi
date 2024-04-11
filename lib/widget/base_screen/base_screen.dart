@@ -129,7 +129,7 @@ class BaseScreen extends StatelessWidget {
             child: Stack(
               children: [
                 SafeArea(
-                  top: false,
+                  top: !(showHeader|| customHeader != null),
                   bottom: hasBottomSafeSpace,
                   child: isLoading
                       ? const Center(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/model/character/character.dart';
+import 'package:kare_kyoushi/model/enum/alphabet.dart';
 import 'package:kare_kyoushi/model/enum/difficulty_grade.dart';
 import 'package:kare_kyoushi/widget/general/character/character_and_reading.dart';
 import 'package:kare_kyoushi/widget/general/character/character_grade_label.dart';
@@ -51,7 +52,10 @@ class CharacterDetailHeader extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 16),
-                CharacterAndReading(character: character),
+                CharacterAndReading(
+                  character: character,
+                  showReading: character.alphbabet == Alphabet.kanji,
+                ),
                 const SizedBox(height: 64),
               ],
             ),
