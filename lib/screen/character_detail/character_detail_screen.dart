@@ -5,7 +5,6 @@ import 'package:kare_kyoushi/model/character/character.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
 import 'package:kare_kyoushi/viewmodel/character_detail/character_detail_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
-import 'package:kare_kyoushi/widget/character_detail/character_detail_buttons.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_header.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_words_containing.dart';
 import 'package:kare_kyoushi/widget/character_detail/character_detail_words_containing_title.dart';
@@ -116,7 +115,7 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                               CharacterDetailWordsContainingTitle(
                                 character: character,
                                 selectedReading: viewModel.selectedReading,
-                                onRemoveTapped: ()=> viewModel.onReadingTapped(null),
+                                onRemoveTapped: () => viewModel.onReadingTapped(null),
                               ),
                               CharacterDetailWordsContaining(words: viewModel.wordsContaining),
                               const SliverSizedBox(height: 100),
@@ -127,17 +126,6 @@ class CharacterDetailScreenState extends State<CharacterDetailScreen> {
                     ],
                   ),
                 ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 44, right: 44),
-                    child: CharacterDetailButtons(
-                      onMehTapped: viewModel.onMehTapped,
-                      onGotItTapped: viewModel.onGotItTapped,
-                      character: character,
-                    ),
-                  ),
-                )
               ],
             );
           },
