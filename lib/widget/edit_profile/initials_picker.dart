@@ -7,6 +7,7 @@ import 'package:kare_kyoushi/widget/provider/data_provider_widget.dart';
 class InitialsPicker extends StatelessWidget {
   final String userName;
   final ValueChanged<Color> onColorTapped;
+  final Color? selectedColor;
 
   static const _colors = [
     ThemeColors.bgDefault,
@@ -30,6 +31,7 @@ class InitialsPicker extends StatelessWidget {
   const InitialsPicker({
     required this.userName,
     required this.onColorTapped,
+    this.selectedColor,
     super.key,
   });
 
@@ -49,11 +51,21 @@ class InitialsPicker extends StatelessWidget {
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
           children: _colors
-              .map((color) => UserAvatar(
-                    name: userName,
-                    color: color,
-                    size: ThemeDimens.hugeIcon,
-                    onTapped: () => onColorTapped(color),
+              .map((color) => Container(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: selectedColor == color
+                            ? Border.all(
+                                width: 4,
+                                color: theme.colorsTheme.stroke,
+                              )
+                            : null),
+                    child: UserAvatar(
+                      name: userName,
+                      color: color,
+                      size: ThemeDimens.hugeIcon,
+                      onTapped: () => onColorTapped(color),
+                    ),
                   ))
               .toList(),
         ),

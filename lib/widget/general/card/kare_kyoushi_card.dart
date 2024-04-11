@@ -23,7 +23,7 @@ class KKCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => TouchFeedBack(
-        onClick: onTapped,
+        onTapped: onTapped,
         borderRadius: borderRadius ?? ThemeDimens.cardBorderRadius,
         child: Container(
           width: double.infinity,

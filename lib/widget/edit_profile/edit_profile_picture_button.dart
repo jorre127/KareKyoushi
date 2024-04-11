@@ -17,7 +17,7 @@ class EditProfilePictureButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => TouchFeedBack(
-        onClick: onTapped,
+        onTapped: onTapped,
         child: Container(
           width: 80,
           height: 80,

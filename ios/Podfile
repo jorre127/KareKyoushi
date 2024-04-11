@@ -28,6 +28,10 @@ require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelpe
 flutter_ios_podfile_setup
 
 target 'Runner' do
+    # This will pre-download FirebaseFirestore and decrease the build times.
+  # For more info visit the following link: https://github.com/firebase/flutterfire/issues/2751
+  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.22.0'
+  
   use_frameworks!
   use_modular_headers!
 

@@ -29,7 +29,11 @@ class _LoginRepository implements LoginRepository {
   bool get isNotLoggedIn => _firebaseAuth.currentUser == null;
 
   @override
-  Future<void> login({required String email, required String password}) => _firebaseAuth.signInWithEmailAndPassword(
+  Future<void> login({
+    required String email,
+    required String password,
+  }) =>
+      _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );

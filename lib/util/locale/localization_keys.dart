@@ -523,4 +523,9 @@ class LocalizationKeys {
   /// en:  **'Allow camera access'**
   static const cameraPermissionAllow = 'camera_permission_allow';
 
+  /// Translations:
+  ///
+  /// en:  **'Save changes'**
+  static const editProfileConfirm = 'edit_profile_confirm';
+
 }

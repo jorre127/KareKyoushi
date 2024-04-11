@@ -9,16 +9,19 @@ part of 'user_data.dart';
 UserData _$UserDataFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
-    requiredKeys: const ['userName'],
+    requiredKeys: const ['id', 'userName'],
   );
   return UserData(
+    id: json['id'] as String,
     userName: json['userName'] as String,
     photo: json['photo'] as String?,
+    photoBackground: json['photoBackground'] as String?,
   );
 }
 
 Map<String, dynamic> _$UserDataToJson(UserData instance) {
   final val = <String, dynamic>{
+    'id': instance.id,
     'userName': instance.userName,
   };
 
@@ -29,5 +32,6 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) {
   }
 
   writeNotNull('photo', instance.photo);
+  writeNotNull('photoBackground', instance.photoBackground);
   return val;
 }

@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -47,6 +49,12 @@ abstract class RegisterModule {
     }
     return SharedPreferences.getInstance();
   }
+
+  @lazySingleton
+  FirebaseStorage firebaseStorage() => FirebaseStorage.instance;
+
+  @lazySingleton
+  FirebaseFirestore firebaseFireStore() => FirebaseFirestore.instance;
 
   @lazySingleton
   ImagePicker imagePicker() => ImagePicker();

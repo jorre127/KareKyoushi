@@ -37,11 +37,12 @@ mixin BaseNavigator {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
+    final arguments = settings.arguments is Map ? (settings.arguments as Map).cast<String, dynamic>() : null;
     switch (settings.name) {
       case RouteNames.homeScreen:
         return MaterialPageRoute<void>(
           builder: (_) => HomeScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -49,7 +50,7 @@ mixin BaseNavigator {
       case RouteNames.splashScreen:
         return MaterialPageRoute<void>(
           builder: (_) => SplashScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -57,7 +58,7 @@ mixin BaseNavigator {
       case RouteNames.licenseScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LicenseScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -65,9 +66,9 @@ mixin BaseNavigator {
       case RouteNames.characterListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterListScreen(
-            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
-            difficultyGrade: (settings.arguments as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            alphabet: arguments!['alphabet'] as Alphabet,
+            difficultyGrade: arguments['difficultyGrade'] as DifficultyGrade,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -75,9 +76,9 @@ mixin BaseNavigator {
       case RouteNames.characterDetailScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterDetailScreen(
-            character: (settings.arguments as Map<String, dynamic>?)?['character'] as Character?,
-            characterValue: (settings.arguments as Map<String, dynamic>)['characterValue'] as String,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            character: arguments?['character'] as Character?,
+            characterValue: arguments!['characterValue'] as String,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: true,
@@ -85,10 +86,10 @@ mixin BaseNavigator {
       case RouteNames.characterDetailListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterDetailListScreen(
-            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
-            difficultyGrade: (settings.arguments as Map<String, dynamic>)['difficultyGrade'] as DifficultyGrade,
-            character: (settings.arguments as Map<String, dynamic>)['character'] as Character,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            alphabet: arguments!['alphabet'] as Alphabet,
+            difficultyGrade: arguments['difficultyGrade'] as DifficultyGrade,
+            character: arguments['character'] as Character,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -96,7 +97,7 @@ mixin BaseNavigator {
       case RouteNames.profileScreen:
         return MaterialPageRoute<void>(
           builder: (_) => ProfileScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -104,7 +105,7 @@ mixin BaseNavigator {
       case RouteNames.editProfileScreen:
         return MaterialPageRoute<void>(
           builder: (_) => EditProfileScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -112,8 +113,8 @@ mixin BaseNavigator {
       case RouteNames.characterGradeListScreen:
         return MaterialPageRoute<void>(
           builder: (_) => CharacterGradeListScreen(
-            alphabet: (settings.arguments as Map<String, dynamic>)['alphabet'] as Alphabet,
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            alphabet: arguments!['alphabet'] as Alphabet,
+            key: arguments['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -121,7 +122,7 @@ mixin BaseNavigator {
       case RouteNames.mainScreen:
         return MaterialPageRoute<void>(
           builder: (_) => MainScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -129,7 +130,7 @@ mixin BaseNavigator {
       case RouteNames.cameraPermissionScreen:
         return MaterialPageRoute<bool>(
           builder: (_) => CameraPermissionScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -137,7 +138,7 @@ mixin BaseNavigator {
       case RouteNames.analyticsPermissionScreen:
         return MaterialPageRoute<void>(
           builder: (_) => AnalyticsPermissionScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -145,7 +146,7 @@ mixin BaseNavigator {
       case RouteNames.libraryPermissionScreen:
         return MaterialPageRoute<bool>(
           builder: (_) => LibraryPermissionScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -153,7 +154,7 @@ mixin BaseNavigator {
       case RouteNames.loginScreen:
         return MaterialPageRoute<void>(
           builder: (_) => LoginScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -161,7 +162,7 @@ mixin BaseNavigator {
       case RouteNames.themeModeSelectorScreen:
         return MaterialPageRoute<void>(
           builder: (_) => ThemeModeSelectorScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -169,7 +170,7 @@ mixin BaseNavigator {
       case RouteNames.debugPlatformSelectorScreen:
         return MaterialPageRoute<void>(
           builder: (_) => DebugPlatformSelectorScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,
@@ -177,7 +178,7 @@ mixin BaseNavigator {
       case RouteNames.debugScreen:
         return MaterialPageRoute<void>(
           builder: (_) => DebugScreen(
-            key: (settings.arguments as Map<String, dynamic>?)?['key'] as Key?,
+            key: arguments?['key'] as Key?,
           ),
           settings: settings,
           fullscreenDialog: false,

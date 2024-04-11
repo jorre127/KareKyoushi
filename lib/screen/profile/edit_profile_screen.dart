@@ -5,6 +5,7 @@ import 'package:kare_kyoushi/viewmodel/profile/edit_profile_viewmodel.dart';
 import 'package:kare_kyoushi/widget/base_screen/base_screen.dart';
 import 'package:kare_kyoushi/widget/edit_profile/edit_profile_picture_buttons.dart';
 import 'package:kare_kyoushi/widget/edit_profile/initials_picker.dart';
+import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_button.dart';
 import 'package:kare_kyoushi/widget/general/styled/kare_kyoushi_input_field.dart';
 import 'package:kare_kyoushi/widget/provider/provider_widget.dart';
 
@@ -42,6 +43,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
           const SizedBox(height: 4),
           EditProfilePictureButtons(
             selectedColor: viewModel.selectedColor,
+            selectedImage: viewModel.selectedImage,
             onCameraTapped: viewModel.onCameraTapped,
             onImageTapped: viewModel.onImageTapped,
             onInitialsTapped: viewModel.onInitialsTapped,
@@ -53,8 +55,15 @@ class EditProfileScreenState extends State<EditProfileScreen> {
             InitialsPicker(
               onColorTapped: viewModel.onColorTapped,
               userName: viewModel.userName,
+              selectedColor: viewModel.selectedColor,
             ),
           ],
+          const Spacer(),
+          KKButton(
+            text: localization.editProfileConfirm,
+            onClick: viewModel.onConfirmTapped,
+            isLoading: viewModel.isSaving,
+          ),
         ],
       ),
     );

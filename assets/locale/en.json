@@ -102,5 +102,6 @@
   "library_permission_title": "Access your photos",
   "camera_permission_title": "Access your camera",
   "camera_permission_message": "Please allow access to your camera to upload images.",
-  "camera_permission_allow": "Allow camera access"
+  "camera_permission_allow": "Allow camera access",
+  "edit_profile_confirm": "Save changes"
 }

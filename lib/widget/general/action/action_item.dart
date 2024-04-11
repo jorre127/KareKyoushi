@@ -22,7 +22,7 @@ class ActionItem extends StatelessWidget {
     return DataProviderWidget(
       childBuilderTheme: (context, theme) => TouchFeedBack(
         borderRadius: BorderRadius.circular(48),
-        onClick: onClick,
+        onTapped: onClick,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(12),

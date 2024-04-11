@@ -26,7 +26,7 @@ class CharacterReadingsSectionItem extends StatelessWidget {
     final isSelected = selectedReading == reading;
     return DataProviderWidget(
       childBuilder: (context, theme, localization) => TouchFeedBack(
-        onClick: () => onReadingTapped(reading),
+        onTapped: () => onReadingTapped(reading),
         borderRadius: ThemeDimens.tagBorderRadius,
         child: Container(
           padding: const EdgeInsets.symmetric(

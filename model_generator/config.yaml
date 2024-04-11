@@ -30,5 +30,8 @@ WordType:
 UserData:
   path: webservice/user
   properties:
+    id: String
     userName: String
     photo: String?
+    photoBackgroundColor: String?
+

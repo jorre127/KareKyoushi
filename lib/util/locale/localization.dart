@@ -577,6 +577,11 @@ class Localization {
   /// en:  **'Allow camera access'**
   String get cameraPermissionAllow => _t(LocalizationKeys.cameraPermissionAllow);
 
+  /// Translations:
+  ///
+  /// en:  **'Save changes'**
+  String get editProfileConfirm => _t(LocalizationKeys.editProfileConfirm);
+
   String getTranslation(String key, {List<dynamic>? args}) => _t(key, args: args ?? <dynamic>[]);
 
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:kare_kyoushi/styles/theme_assets.dart';
 import 'package:kare_kyoushi/styles/theme_dimens.dart';
@@ -10,6 +12,7 @@ class EditProfilePictureButtons extends StatelessWidget {
   final bool showInitialsOptions;
   final String userName;
   final Color? selectedColor;
+  final File? selectedImage;
   final VoidCallback onImageTapped;
   final VoidCallback onCameraTapped;
   final VoidCallback onInitialsTapped;
@@ -21,6 +24,7 @@ class EditProfilePictureButtons extends StatelessWidget {
     required this.userName,
     required this.selectedColor,
     required this.showInitialsOptions,
+    required this.selectedImage,
     super.key,
   });
 
@@ -34,6 +38,7 @@ class EditProfilePictureButtons extends StatelessWidget {
             name: userName,
             size: ThemeDimens.hugeIcon,
             color: selectedColor,
+            localPhoto: selectedImage,
           ),
           const SizedBox(width: 8),
           EditProfilePictureButton(

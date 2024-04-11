@@ -5,8 +5,8 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:kare_kyoushi/util/cache/cache_controlling.dart';
 import 'package:injectable/injectable.dart';
 
-@Singleton(as: CacheControlling)
-class CacheController extends CacheControlling {
+@LazySingleton(as: CacheControlling)
+class CacheController implements CacheControlling {
   @override
   Future<Uint8List?> getFileFromCache(String url) async {
     final fileInfo = await DefaultCacheManager().getFileFromCache(url);

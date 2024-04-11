@@ -116,7 +116,7 @@ class KKButton extends StatelessWidget {
         );
         if (context.isIOSTheme) {
           return TouchFeedBack(
-            onClick: isEnabled
+            onTapped: isEnabled
                 ? () {
                     HapticFeedback.mediumImpact();
                     onClick?.call();
@@ -139,7 +139,7 @@ class KKButton extends StatelessWidget {
           ),
           duration: ThemeDurations.shortAnimationDuration,
           child: TouchFeedBack(
-            onClick: isEnabled ? onClick : null,
+            onTapped: isEnabled ? onClick : null,
             child: content,
           ),
         );
